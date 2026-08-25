@@ -2485,74 +2485,74 @@
 
             <div class="portfolio-grid" id="portfolioGrid">
                 <!-- Wedding Collection Card -->
-                <div class="portfolio-card wedding-card" data-category="wedding">
+                <div class="portfolio-card wedding-card" data-category="wedding" onclick="openCategoryLightbox('wedding')" style="cursor:pointer;">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80" alt="Wedding Photography">
                         <span class="card-badge">💍 Weddings</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Wedding Collections</h3>
-                        <p class="card-description">Timeless wedding rituals & grand receptions.</p>
+                        <p class="card-description">Timeless wedding rituals & grand receptions. <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
 
                 <!-- Pre-Wedding Card -->
-                <div class="portfolio-card prewedding-card" data-category="prewedding">
+                <div class="portfolio-card prewedding-card" data-category="prewedding" onclick="openCategoryLightbox('prewedding')" style="cursor:pointer;">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop&q=80" alt="Pre-Wedding Shoot">
                         <span class="card-badge">💑 Pre-Wedding</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Pre-Wedding Shoots</h3>
-                        <p class="card-description">Scenic outdoor & aesthetic studio couple stories.</p>
+                        <p class="card-description">Scenic outdoor & aesthetic studio couple stories. <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
 
                 <!-- Baby Shoot Card -->
-                <div class="portfolio-card baby-card" data-category="baby">
+                <div class="portfolio-card baby-card" data-category="baby" onclick="openCategoryLightbox('baby')" style="cursor:pointer;">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&auto=format&fit=crop&q=80" alt="Baby Shoot">
                         <span class="card-badge">👶 Baby Shoot</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Baby & Newborn</h3>
-                        <p class="card-description">Precious newborn portraits & milestone themes.</p>
+                        <p class="card-description">Precious newborn portraits & milestone themes. <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
 
                 <!-- Birthday Shoot Card -->
-                <div class="portfolio-card birthday-card" data-category="birthday">
+                <div class="portfolio-card birthday-card" data-category="birthday" onclick="openCategoryLightbox('birthday')" style="cursor:pointer;">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop&q=80" alt="Birthday Shoot">
                         <span class="card-badge">🎂 Birthday Shoot</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Birthday Shoots</h3>
-                        <p class="card-description">Special birthday party moments & cake smash.</p>
+                        <p class="card-description">Special birthday party moments & cake smash. <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
 
                 <!-- Events Collection Card -->
-                <div class="portfolio-card events-card" data-category="events">
+                <div class="portfolio-card events-card" data-category="events" onclick="openCategoryLightbox('events')" style="cursor:pointer;">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop&q=80" alt="Events Photography">
                         <span class="card-badge">🎉 Events</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Events & Lifestyle</h3>
-                        <p class="card-description">Engagements, ring ceremony & celebrations.</p>
+                        <p class="card-description">Engagements, ring ceremony & celebrations. <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
 
                 <!-- Photoshoot Collection Card -->
-                <div class="portfolio-card photoshoot-card" data-category="photoshoot">
+                <div class="portfolio-card photoshoot-card" data-category="photoshoot" onclick="openCategoryLightbox('photoshoot')" style="cursor:pointer;">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80" alt="Model & Fashion Photoshoot">
                         <span class="card-badge">📸 Photoshoot</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Model Photoshoots</h3>
-                        <p class="card-description">Fashion model folios & studio portraits.</p>
+                        <p class="card-description">Fashion model folios & studio portraits. <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
             </div>
@@ -3529,7 +3529,131 @@
                     }
                 });
             }
+
+            // Load Portfolio Category Photos & Card Badges
+            fetchCategoryPhotosData();
         });
+
+        // --- CATEGORY LIGHTBOX & DYNAMIC CARDS ENGINE ---
+        let categoryPhotosData = {};
+        let currentLightboxCat = '';
+        let currentLightboxIdx = 0;
+
+        async function fetchCategoryPhotosData() {
+            try {
+                const res = await fetch('/api/portfolio-items?t=' + Date.now());
+                const data = await res.json();
+                const items = data.items || [];
+
+                // Group photos by category
+                categoryPhotosData = {};
+                items.forEach(item => {
+                    const cat = (item.category || '').toLowerCase();
+                    if (!categoryPhotosData[cat]) categoryPhotosData[cat] = [];
+                    categoryPhotosData[cat].push(item);
+                });
+
+                // Update card badges & covers
+                const categories = ['wedding', 'prewedding', 'baby', 'birthday', 'events', 'photoshoot', 'maternity'];
+                categories.forEach(cat => {
+                    const card = document.querySelector(`.portfolio-card[data-category="${cat}"]`);
+                    if (card) {
+                        const photos = categoryPhotosData[cat] || [];
+                        const badgeEl = card.querySelector('.card-badge');
+                        const imgEl = card.querySelector('.card-image img');
+
+                        if (badgeEl) {
+                            const iconMap = {
+                                wedding: '💍', prewedding: '💑', baby: '👶',
+                                birthday: '🎂', events: '🎉', photoshoot: '📸', maternity: '🤰'
+                            };
+                            const icon = iconMap[cat] || '📸';
+                            badgeEl.innerHTML = `${icon} ${photos.length} Photo${photos.length === 1 ? '' : 's'}`;
+                        }
+
+                        if (imgEl && photos.length > 0 && photos[0].image_url) {
+                            imgEl.src = photos[0].image_url;
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error('Error fetching category photos:', e);
+            }
+        }
+
+        function openCategoryLightbox(cat) {
+            const photos = categoryPhotosData[cat] || [];
+            currentLightboxCat = cat;
+            currentLightboxIdx = 0;
+
+            const modal = document.getElementById('categoryLightboxModal');
+            if (!modal) return;
+
+            if (photos.length === 0) {
+                alert('📷 No extra photos uploaded for this category card yet! Studio admin can upload photos from Admin Dashboard.');
+                return;
+            }
+
+            modal.style.display = 'flex';
+            renderCatLightboxState();
+        }
+
+        function renderCatLightboxState() {
+            const photos = categoryPhotosData[currentLightboxCat] || [];
+            if (photos.length === 0) return;
+
+            if (currentLightboxIdx < 0) currentLightboxIdx = photos.length - 1;
+            if (currentLightboxIdx >= photos.length) currentLightboxIdx = 0;
+
+            const currentPhoto = photos[currentLightboxIdx];
+            const catTitles = {
+                wedding: '💍 Wedding Collections',
+                prewedding: '💑 Pre-Wedding Shoots',
+                baby: '👶 Baby & Newborn',
+                birthday: '🎂 Birthday Shoots',
+                events: '🎉 Events & Lifestyle',
+                photoshoot: '📸 Model Photoshoots',
+                maternity: '🤰 Maternity Shoots'
+            };
+
+            document.getElementById('catLightboxTitle').textContent = catTitles[currentLightboxCat] || '📸 Category Gallery';
+            document.getElementById('catLightboxSub').textContent = `Photo ${currentLightboxIdx + 1} of ${photos.length} • Omkar Doiphode Photography`;
+            
+            const imgEl = document.getElementById('catLightboxImg');
+            if (imgEl) imgEl.src = currentPhoto.image_url;
+
+            const capEl = document.getElementById('catPhotoCaption');
+            if (capEl) capEl.textContent = currentPhoto.title || `Photo ${currentLightboxIdx + 1} of ${photos.length}`;
+            
+            const dlBtn = document.getElementById('catDownloadBtn');
+            if (dlBtn) {
+                dlBtn.href = currentPhoto.image_url;
+                dlBtn.download = `${currentLightboxCat}_photo_${currentLightboxIdx + 1}.jpg`;
+            }
+
+            // Render Thumbnails Strip
+            const strip = document.getElementById('catThumbStrip');
+            if (strip) {
+                strip.innerHTML = photos.map((p, idx) => `
+                    <img src="${p.image_url}" onclick="selectCatLightboxIdx(${idx})" style="width:65px; height:50px; object-fit:cover; border-radius:6px; cursor:pointer; opacity:${idx === currentLightboxIdx ? '1' : '0.4'}; border:${idx === currentLightboxIdx ? '2px solid var(--accent-gold)' : '1px solid rgba(255,255,255,0.2)'}; transition:all 0.2s;">
+                `).join('');
+            }
+        }
+
+        function selectCatLightboxIdx(idx) {
+            currentLightboxIdx = idx;
+            renderCatLightboxState();
+        }
+
+        function navigateCatLightbox(dir) {
+            currentLightboxIdx += dir;
+            renderCatLightboxState();
+        }
+
+        function closeCategoryLightbox() {
+            const modal = document.getElementById('categoryLightboxModal');
+            if (modal) modal.style.display = 'none';
+        }
 
         // Visiting Card Modal Functions
         function openVisitingCardModal() {
@@ -3558,6 +3682,40 @@
             });
         }
     </script>
+
+    <!-- Category Portfolio Lightbox Modal -->
+    <div id="categoryLightboxModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:10000; flex-direction:column; align-items:center; justify-content:center; padding:15px; backdrop-filter:blur(12px);" onclick="closeCategoryLightbox()">
+        <div style="max-width:900px; width:100%; background:#121214; border-radius:20px; border:1.5px solid var(--accent-gold); padding:1.2rem; position:relative; display:flex; flex-direction:column; max-height:92vh; box-shadow:0 25px 60px rgba(0,0,0,0.8);" onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:0.8rem;">
+                <div>
+                    <h3 id="catLightboxTitle" style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--accent-gold); font-weight:800; margin:0;">💍 Category Gallery</h3>
+                    <p id="catLightboxSub" style="color:#A1A1AA; font-size:0.85rem; margin:2px 0 0 0;">Omkar Doiphode Photography Portfolio</p>
+                </div>
+                <button onclick="closeCategoryLightbox()" style="background:rgba(255,255,255,0.15); border:none; color:white; font-size:22px; width:38px; height:38px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">✕</button>
+            </div>
+
+            <!-- Main Display View -->
+            <div style="flex:1; min-height:0; position:relative; background:#000; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+                <img id="catLightboxImg" src="" alt="Portfolio Gallery Image" style="max-width:100%; max-height:55vh; object-fit:contain; display:block;">
+                
+                <!-- Nav Prev/Next Buttons -->
+                <button id="catNavPrev" onclick="navigateCatLightbox(-1)" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:white; border:1px solid rgba(255,255,255,0.2); width:42px; height:42px; border-radius:50%; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">❮</button>
+                <button id="catNavNext" onclick="navigateCatLightbox(1)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:white; border:1px solid rgba(255,255,255,0.2); width:42px; height:42px; border-radius:50%; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">❯</button>
+            </div>
+
+            <!-- Image Caption & Actions -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:0.8rem;">
+                <div id="catPhotoCaption" style="color:#E4E4E7; font-size:0.9rem; font-weight:600;">Photo 1 of 5</div>
+                <a id="catDownloadBtn" href="#" download="Portfolio_Photo.jpg" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent-gold); color:#18181B; padding:8px 18px; border-radius:20px; font-size:0.85rem; font-weight:700; text-decoration:none;">
+                    ⬇️ Download HD Photo
+                </a>
+            </div>
+
+            <!-- Thumbnail Strip -->
+            <div id="catThumbStrip" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;"></div>
+        </div>
+    </div>
 
     <!-- Studio Visiting Card Lightbox Modal -->
     <div id="visitingCardModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:10000; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(10px);" onclick="closeVisitingCardModal()">

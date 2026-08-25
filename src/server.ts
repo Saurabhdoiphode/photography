@@ -1623,41 +1623,106 @@ app.post('/api/galleries/verify', async (req: Request, res: Response) => {
   }
 });
 
-// 18. Upload Single Gallery Image (Portfolio Section) — data: URL so it persists on serverless
-app.post(['/api/upload-gallery', '/api/gallery-upload'], uploadMemoryGallery.single('gallery_image'), async (req: Request, res: Response) => {
-  const { title, category, badge } = req.body;
-  if (!req.file || !title || !category) {
-    return res.status(400).json({ error: 'Title, category, and image file are required' });
-  }
-
-  const imageUrl = `data:${req.file.mimetype || 'image/jpeg'};base64,${req.file.buffer.toString('base64')}`;
-
+// 18. Get Portfolio Gallery Items (Filtered by category or all)
+app.get(['/api/portfolio-items', '/api/gallery-items'], async (req: Request, res: Response) => {
   try {
-    await supabase.from('gallery_items').insert([{ title, category, image_url: imageUrl, badge }]);
-    db.run(
-      'INSERT INTO gallery_items (title, category, image_url, badge) VALUES (?, ?, ?, ?)',
-      [title, category, imageUrl, badge]
-    );
+    const targetCategory = req.query.category ? String(req.query.category).trim().toLowerCase() : '';
+    let items: any[] = [];
 
-    res.json({ success: true, message: 'Gallery item added!', image_url: imageUrl });
+    let query = supabase.from('gallery_items').select('*').order('id', { ascending: false });
+    if (targetCategory && targetCategory !== 'all') {
+      query = query.eq('category', targetCategory);
+    }
+    const { data: sItems, error } = await query;
+    if (!error && sItems && sItems.length > 0) {
+      items = [...sItems];
+    }
+
+    // SQLite / LocalStore fallback merge
+    db.all('SELECT * FROM gallery_items ORDER BY id DESC', [], (err: any, rows: any[]) => {
+      if (rows && rows.length > 0) {
+        const existingIds = new Set(items.map(i => String(i.id)));
+        rows.forEach(r => {
+          if (!existingIds.has(String(r.id))) {
+            if (!targetCategory || targetCategory === 'all' || String(r.category).toLowerCase() === targetCategory) {
+              items.push(r);
+            }
+          }
+        });
+      }
+      res.json({ success: true, items });
+    });
   } catch (e) {
-    res.status(500).json({ error: 'Failed to upload gallery item' });
+    res.status(500).json({ error: 'Database error fetching portfolio items' });
   }
 });
 
-// 19. Delete Gallery Image
-app.delete('/api/galleries/:id', async (req: Request, res: Response) => {
+// 19. Upload Single/Multiple Portfolio Gallery Images (Category Card Photos)
+app.post(['/api/portfolio-items', '/api/portfolio-items/upload', '/api/upload-gallery', '/api/gallery-upload'], uploadMemoryGallery.single('gallery_image'), async (req: Request, res: Response) => {
+  const { title, category, badge, imageUrl: rawUrl } = req.body;
+  const categoryClean = (category || 'wedding').trim().toLowerCase();
+  const titleClean = (title || `${categoryClean} Shoot`).trim();
+
+  let imageUrl = rawUrl || '';
+  if (req.file) {
+    imageUrl = `data:${req.file.mimetype || 'image/jpeg'};base64,${req.file.buffer.toString('base64')}`;
+  }
+
+  if (!imageUrl || !categoryClean) {
+    return res.status(400).json({ error: 'Category and image are required' });
+  }
+
+  const newItem = {
+    title: titleClean,
+    category: categoryClean,
+    image_url: imageUrl,
+    badge: badge || ''
+  };
+
+  try {
+    let savedId = Date.now();
+    const { data: inserted, error } = await supabase.from('gallery_items').insert([newItem]).select();
+    if (!error && inserted && inserted.length > 0) {
+      savedId = inserted[0].id;
+    }
+
+    db.run(
+      'INSERT INTO gallery_items (title, category, image_url, badge) VALUES (?, ?, ?, ?)',
+      [newItem.title, newItem.category, newItem.image_url, newItem.badge]
+    );
+
+    // Save to localStore array if not already present
+    if (localStore.data && localStore.data.gallery_items) {
+      localStore.data.gallery_items.unshift({ ...newItem, id: savedId });
+      localStore.save();
+    }
+
+    res.json({ success: true, message: 'Portfolio item added successfully!', item: { ...newItem, id: savedId } });
+  } catch (e) {
+    console.error('Portfolio item insert error:', e);
+    res.status(500).json({ error: 'Failed to upload portfolio item' });
+  }
+});
+
+// 20. Delete Portfolio Gallery Image by ID
+app.delete(['/api/portfolio-items/:id', '/api/galleries/:id', '/api/gallery-items/:id'], async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
     await supabase.from('gallery_items').delete().eq('id', id);
     db.run('DELETE FROM gallery_items WHERE id = ?', [id]);
-    res.json({ success: true, message: 'Gallery item deleted' });
+
+    if (localStore.data && localStore.data.gallery_items) {
+      localStore.data.gallery_items = localStore.data.gallery_items.filter((item: any) => String(item.id) !== String(id));
+      localStore.save();
+    }
+
+    res.json({ success: true, message: 'Portfolio item deleted' });
   } catch (e) {
-    res.status(500).json({ error: 'Failed to delete item' });
+    res.status(500).json({ error: 'Failed to delete portfolio item' });
   }
 });
 
-// 20. Public Website Approved Reviews Endpoint
+// 21. Public Website Approved Reviews Endpoint
 app.get('/api/reviews', async (req: Request, res: Response) => {
   try {
     let approvedReviews: any[] = [];
