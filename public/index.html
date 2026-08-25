@@ -3569,24 +3569,50 @@
         }
 
         function openCategoryLightbox(cat) {
-            const photos = categoryPhotosData[cat] || [];
+            let photos = categoryPhotosData[cat] || [];
             currentLightboxCat = cat;
             currentLightboxIdx = 0;
 
             const modal = document.getElementById('categoryLightboxModal');
             if (!modal) return;
 
+            // Fallback featured photos if no custom photos uploaded by admin yet
             if (photos.length === 0) {
-                alert('📷 No extra photos uploaded for this category card yet! Studio admin can upload photos from Admin Dashboard.');
-                return;
+                const defaultSampleMap = {
+                    wedding: [
+                        { title: 'Grand Royal Wedding Rituals', image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80' },
+                        { title: 'Candid Couple Moments', image_url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&auto=format&fit=crop&q=80' }
+                    ],
+                    prewedding: [
+                        { title: 'Scenic Sunset Pre-Wedding Story', image_url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&auto=format&fit=crop&q=80' },
+                        { title: 'Romantic Nature Couple Shoot', image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80' }
+                    ],
+                    baby: [
+                        { title: 'Precious Baby Portraits', image_url: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&auto=format&fit=crop&q=80' }
+                    ],
+                    birthday: [
+                        { title: 'Birthday Celebration & Cake Smash', image_url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&auto=format&fit=crop&q=80' }
+                    ],
+                    events: [
+                        { title: 'Grand Engagement & Event Celebrations', image_url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&auto=format&fit=crop&q=80' }
+                    ],
+                    photoshoot: [
+                        { title: 'Fashion Model Studio Folio', image_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&auto=format&fit=crop&q=80' }
+                    ],
+                    maternity: [
+                        { title: 'Maternity Mom-To-Be Portrait', image_url: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&auto=format&fit=crop&q=80' }
+                    ]
+                };
+                photos = defaultSampleMap[cat] || [{ title: 'Featured Collection', image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200' }];
             }
 
+            categoryPhotosData[cat + '_active'] = photos;
             modal.style.display = 'flex';
             renderCatLightboxState();
         }
 
         function renderCatLightboxState() {
-            const photos = categoryPhotosData[currentLightboxCat] || [];
+            const photos = categoryPhotosData[currentLightboxCat + '_active'] || categoryPhotosData[currentLightboxCat] || [];
             if (photos.length === 0) return;
 
             if (currentLightboxIdx < 0) currentLightboxIdx = photos.length - 1;

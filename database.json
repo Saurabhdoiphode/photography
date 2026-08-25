@@ -43,7 +43,15 @@
   ],
   "blocked_dates": [],
   "services": [],
-  "gallery_items": [],
+  "gallery_items": [
+    {
+      "title": "Test Royal Marathi Wedding Photo",
+      "category": "wedding",
+      "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+      "badge": "wedding Collection",
+      "id": 1
+    }
+  ],
   "private_galleries": [
     {
       "id": 1786437207777,
