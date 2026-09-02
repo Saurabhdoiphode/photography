@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TCG61273V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8TCG61273V');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Client Photo Gallery | Omkar Doiphode Photography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream-bg: #FDFBF7;
+            --dark-charcoal: #1A1A1A;
+            --soft-rose: #E5D0C5;
+            --accent-gold: #D4A574;
+        }
+
+        body {
+            background-color: var(--cream-bg);
+            color: var(--dark-charcoal);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Passcode Card */
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 1.5px solid var(--accent-gold);
+            max-width: 440px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        /* Masonry Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #EEE;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .fav-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(8px);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .fav-btn.active {
+            background: #EF4444;
+            color: white;
+        }
+
+        .download-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(253, 251, 247, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--soft-rose);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Brand -->
+    <header class="py-6 text-center border-b border-rose-200 bg-white/80 backdrop-blur">
+        <h1 class="text-2xl font-bold tracking-wider serif-title text-gray-900">OMKAR DOIPHODE</h1>
+        <p class="text-xs uppercase tracking-widest text-amber-700 font-semibold">Private Client Photo Portal</p>
+    </header>
+
+    <!-- Passcode Login View -->
+    <div id="loginView" class="px-4">
+        <div class="login-card">
+            <div class="text-4xl mb-3">🔐</div>
+            <h2 class="text-2xl font-bold serif-title text-gray-900 mb-2">Private Client Gallery</h2>
+            <p class="text-sm text-gray-600 mb-6">Enter your unique Gallery Code & Passcode provided by Omkar to access your private high-res photos.</p>
+
+            <form id="passcodeForm" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Gallery Code</label>
+                    <input type="text" id="galleryCodeInput" placeholder="e.g. RAHUL2026" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 uppercase font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Passcode</label>
+                    <input type="password" id="passcodeInput" placeholder="Enter secret passcode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600">
+                </div>
+                
+                <div id="errorMsg" class="hidden text-xs text-red-600 bg-red-50 p-3 rounded-lg text-center font-medium"></div>
+
+                <button type="submit" class="w-full bg-gray-900 hover:bg-amber-600 text-white font-semibold py-3 rounded-lg transition duration-300">
+                    Unlock Private Gallery →
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery View (Hidden by default) -->
+    <div id="galleryView" class="hidden">
+        <!-- Download Action Bar -->
+        <div class="download-bar">
+            <div>
+                <h2 id="clientTitle" class="text-xl font-bold serif-title text-gray-900">Client Gallery</h2>
+                <p class="text-xs text-gray-600"><span id="favCount">0</span> Favorite(s) selected • <span id="expiryBadge" class="font-bold text-amber-700">⏰ Auto-deletes in 30 days</span></p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="downloadFavorites()" class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-1">
+                    <span>❤️ Download Favorites</span>
+                </button>
+                <button onclick="downloadAllPhotos()" class="bg-gray-900 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-1">
+                    <span>📥 Download All Photos</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="photoGrid" class="gallery-grid"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox Full-Screen Preview Modal -->
+    <div id="lightboxModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:99999; backdrop-filter:blur(10px); flex-direction:column; align-items:center; justify-content:center; padding:1rem;">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" style="position:absolute; top:20px; right:20px; color:white; background:rgba(255,255,255,0.2); border:none; width:44px; height:44px; border-radius:50%; font-size:24px; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);" title="Close Preview">✕</button>
+
+        <!-- Main Lightbox Image -->
+        <img id="lightboxImg" src="" alt="Full High-Res View" style="max-width:90vw; max-height:78vh; object-fit:contain; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+
+        <!-- Lightbox Action Bar -->
+        <div style="margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center;">
+            <button onclick="prevLightboxPhoto()" style="background:white; color:#1A1A1A; border:none; padding:8px 18px; border-radius:20px; font-weight:700; cursor:pointer;">⬅️ Previous</button>
+            <a id="lightboxDownloadBtn" href="" download target="_blank" style="background:#D4A574; color:#1A1A1A; border:none; padding:10px 24px; border-radius:20px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                📥 Download Full Clarity High-Res Photo
+            </a>
+            <button onclick="nextLightboxPhoto()" style="background:white; color:#1A1A1A; border:none; padding:8px 18px; border-radius:20px; font-weight:700; cursor:pointer;">Next ➡️</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPhotos = [];
+        let favorites = new Set();
+        let currentLightboxIdx = 0;
+
+        // Check if query params present in URL (e.g. ?code=RAHUL2026&pass=1234)
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code') || params.get('id');
+            const pass = params.get('pass') || params.get('passcode') || params.get('password');
+            if (code) {
+                document.getElementById('galleryCodeInput').value = code.toUpperCase();
+            }
+            if (pass) {
+                document.getElementById('passcodeInput').value = pass;
+            }
+            if (code && pass) {
+                // Auto-unlock when a full link (with passcode) is opened
+                const form = document.getElementById('passcodeForm');
+                if (typeof form.requestSubmit === 'function') {
+                    form.requestSubmit();
+                } else {
+                    form.dispatchEvent(new Event('submit', { cancelable: true }));
+                }
+            }
+        });
+
+        // Keydown listener for Lightbox Arrow Navigation (Left/Right/Esc)
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('lightboxModal');
+            if (modal && modal.style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevLightboxPhoto();
+                if (e.key === 'ArrowRight') nextLightboxPhoto();
+            }
+        });
+
+        // Passcode Form Submit
+        document.getElementById('passcodeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const galleryCode = document.getElementById('galleryCodeInput').value.trim();
+            const passcode = document.getElementById('passcodeInput').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (!galleryCode || !passcode) {
+                errorMsg.textContent = '⚠️ Please enter both Gallery Code and Passcode.';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/galleries/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ galleryCode, passcode })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    currentPhotos = data.photos || [];
+                    document.getElementById('clientTitle').textContent = `✨ Gallery for ${data.clientName}`;
+                    if (data.daysRemaining !== undefined) {
+                        document.getElementById('expiryBadge').textContent = `⏰ Auto-deletes in ${data.daysRemaining} day(s)`;
+                    }
+                    document.getElementById('loginView').classList.add('hidden');
+                    document.getElementById('galleryView').classList.remove('hidden');
+                    renderPhotos(currentPhotos);
+                } else {
+                    errorMsg.textContent = `⚠️ ${data.error || 'Invalid credentials'}`;
+                    errorMsg.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorMsg.textContent = '⚠️ Server connection error. Please try again.';
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        function renderPhotos(photos) {
+            const grid = document.getElementById('photoGrid');
+            grid.innerHTML = '';
+
+            if (photos.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">No photos available in this gallery yet.</div>';
+                return;
+            }
+
+            photos.forEach((url, idx) => {
+                const isFav = favorites.has(url);
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.innerHTML = `
+                    <img src="${url}" alt="Gallery Photo ${idx+1}" onclick="openLightbox(${idx})" style="cursor:pointer;" title="Click to view full-screen high-res preview" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800'">
+                    <button onclick="event.stopPropagation(); toggleFav('${url}', this)" class="fav-btn ${isFav ? 'active' : ''}">
+                        ${isFav ? '❤️' : '🤍'}
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- LIGHTBOX PREVIEW FUNCTIONS ---
+        function openLightbox(idx) {
+            currentLightboxIdx = idx;
+            const url = currentPhotos[idx];
+            document.getElementById('lightboxImg').src = url;
+            document.getElementById('lightboxDownloadBtn').href = url;
+            document.getElementById('lightboxModal').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
+
+        function prevLightboxPhoto() {
+            if (currentPhotos.length === 0) return;
+            currentLightboxIdx = (currentLightboxIdx - 1 + currentPhotos.length) % currentPhotos.length;
+            openLightbox(currentLightboxIdx);
+        }
+
+        function nextLightboxPhoto() {
+            if (currentPhotos.length === 0) return;
+            currentLightboxIdx = (currentLightboxIdx + 1) % currentPhotos.length;
+            openLightbox(currentLightboxIdx);
+        }
+
+        function toggleFav(url, btn) {
+            if (favorites.has(url)) {
+                favorites.delete(url);
+                btn.innerHTML = '🤍';
+                btn.classList.remove('active');
+            } else {
+                favorites.add(url);
+                btn.innerHTML = '❤️';
+                btn.classList.add('active');
+            }
+            document.getElementById('favCount').textContent = favorites.size;
+        }
+
+        function downloadFavorites() {
+            if (favorites.size === 0) {
+                alert('❤️ Please select at least one favorite photo first by clicking the heart button on images!');
+                return;
+            }
+            alert(`📥 Downloading ${favorites.size} full clarity photo(s)...`);
+            Array.from(favorites).forEach((url, index) => {
+                setTimeout(() => {
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `HighRes_Fav_Photo_${index+1}.jpg`;
+                    a.target = '_blank';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                }, index * 300);
+            });
+        }
+
+        function downloadAllPhotos() {
+            if (currentPhotos.length === 0) return;
+            alert(`📥 Starting full clarity download for ${currentPhotos.length} photo(s)...`);
+            currentPhotos.forEach((url, index) => {
+                setTimeout(() => {
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `HighRes_Photo_${index+1}.jpg`;
+                    a.target = '_blank';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                }, index * 300);
+            });
+        }
+    </script>
+</body>
+</html>

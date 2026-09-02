@@ -1,56 +1,283 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Login | Lens & Light</title>
-  <style>
-    :root { --ink:#17221f; --muted:#68736f; --paper:#f5f0e8; --card:#fffdf9; --green:#1f5147; --gold:#c58a42; --line:#ded7cb; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; color:var(--ink); background:radial-gradient(circle at 12% 10%, #e8d7bd 0 16%, transparent 38%), linear-gradient(135deg,#f5f0e8 0%,#e5eee9 100%); font-family:Georgia, 'Times New Roman', serif; }
-    .shell { width:min(100% - 32px, 1050px); min-height:650px; display:grid; grid-template-columns:1.05fr .95fr; overflow:hidden; background:var(--card); box-shadow:0 24px 70px #1f51471f; border:1px solid #ffffffaa; }
-    .visual { position:relative; padding:48px; display:flex; flex-direction:column; justify-content:space-between; min-height:650px; color:#fff; background:linear-gradient(160deg,#173d36dd,#173d3680), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1100&q=85') center/cover; }
-    .brand { font-size:15px; letter-spacing:3px; text-transform:uppercase; }
-    .visual h1 { max-width:420px; margin:0; font-size:clamp(42px,5vw,72px); line-height:.94; font-weight:400; }
-    .visual p { max-width:320px; margin:20px 0 0; color:#f2eee7cc; font:15px/1.6 Arial,sans-serif; }
-    .form-side { display:flex; align-items:center; padding:clamp(32px,7vw,78px); }
-    form { width:100%; max-width:360px; }
-    .eyebrow { margin:0 0 14px; color:var(--gold); font:700 12px Arial,sans-serif; letter-spacing:2px; text-transform:uppercase; }
-    h2 { margin:0 0 12px; font-size:42px; font-weight:400; }
-    .intro { margin:0 0 34px; color:var(--muted); font:15px/1.5 Arial,sans-serif; }
-    label { display:block; margin:18px 0 8px; font:700 12px Arial,sans-serif; letter-spacing:1px; text-transform:uppercase; }
-    input { width:100%; padding:15px 0; border:0; border-bottom:1px solid var(--line); outline:0; color:var(--ink); background:transparent; font:17px Georgia,serif; }
-    input:focus { border-color:var(--green); }
-    button { width:100%; margin-top:30px; padding:16px; border:0; color:#fff; background:var(--green); cursor:pointer; font:700 12px Arial,sans-serif; letter-spacing:1.5px; text-transform:uppercase; transition:background .2s, transform .2s; }
-    button:hover { background:#163a33; transform:translateY(-1px); }
-    .hint { margin-top:18px; color:var(--muted); font:12px Arial,sans-serif; }
-    .error { min-height:18px; margin-top:14px; color:#a94438; font:13px Arial,sans-serif; }
-    @media (max-width:700px) { .shell { grid-template-columns:1fr; } .visual { min-height:280px; padding:28px; } .visual h1 { font-size:48px; } .visual p { display:none; } .form-side { padding:42px 28px 52px; } }
-  </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8TCG61273V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8TCG61273V');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Omkar Doiphode Photography</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream-bg: #FDFBF7;
+            --dark-charcoal: #1A1A1A;
+            --soft-rose: #E5D0C5;
+            --accent-gold: #D4A574;
+        }
+
+        body {
+            background-color: var(--cream-bg);
+            color: var(--dark-charcoal);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .serif-heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 1rem;
+            background: radial-gradient(circle at 50% 30%, rgba(212, 165, 116, 0.12) 0%, transparent 60%);
+        }
+
+        .login-box {
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid rgba(212, 165, 116, 0.4);
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .od-monogram {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #0F172A;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 20px;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+        }
+
+        .login-title {
+            text-align: center;
+            margin-bottom: 0.3rem;
+            font-size: 24px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            color: #0F172A;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #64748B;
+            font-size: 13px;
+            margin-bottom: 1.8rem;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #0F172A;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #CBD5E1;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            color: #0F172A;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            background: #0F172A;
+            color: var(--accent-gold);
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+        }
+
+        .login-btn:hover {
+            background: var(--accent-gold);
+            color: #0F172A;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #B91C1C;
+            text-align: center;
+            margin-bottom: 1.2rem;
+            font-size: 13px;
+            padding: 10px 14px;
+            background-color: #FEE2E2;
+            border: 1px solid #FCA5A5;
+            border-radius: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .success-message {
+            color: #15803D;
+            text-align: center;
+            margin-bottom: 1.2rem;
+            font-size: 13px;
+            padding: 10px 14px;
+            background-color: #DCFCE7;
+            border: 1px solid #86EFAC;
+            border-radius: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+        }
+
+        .spinner {
+            border: 3px solid #F1F5F9;
+            border-top: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 1.8rem 1.2rem;
+                border-radius: 14px;
+            }
+            .login-title {
+                font-size: 21px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main class="shell">
-    <section class="visual"><div class="brand">Lens & Light / Studio</div><div><h1>Make every frame count.</h1><p>A quiet workspace for managing your photography studio, clients and upcoming sessions.</p></div></section>
-    <section class="form-side">
-      <form id="loginForm">
-        <p class="eyebrow">Private workspace</p><h2>Welcome back.</h2><p class="intro">Sign in to access your studio dashboard.</p>
-        <label for="email">Email address</label><input id="email" type="email" placeholder="admin@lensandlight.com" autocomplete="username" required>
-        <label for="password">Password</label><input id="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
-        <button type="submit">Enter dashboard</button><div class="error" id="error" role="alert"></div><p class="hint">Demo access: any valid email and password with 4+ characters.</p>
-      </form>
-    </section>
-  </main>
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      var email = document.getElementById('email').value.trim();
-      var password = document.getElementById('password').value;
-      var error = document.getElementById('error');
-      if (!email || password.length < 4) { error.textContent = 'Please enter a valid email and a password with 4+ characters.'; return; }
-      sessionStorage.setItem('adminAuthenticated', 'true');
-      sessionStorage.setItem('adminEmail', email);
-      window.location.href = 'admin-dashboard.html';
-    });
-  </script>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="od-monogram">OD</div>
+            <h1 class="login-title">Omkar Doiphode Photography</h1>
+            <p class="login-subtitle">Admin Control Center Portal</p>
+            
+            <div class="error-message" id="errorMsg"></div>
+            <div class="success-message" id="successMsg"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Phone / Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username / 9146929608">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your admin password">
+                </div>
+
+                <button type="submit" class="login-btn" id="submitBtn">Access Admin Panel →</button>
+            </form>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 1rem; font-size: 13px; font-weight: 600; color: #475569;">Verifying credentials...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const errorMsg = document.getElementById('errorMsg');
+        const successMsg = document.getElementById('successMsg');
+        const loading = document.getElementById('loading');
+        const submitBtn = document.getElementById('submitBtn');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            submitBtn.style.display = 'none';
+            loading.style.display = 'block';
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('adminToken', data.token);
+                    successMsg.textContent = 'Login successful! Redirecting...';
+                    successMsg.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        window.location.href = '/admin-dashboard.html';
+                    }, 1500);
+                } else {
+                    throw new Error(data.error || 'Login failed');
+                }
+            } catch (error) {
+                errorMsg.textContent = error.message;
+                errorMsg.style.display = 'block';
+                submitBtn.style.display = 'block';
+                loading.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
