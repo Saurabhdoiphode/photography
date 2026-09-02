@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | Lens & Light</title>
+  <style>
+    :root { --ink:#17221f; --muted:#73807b; --paper:#f5f0e8; --white:#fffdf9; --green:#1f5147; --gold:#c58a42; --line:#e5dfd5; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--paper); font-family:Arial,sans-serif; }
+    .layout { min-height:100vh; display:grid; grid-template-columns:240px 1fr; }
+    aside { padding:30px 24px; color:#f7f3eb; background:var(--green); display:flex; flex-direction:column; }
+    .logo { margin-bottom:70px; font:15px Georgia,serif; letter-spacing:2px; text-transform:uppercase; }
+    nav { display:grid; gap:8px; } nav button { padding:13px 14px; border:0; color:#dce9e2; background:transparent; text-align:left; cursor:pointer; font-size:13px; } nav button.active, nav button:hover { color:#fff; background:#ffffff18; }
+    .aside-bottom { margin-top:auto; } .user { padding-top:20px; border-top:1px solid #ffffff2c; color:#b9cdc4; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .logout { width:100%; margin-top:16px; padding:11px; border:1px solid #ffffff50; color:#fff; background:transparent; cursor:pointer; font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+    main { max-width:1400px; width:100%; padding:42px clamp(24px,5vw,72px); }
+    .top { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:38px; } .eyebrow { margin:0 0 10px; color:var(--gold); font-size:11px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; } h1 { margin:0; font:400 clamp(36px,4vw,54px) Georgia,serif; } .date { color:var(--muted); font-size:13px; }
+    .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:34px; } .stat { padding:22px; background:var(--white); border:1px solid var(--line); } .stat strong { display:block; margin-bottom:9px; font:34px Georgia,serif; } .stat span { color:var(--muted); font-size:12px; }
+    .section-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; } h2 { margin:0; font:400 25px Georgia,serif; } .add { padding:11px 15px; border:0; color:#fff; background:var(--green); cursor:pointer; font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+    .toolbar { display:flex; gap:12px; margin-bottom:12px; } .toolbar input { flex:1; padding:13px 15px; border:1px solid var(--line); background:var(--white); outline:0; } .filter { padding:0 12px; border:1px solid var(--line); color:var(--muted); background:var(--white); }
+    .table-wrap { overflow:auto; background:var(--white); border:1px solid var(--line); } table { width:100%; min-width:680px; border-collapse:collapse; text-align:left; } th,td { padding:17px 20px; border-bottom:1px solid var(--line); font-size:13px; } th { color:var(--muted); font-size:10px; letter-spacing:1px; text-transform:uppercase; } tr:last-child td { border-bottom:0; } .client { font-weight:bold; } .client small { display:block; margin-top:4px; color:var(--muted); font-weight:normal; } .pill { display:inline-block; padding:6px 9px; color:var(--green); background:#e2eee8; font-size:10px; text-transform:uppercase; letter-spacing:.6px; } .pill.pending { color:#896126; background:#f4e7cf; } .actions button { margin-right:8px; padding:5px 0; border:0; color:var(--green); background:transparent; cursor:pointer; font-size:11px; }
+    @media (max-width:800px) { .layout { grid-template-columns:1fr; } aside { padding:20px; } .logo { margin-bottom:20px; } nav { display:flex; overflow:auto; } nav button { white-space:nowrap; } .aside-bottom { display:none; } main { padding:30px 18px; } .stats { grid-template-columns:repeat(2,1fr); } .top { align-items:start; flex-direction:column; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside><div class="logo">Lens & Light</div><nav><button class="active">Overview</button><button onclick="alert('Gallery management is ready for your image collection.')">Gallery</button><button onclick="alert('Client management is ready.')">Clients</button><button onclick="alert('Settings panel coming soon.')">Settings</button></nav><div class="aside-bottom"><div class="user" id="userEmail">Admin</div><button class="logout" id="logout">Log out</button></div></aside>
+    <main><div class="top"><div><p class="eyebrow">Tuesday, September 02, 2026</p><h1>Good morning.</h1></div><div class="date">Studio overview / 2026</div></div>
+      <section class="stats"><div class="stat"><strong>24</strong><span>Active galleries</span></div><div class="stat"><strong>18</strong><span>Upcoming shoots</span></div><div class="stat"><strong>86%</strong><span>Booking conversion</span></div><div class="stat"><strong>$12.4k</strong><span>Monthly revenue</span></div></section>
+      <section><div class="section-head"><h2>Recent bookings</h2><button class="add" id="addBooking">+ Add booking</button></div><div class="toolbar"><input id="search" type="search" placeholder="Search clients or sessions"><select class="filter" id="statusFilter"><option value="all">All status</option><option value="confirmed">Confirmed</option><option value="pending">Pending</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>Client</th><th>Session</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="bookings"></tbody></table></div>
+      </section>
+    </main>
+  </div>
+  <script>
+    if (sessionStorage.getItem('adminAuthenticated') !== 'true') window.location.href = 'admin-login.html';
+    document.getElementById('userEmail').textContent = sessionStorage.getItem('adminEmail') || 'Admin';
+    var data = [
+      { client:'Maya & Arjun', email:'maya@example.com', session:'Wedding editorial', date:'Sep 08, 2026', status:'confirmed' },
+      { client:'Riya Kapoor', email:'riya@example.com', session:'Portrait collection', date:'Sep 12, 2026', status:'pending' },
+      { client:'Northline Studio', email:'hello@northline.co', session:'Brand campaign', date:'Sep 18, 2026', status:'confirmed' },
+      { client:'Daniel Morris', email:'daniel@example.com', session:'Family session', date:'Sep 21, 2026', status:'confirmed' }
+    ];
+    function render() { var query = document.getElementById('search').value.toLowerCase(); var status = document.getElementById('statusFilter').value; document.getElementById('bookings').innerHTML = data.filter(function (item) { return (status === 'all' || item.status === status) && (item.client + item.email + item.session).toLowerCase().indexOf(query) > -1; }).map(function (item, index) { return '<tr><td class="client">' + item.client + '<small>' + item.email + '</small></td><td>' + item.session + '</td><td>' + item.date + '</td><td><span class="pill ' + (item.status === 'pending' ? 'pending' : '') + '">' + item.status + '</span></td><td class="actions"><button onclick="alert(\'Booking details for ' + item.client + '\')">View</button><button onclick="removeBooking(' + index + ')">Delete</button></td></tr>'; }).join('') || '<tr><td colspan="5">No bookings match your search.</td></tr>'; }
+    function removeBooking(index) { data.splice(index, 1); render(); }
+    document.getElementById('search').addEventListener('input', render); document.getElementById('statusFilter').addEventListener('change', render); document.getElementById('addBooking').addEventListener('click', function () { data.unshift({ client:'New client', email:'pending@example.com', session:'New session', date:'To be scheduled', status:'pending' }); render(); }); document.getElementById('logout').addEventListener('click', function () { sessionStorage.clear(); window.location.href = 'admin-login.html'; }); render();
+  </script>
+</body>
+</html>
