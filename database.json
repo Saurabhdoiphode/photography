@@ -1,0 +1,10 @@
+{
+  "database": "supabase",
+  "schema": "public",
+  "tables": {
+    "bookings": ["id", "customer_name", "email", "phone", "event_type", "event_date", "status", "notes", "created_at"],
+    "galleries": ["id", "client_name", "access_code", "event_date", "status", "created_at"],
+    "gallery_photos": ["id", "gallery_id", "storage_path", "caption", "sort_order", "created_at"]
+  },
+  "migration": "supabase-setup.sql"
+}
