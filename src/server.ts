@@ -10,6 +10,7 @@ const nodeRequire = createRequire(typeof __filename === 'string' ? __filename : 
 import { createClient } from '@supabase/supabase-js';
 import multer from 'multer';
 import { fileURLToPath } from 'url';
+import jwt from 'jsonwebtoken';
 import type {
   BookingRecord,
   BookingStatus,
@@ -19,6 +20,48 @@ import type {
   ServiceRecord,
   GalleryRecord
 } from './types/index.ts';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'omkar_doiphode_photography_jwt_secret_key_2026';
+
+// JWT Helper Functions
+export function generateJWTToken(username: string, role: string = 'admin'): string {
+  return jwt.sign(
+    { username, role, issuer: 'Omkar Doiphode Photography' },
+    JWT_SECRET,
+    { expiresIn: '24h' }
+  );
+}
+
+export function authenticateJWT(req: Request, res: Response, next: any) {
+  const authHeader = req.headers.authorization || (req.headers['x-access-token'] as string);
+  let token: string | null = null;
+
+  if (authHeader && typeof authHeader === 'string' && authHeader.startsWith('Bearer ')) {
+    token = authHeader.substring(7).trim();
+  } else if (typeof authHeader === 'string') {
+    token = authHeader.trim();
+  } else if (req.query && req.query.token) {
+    token = String(req.query.token).trim();
+  }
+
+  if (!token) {
+    return res.status(401).json({ success: false, error: 'Unauthorized: Access token missing' });
+  }
+
+  // Backwards compatibility for legacy admin token format
+  if (token.startsWith('admin_token_')) {
+    (req as any).user = { username: token.replace('admin_token_', ''), role: 'admin' };
+    return next();
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    (req as any).user = decoded;
+    next();
+  } catch (err: any) {
+    return res.status(401).json({ success: false, error: 'Unauthorized: Invalid or expired JWT token' });
+  }
+}
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -535,7 +578,7 @@ db.serialize(() => {
 
 // --- API ENDPOINTS ---
 
-// 0. Admin Login Endpoint
+// 0. Admin Login Endpoint (Generates signed 24-hour JWT token)
 app.post('/api/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
@@ -551,7 +594,13 @@ app.post('/api/login', async (req: Request, res: Response) => {
     (trimmedUser === '9146929608' && trimmedPass === 'Self@123') ||
     (trimmedUser === 'admin' && trimmedPass === 'admin123')
   ) {
-    return res.json({ success: true, token: 'admin_token_' + trimmedUser });
+    const token = generateJWTToken(trimmedUser, 'admin');
+    return res.json({
+      success: true,
+      token,
+      user: { username: trimmedUser, role: 'admin' },
+      message: 'Admin JWT authentication successful'
+    });
   }
 
   db.get(
@@ -559,12 +608,23 @@ app.post('/api/login', async (req: Request, res: Response) => {
     [trimmedUser, trimmedPass],
     (err: any, row: any) => {
       if (row) {
-        return res.json({ success: true, token: 'admin_token_' + trimmedUser });
+        const token = generateJWTToken(trimmedUser, 'admin');
+        return res.json({
+          success: true,
+          token,
+          user: { username: trimmedUser, role: 'admin' },
+          message: 'Admin JWT authentication successful'
+        });
       } else {
         return res.status(401).json({ error: 'Invalid username or password' });
       }
     }
   );
+});
+
+// 0.5. Verify JWT Token Endpoint
+app.get('/api/verify-token', authenticateJWT, (req: Request, res: Response) => {
+  res.json({ success: true, valid: true, user: (req as any).user });
 });
 
 // 1. Get Active Logo (For Website Header)
