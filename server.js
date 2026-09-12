@@ -660,15 +660,30 @@ app.get('/api/services', async (req, res) => {
     }
 });
 
-// 9. Get All Bookings (Admin endpoint - Supabase + SQLite)
+// 9. Get All Bookings (Admin endpoint - Supabase + SQLite with Deduplication)
 app.get('/api/bookings', async (req, res) => {
     try {
         const { data: sbBookings, error } = await supabase.from('bookings').select('*').order('created_at', { ascending: false });
+
+        const deduplicateBookings = (rawBookings) => {
+            const seen = new Set();
+            return (rawBookings || []).filter(b => {
+                if (!b) return false;
+                const idKey = (b.id !== undefined && b.id !== null) ? `id_${b.id}` : null;
+                const compositeKey = `${String(b.client_phone || '').trim()}_${String(b.booking_date || '').trim()}_${String(b.event_type || '').trim()}`;
+                if (idKey && seen.has(idKey)) return false;
+                if (compositeKey && seen.has(compositeKey)) return false;
+                if (idKey) seen.add(idKey);
+                if (compositeKey) seen.add(compositeKey);
+                return true;
+            });
+        };
+
         if (!error && sbBookings && sbBookings.length > 0) {
-            return res.json({ success: true, bookings: sbBookings });
+            return res.json({ success: true, bookings: deduplicateBookings(sbBookings) });
         }
         db.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err, rows) => {
-            res.json({ success: true, bookings: rows || [] });
+            res.json({ success: true, bookings: deduplicateBookings(rows || []) });
         });
     } catch (e) {
         db.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err, rows) => {

@@ -3186,8 +3186,14 @@
             const msgBox = document.getElementById('bookingMessage');
 
             if (bookingForm) {
+                let isSubmittingBooking = false;
                 bookingForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
+
+                    if (isSubmittingBooking) {
+                        return;
+                    }
+                    isSubmittingBooking = true;
 
                     if (!selectedBookingDate) {
                         selectedBookingDate = getTodayStr();
@@ -3200,6 +3206,7 @@
 
                     if (!clientName || !clientPhone || !eventType || !eventLocation) {
                         showToast('⚠️ Please fill out all required form fields.');
+                        isSubmittingBooking = false;
                         return;
                     }
 
@@ -3295,6 +3302,7 @@
                     } finally {
                         submitBtn.textContent = origBtnText;
                         submitBtn.disabled = false;
+                        isSubmittingBooking = false;
                     }
                 });
             }

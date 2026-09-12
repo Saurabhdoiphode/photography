@@ -1012,6 +1012,27 @@ const submitBookingHandler = async (req: Request, res: Response) => {
   }
 
   try {
+    // 0. Check for recent duplicate booking submission (same phone, date, and event type)
+    if (Array.isArray(localStore.data.bookings)) {
+      const existing = localStore.data.bookings.find((b: any) =>
+        String(b.client_phone).trim() === clientPhone &&
+        String(b.booking_date).trim() === bookingDate &&
+        String(b.event_type).trim() === eventType &&
+        b.status !== 'cancelled'
+      );
+      if (existing) {
+        const alertMsg = `🚨 NEW BOOKING REQUEST!\n👤 Client: ${clientName}\n📞 Phone: ${clientPhone}\n💍 Event: ${eventType}\n📅 Date: ${bookingDate}\n📍 Location: ${eventLocation}`;
+        const whatsappAlertUrl = `https://api.whatsapp.com/send?phone=919146929608&text=${encodeURIComponent(alertMsg)}`;
+        return res.json({
+          success: true,
+          message: 'Thank you! We will call you shortly to confirm your booking.',
+          bookingId: existing.id,
+          bookingDate: bookingDate,
+          whatsappAlertUrl: whatsappAlertUrl
+        });
+      }
+    }
+
     // 1. Supabase Cloud Insert
     try {
       await supabase
@@ -1026,28 +1047,13 @@ const submitBookingHandler = async (req: Request, res: Response) => {
         }]);
     } catch (sbErr) {}
 
-    // 2. Local SQLite DB Insert
+    // 2. Local DB Insert (db.run automatically adds to localStore when in JSON store mode)
     db.run(
       `INSERT INTO bookings (client_name, client_phone, event_type, event_location, booking_date, status)
        VALUES (?, ?, ?, ?, ?, 'pending')`,
       [clientName, clientPhone, eventType, eventLocation, bookingDate],
       function (this: any) {
         const newId = this ? this.lastID : Date.now();
-
-        // 3. LocalStore Fallback Sync
-        if (Array.isArray(localStore.data.bookings)) {
-          localStore.data.bookings.push({
-            id: newId,
-            client_name: clientName,
-            client_phone: clientPhone,
-            event_type: eventType,
-            event_location: eventLocation,
-            booking_date: bookingDate,
-            status: 'pending',
-            created_at: new Date().toISOString()
-          });
-          localStore.save();
-        }
 
         const alertMsg = `🚨 NEW BOOKING REQUEST!\n👤 Client: ${clientName}\n📞 Phone: ${clientPhone}\n💍 Event: ${eventType}\n📅 Date: ${bookingDate}\n📍 Location: ${eventLocation}`;
         const whatsappAlertUrl = `https://api.whatsapp.com/send?phone=919146929608&text=${encodeURIComponent(alertMsg)}`;
@@ -1069,7 +1075,7 @@ const submitBookingHandler = async (req: Request, res: Response) => {
 
 app.post(['/api/bookings', '/api/book', '/api/bookings/submit', '/api/create-booking'], submitBookingHandler);
 
-// 8. Get All Bookings
+// 8. Get All Bookings (With Server-Side Deduplication)
 app.get('/api/bookings', async (req: Request, res: Response) => {
   try {
     await cleanupSixMonthOldBookings();
@@ -1078,14 +1084,28 @@ app.get('/api/bookings', async (req: Request, res: Response) => {
       .select('*')
       .order('created_at', { ascending: false });
 
+    const deduplicateBookings = (rawBookings: any[]) => {
+      const seen = new Set<string>();
+      return (rawBookings || []).filter(b => {
+        if (!b) return false;
+        const idKey = (b.id !== undefined && b.id !== null) ? `id_${b.id}` : null;
+        const compositeKey = `${String(b.client_phone || '').trim()}_${String(b.booking_date || '').trim()}_${String(b.event_type || '').trim()}`;
+        if (idKey && seen.has(idKey)) return false;
+        if (compositeKey && seen.has(compositeKey)) return false;
+        if (idKey) seen.add(idKey);
+        if (compositeKey) seen.add(compositeKey);
+        return true;
+      });
+    };
+
     if (!error && sbBookings && sbBookings.length > 0) {
-      return res.json({ success: true, bookings: sbBookings });
+      return res.json({ success: true, bookings: deduplicateBookings(sbBookings) });
     }
-    db.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err, rows) => {
-      res.json({ success: true, bookings: rows || [] });
+    db.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err: any, rows: any[]) => {
+      res.json({ success: true, bookings: deduplicateBookings(rows || []) });
     });
   } catch (e) {
-    db.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err, rows) => {
+    db.all('SELECT * FROM bookings ORDER BY created_at DESC', [], (err: any, rows: any[]) => {
       res.json({ success: true, bookings: rows || [] });
     });
   }

@@ -1538,7 +1538,24 @@
                 const data = await response.json();
 
                 if (data.success && data.bookings) {
-                    allBookings = data.bookings;
+                    // Deduplicate booking requests by ID & composite details to prevent double entries
+                    const seenKeys = new Set();
+                    const dedupedBookings = [];
+
+                    (data.bookings || []).forEach(b => {
+                        if (!b) return;
+                        const idKey = (b.id !== undefined && b.id !== null) ? `id_${b.id}` : null;
+                        const compositeKey = `${String(b.client_phone || '').trim()}_${String(b.booking_date || '').trim()}_${String(b.event_type || '').trim()}`;
+
+                        if (idKey && seenKeys.has(idKey)) return;
+                        if (compositeKey && seenKeys.has(compositeKey)) return;
+
+                        if (idKey) seenKeys.add(idKey);
+                        if (compositeKey) seenKeys.add(compositeKey);
+                        dedupedBookings.push(b);
+                    });
+
+                    allBookings = dedupedBookings;
                     visibleBookingsLimit = 5;
                     updateMetrics();
                     renderBookingsTable();
