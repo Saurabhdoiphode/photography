@@ -3077,7 +3077,7 @@
 
                 hero_tag: "✨ मानांकित भारतीय लग्न आणि सोहळे छायाचित्रण",
                 hero_title: "खास क्षणांना आठवणीत जपणारी छायाचित्रकला",
-                hero_subtitle: "ओमकार दोइफोडे फोटोग्राफी",
+                hero_subtitle: "ओमकार डोईफोडे फोटोग्राफी",
                 hero_desc: "लग्नाचे मंगल क्षण असो वा भव्य सोहळे, प्रत्येक सुंदर आठवण आम्ही नेहमीसाठी जपून ठेवतो.",
                 hero_btn_visiting: "🎴 व्हिजिटिंग कार्ड",
                 hero_btn_check: "🗓️ तारीख तपासा",
@@ -3172,10 +3172,10 @@
                 rev_ph_text: "तुमचा फोटोशूटचा अनुभव कसा होता ते सांगा...",
                 rev_btn_submit: "अभिप्राय पाठवा →",
 
-                about_tag: "ओमकार दोइफोडे यांच्याबद्दल",
+                about_tag: "ओमकार डोईफोडे यांच्याबद्दल",
                 about_title: "भारतीय लग्न व सोहळ्यांची सुंदर चित्रे रेखाटणारा कलाकार",
                 about_role: "संस्थापक आणि मुख्य छायाचित्रकार",
-                about_p1: "ओमकार दोइफोडे फोटोग्राफीमध्ये आपले सहर्ष स्वागत आहे. महाराष्ट्रात ५+ वर्षांपेक्षा जास्त काळ उच्च दर्जाची वेडिंग सिनेमॅटोग्राफी, कॅनडिड पोर्ट्रेट्स आणि लाईफस्टाईल फोटोग्राफीचा अनुभव.",
+                about_p1: "ओमकार डोईफोडे फोटोग्राफीमध्ये आपले सहर्ष स्वागत आहे. महाराष्ट्रात ५+ वर्षांपेक्षा जास्त काळ उच्च दर्जाची वेडिंग सिनेमॅटोग्राफी, कॅनडिड पोर्ट्रेट्स आणि लाईफस्टाईल फोटोग्राफीचा अनुभव.",
                 about_p2: "प्रत्येक लग्न आणि सोहळा हा भावनांचा सुंदर ठेवा असतो. योग्य प्रकाशयोजना आणि अप्रतिम कलर ग्रेडिंगच्या जोरावर आम्ही या क्षणांना आयुष्यभरासाठी अजरामर करतो.",
                 stat_exp_label: "क्षेत्रातील अनुभव",
                 stat_couples_label: "आनंदी जोडपे व सोहळे",
@@ -3200,7 +3200,7 @@
                 whatsapp_chat: "💬 ओमकार यांच्याशी चॅट करा",
 
                 vc_title: "🎴 स्टुडिओ व्हिजिटिंग कार्ड",
-                vc_desc: "ओमकार दोइफोडे फोटोग्राफीचे अधिकृत व्हिजिटिंग कार्ड",
+                vc_desc: "ओमकार डोईफोडे फोटोग्राफीचे अधिकृत व्हिजिटिंग कार्ड",
                 vc_btn_download: "⬇️ व्हिजिटिंग कार्ड डाउनलोड करा",
                 vc_btn_close: "बंद करा",
                 lightbox_download: "⬇️ HD फोटो डाउनलोड करा"
@@ -3240,6 +3240,33 @@
 
             if (typeof renderCalendar === 'function') renderCalendar();
             if (typeof fetchCategoryPhotosData === 'function') fetchCategoryPhotosData();
+            if (typeof trackClientBooking === 'function' && document.getElementById('trackPhoneInput')?.value && document.getElementById('trackResultBox')?.style.display !== 'none') {
+                trackClientBooking();
+            }
+            if (typeof renderCatLightboxState === 'function' && document.getElementById('categoryLightboxModal')?.style.display !== 'none') {
+                renderCatLightboxState();
+            }
+        }
+
+        // Helper function for Marathi Event Type translation
+        function getLocalizedEventType(eventType) {
+            if (!eventType) return '';
+            if (currentLang === 'mr') {
+                const map = {
+                    'Marriage Package': 'लग्न सोहळा (Marriage Package)',
+                    'Pre-Wedding Shoot': 'प्री-वेडिंग फोटोशूट',
+                    'Baby Shoot': 'बाळाचे फोटोशूट',
+                    'Birthday Shoot': 'वाढदिवस फोटोशूट 🎂',
+                    'Events & Lifestyle': 'कार्यक्रम व सोहळे',
+                    'Photoshoot': 'मॉडेल / स्टुडिओ फोटोशूट 📸'
+                };
+                for (let k in map) {
+                    if (eventType.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(eventType.toLowerCase())) {
+                        return map[k];
+                    }
+                }
+            }
+            return eventType;
         }
 
         // State variables for Calendar & Booking
@@ -3332,18 +3359,19 @@
             if (!modal) return;
 
             const ev = dateEvents[dateStr] || {};
-            const eventName = ev.eventType || (status === 'blocked' ? 'Confirmed Photography Shoot' : 'Pending Shoot Inquiry');
+            const rawName = ev.eventType || (status === 'blocked' ? 'Confirmed Photography Shoot' : 'Pending Shoot Inquiry');
+            const eventName = getLocalizedEventType(rawName);
 
-            dateHeading.textContent = `📅 Date: ${dateStr}`;
+            dateHeading.textContent = currentLang === 'mr' ? `📅 तारीख: ${dateStr}` : `📅 Date: ${dateStr}`;
             typeText.textContent = eventName;
 
             if (status === 'blocked') {
-                statusBadge.textContent = '🔴 Confirmed Shoot / Booked';
+                statusBadge.textContent = currentLang === 'mr' ? '🔴 तारीख बुक / निश्चित आहे' : '🔴 Confirmed Shoot / Booked';
                 statusBadge.style.background = '#FEE2E2';
                 statusBadge.style.color = '#991B1B';
                 statusBadge.style.border = '1px solid #FCA5A5';
             } else {
-                statusBadge.textContent = '⏳ Pending Inquiry Request';
+                statusBadge.textContent = currentLang === 'mr' ? '⏳ अर्ज प्रक्रियेत आहे' : '⏳ Pending Inquiry Request';
                 statusBadge.style.background = '#FEF3C7';
                 statusBadge.style.color = '#92400E';
                 statusBadge.style.border = '1px solid #FCD34D';
@@ -3392,7 +3420,7 @@
                 if (dateStr < todayStr) {
                     cell.classList.add('disabled');
                     cell.title = 'Past Date';
-                    cell.onclick = () => showToast('⚠️ Cannot book past dates.');
+                    cell.onclick = () => showToast(currentLang === 'mr' ? '⚠️ मागील तारखा बुक करता येत नाहीत.' : '⚠️ Cannot book past dates.');
                 } else if (status === 'blocked') {
                     cell.classList.add('unavailable');
                     cell.title = 'Blocked / Booked Date - Click to view order details';
@@ -3429,7 +3457,7 @@
             // Format date for banner
             const dateObj = new Date(currentYear, currentMonth, dayNum);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedStr = dateObj.toLocaleDateString('en-US', options);
+            const formattedStr = dateObj.toLocaleDateString(currentLang === 'mr' ? 'mr-IN' : 'en-US', options);
 
             openBookingForm(dateStr, formattedStr);
         }
@@ -3441,7 +3469,9 @@
             const msgBox = document.getElementById('bookingMessage');
 
             if (dateDisplay) {
-                dateDisplay.innerHTML = `🗓️ <strong>Selected Event Date:</strong> ${formattedStr}`;
+                dateDisplay.innerHTML = currentLang === 'mr' 
+                    ? `🗓️ <strong>निवडलेली तारीख:</strong> ${formattedStr}` 
+                    : `🗓️ <strong>Selected Event Date:</strong> ${formattedStr}`;
             }
 
             if (msgBox) {
@@ -3607,34 +3637,63 @@
                             const gcalEnd = formatDateForGCal(endDateObj);
                             const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Omkar Photography Shoot: ' + eventType)}&dates=${gcalStart}/${gcalEnd}&details=${encodeURIComponent('Client: ' + clientName + ' (' + clientPhone + '), Location: ' + eventLocation)}&location=${encodeURIComponent(eventLocation)}`;
 
-                            msgBox.innerHTML = `
-                                <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                    <span style="font-size: 28px;">🎉</span>
-                                    <div>
-                                        <h4 style="font-weight: 700; margin-bottom: 6px; color: #15803D; font-size: 1.05rem;">Booking Request Submitted!</h4>
-                                        <p style="margin-bottom: 8px; font-weight: 600; color: #166534; font-size: 0.95rem;">
-                                            💬 Thank you! We will call you shortly to confirm your booking.
-                                        </p>
-                                        <p style="font-size: 0.85rem; color: #374151; margin-bottom: 12px;">
-                                            Request details for <strong>${clientName}</strong> (${clientPhone}) — <strong>${eventType}</strong> on <strong>${selectedBookingDate}</strong>.
-                                        </p>
-                                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                            <a href="${whatsappUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
-                                                <span>💬 Send WhatsApp Alert to Omkar</span>
-                                            </a>
-                                            <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #4285F4; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);">
-                                                <span>📅 Add to Google Calendar</span>
-                                            </a>
-                                            <a href="${smsUrl}" style="display: inline-flex; align-items: center; gap: 6px; background: #0284C7; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);">
-                                                <span>📱 Send Text SMS to Omkar</span>
-                                            </a>
+                            const locEventType = getLocalizedEventType(eventType);
+
+                            if (currentLang === 'mr') {
+                                msgBox.innerHTML = `
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                        <span style="font-size: 28px;">🎉</span>
+                                        <div>
+                                            <h4 style="font-weight: 700; margin-bottom: 6px; color: #15803D; font-size: 1.05rem;">बुकिंग अर्ज पाठवला आहे!</h4>
+                                            <p style="margin-bottom: 8px; font-weight: 600; color: #166534; font-size: 0.95rem;">
+                                                💬 धन्यवाद! आम्ही लवकरच तुम्हाला कॉल करून बुकिंगची माहिती घेऊ.
+                                            </p>
+                                            <p style="font-size: 0.85rem; color: #374151; margin-bottom: 12px;">
+                                                <strong>${clientName}</strong> (${clientPhone}) — <strong>${locEventType}</strong> (${selectedBookingDate}) चे अर्ज तपशील.
+                                            </p>
+                                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                                <a href="${whatsappUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
+                                                    <span>💬 ओमकार यांना व्हॉट्सॲप मेसेज पाठवा</span>
+                                                </a>
+                                                <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #4285F4; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);">
+                                                    <span>📅 गूगल कॅलेंडरमध्ये जोडा</span>
+                                                </a>
+                                                <a href="${smsUrl}" style="display: inline-flex; align-items: center; gap: 6px; background: #0284C7; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);">
+                                                    <span>📱 ओमकार यांना SMS पाठवा</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            `;
-                            msgBox.style.display = 'block';
-
-                            showToast('✅ Thank you! We will call you shortly to confirm your booking.');
+                                `;
+                                showToast('✅ धन्यवाद! आम्ही लवकरच तुम्हाला कॉल करून बुकिंगची खात्री करू.');
+                            } else {
+                                msgBox.innerHTML = `
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                        <span style="font-size: 28px;">🎉</span>
+                                        <div>
+                                            <h4 style="font-weight: 700; margin-bottom: 6px; color: #15803D; font-size: 1.05rem;">Booking Request Submitted!</h4>
+                                            <p style="margin-bottom: 8px; font-weight: 600; color: #166534; font-size: 0.95rem;">
+                                                💬 Thank you! We will call you shortly to confirm your booking.
+                                            </p>
+                                            <p style="font-size: 0.85rem; color: #374151; margin-bottom: 12px;">
+                                                Request details for <strong>${clientName}</strong> (${clientPhone}) — <strong>${eventType}</strong> on <strong>${selectedBookingDate}</strong>.
+                                            </p>
+                                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                                <a href="${whatsappUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
+                                                    <span>💬 Send WhatsApp Alert to Omkar</span>
+                                                </a>
+                                                <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #4285F4; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);">
+                                                    <span>📅 Add to Google Calendar</span>
+                                                </a>
+                                                <a href="${smsUrl}" style="display: inline-flex; align-items: center; gap: 6px; background: #0284C7; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);">
+                                                    <span>📱 Send Text SMS to Omkar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                showToast('✅ Thank you! We will call you shortly to confirm your booking.');
+                            }
                             bookingForm.reset();
 
                             // Refresh calendar statuses so the newly booked date turns Yellow (Pending)!
@@ -3749,7 +3808,9 @@
                 resultBox.style.display = 'block';
                 resultBox.style.background = '#FEE2E2';
                 resultBox.style.color = '#991B1B';
-                resultBox.innerHTML = '⚠️ Please enter a valid phone number to search.';
+                resultBox.innerHTML = currentLang === 'mr' 
+                    ? '⚠️ कृपया शोधण्यासाठी वैध १० अंकी मोबाईल नंबर टाका.' 
+                    : '⚠️ Please enter a valid phone number to search.';
                 return;
             }
 
@@ -3764,25 +3825,32 @@
                     resultBox.style.display = 'block';
                     resultBox.style.background = '#FEF3C7';
                     resultBox.style.color = '#92400E';
-                    resultBox.innerHTML = `🔍 No active booking requests found for <strong>${phone}</strong>. Try submitting a request below!`;
+                    resultBox.innerHTML = currentLang === 'mr' 
+                        ? `🔍 <strong>${phone}</strong> या नंबरसाठी कोणताही बुकिंग अर्ज सापडला नाही. खाली अर्ज भरा!` 
+                        : `🔍 No active booking requests found for <strong>${phone}</strong>. Try submitting a request below!`;
                 } else {
-                    let html = `<div style="font-weight:700; margin-bottom:8px;">Found ${matched.length} Request(s):</div>`;
+                    let headerText = currentLang === 'mr' ? `${matched.length} अर्ज सापडले:` : `Found ${matched.length} Request(s):`;
+                    let html = `<div style="font-weight:700; margin-bottom:8px;">${headerText}</div>`;
                     matched.forEach(b => {
                         let badgeClass = 'background:#EAB308; color:white;';
-                        let statusText = 'Pending Confirmation ⏳';
+                        let statusText = currentLang === 'mr' ? 'अर्ज प्रक्रियेत आहे ⏳' : 'Pending Confirmation ⏳';
                         if (b.status === 'confirmed') {
                             badgeClass = 'background:#22C55E; color:white;';
-                            statusText = 'Confirmed & Date Locked ✅';
+                            statusText = currentLang === 'mr' ? 'निश्चित (Confirmed) ✅' : 'Confirmed & Date Locked ✅';
                         } else if (b.status === 'blocked' || b.status === 'cancelled') {
                             badgeClass = 'background:#EF4444; color:white;';
-                            statusText = 'Cancelled / Blocked 🔴';
+                            statusText = currentLang === 'mr' ? 'रद्द / ब्लॉक 🔴' : 'Cancelled / Blocked 🔴';
                         }
+
+                        const locEv = getLocalizedEventType(b.event_type);
+                        const clientLbl = currentLang === 'mr' ? 'ग्राहक' : 'Client';
+                        const locLbl = currentLang === 'mr' ? 'ठिकाण' : 'Location';
 
                         html += `
                             <div style="background:#F8FAFC; border:1px solid #CBD5E1; padding:12px; border-radius:8px; margin-bottom:8px; text-align:left; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                                 <div>
-                                    <strong style="color:#1A1A1A;">${b.event_type}</strong> (${b.booking_date})<br>
-                                    <span style="font-size:0.82rem; color:#475569;">Client: ${b.client_name} | Location: ${b.event_location}</span>
+                                    <strong style="color:#1A1A1A;">${locEv}</strong> (${b.booking_date})<br>
+                                    <span style="font-size:0.82rem; color:#475569;">${clientLbl}: ${b.client_name} | ${locLbl}: ${b.event_location}</span>
                                 </div>
                                 <span style="padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; ${badgeClass}">
                                     ${statusText}
@@ -3800,7 +3868,7 @@
                 resultBox.style.display = 'block';
                 resultBox.style.background = '#FEE2E2';
                 resultBox.style.color = '#991B1B';
-                resultBox.innerHTML = '⚠️ Error searching records. Please try again.';
+                resultBox.innerHTML = currentLang === 'mr' ? '⚠️ माहिती शोधताना त्रुटी आली. कृपया पुन्हा प्रयत्न करा.' : '⚠️ Error searching records. Please try again.';
             }
         }
 
@@ -4006,7 +4074,7 @@
             if (currentLightboxIdx >= photos.length) currentLightboxIdx = 0;
 
             const currentPhoto = photos[currentLightboxIdx];
-            const catTitles = {
+            const catTitlesEn = {
                 wedding: '💍 Wedding Collections',
                 prewedding: '💑 Pre-Wedding Shoots',
                 baby: '👶 Baby & Newborn',
@@ -4015,20 +4083,50 @@
                 photoshoot: '📸 Model Photoshoots',
                 maternity: '🤰 Maternity Shoots'
             };
+            const catTitlesMr = {
+                wedding: '💍 लग्न सोहळे कलेक्शन',
+                prewedding: '💑 प्री-वेडिंग फोटोशूट',
+                baby: '👶 बाळ व लहान मुले',
+                birthday: '🎂 वाढदिवस फोटोशूट',
+                events: '🎉 कार्यक्रम व सोहळे',
+                photoshoot: '📸 मॉडेल फोटोशूट',
+                maternity: '🤰 मॅटर्निटी फोटोशूट'
+            };
 
-            document.getElementById('catLightboxTitle').textContent = catTitles[currentLightboxCat] || '📸 Category Gallery';
-            document.getElementById('catLightboxSub').textContent = `Photo ${currentLightboxIdx + 1} of ${photos.length} • Omkar Doiphode Photography`;
+            const catTitles = currentLang === 'mr' ? catTitlesMr : catTitlesEn;
+            document.getElementById('catLightboxTitle').textContent = catTitles[currentLightboxCat] || (currentLang === 'mr' ? '📸 फोटो दालन' : '📸 Category Gallery');
             
+            if (currentLang === 'mr') {
+                document.getElementById('catLightboxSub').textContent = `फोटो ${currentLightboxIdx + 1} पैकी ${photos.length} • ओमकार डोईफोडे फोटोग्राफी`;
+            } else {
+                document.getElementById('catLightboxSub').textContent = `Photo ${currentLightboxIdx + 1} of ${photos.length} • Omkar Doiphode Photography`;
+            }
+
             const imgEl = document.getElementById('catLightboxImg');
             if (imgEl) imgEl.src = currentPhoto.image_url;
 
             const capEl = document.getElementById('catPhotoCaption');
-            if (capEl) capEl.textContent = currentPhoto.title || `Photo ${currentLightboxIdx + 1} of ${photos.length}`;
+            if (capEl) {
+                let pTitle = currentPhoto.title || '';
+                if (currentLang === 'mr') {
+                    if (!pTitle || pTitle.match(/^[A-Z_]+\s+Photo\s+\d+/i)) {
+                        const localizedCatName = {
+                            wedding: 'लग्न', prewedding: 'प्री-वेडिंग', baby: 'बाळ',
+                            birthday: 'वाढदिवस', events: 'सोहळा', photoshoot: 'फोटोशूट'
+                        }[currentLightboxCat] || 'फोटो';
+                        pTitle = `${localizedCatName} फोटो ${currentLightboxIdx + 1}`;
+                    }
+                } else {
+                    if (!pTitle) pTitle = `Photo ${currentLightboxIdx + 1} of ${photos.length}`;
+                }
+                capEl.textContent = pTitle;
+            }
             
             const dlBtn = document.getElementById('catDownloadBtn');
             if (dlBtn) {
                 dlBtn.href = currentPhoto.image_url;
                 dlBtn.download = `${currentLightboxCat}_photo_${currentLightboxIdx + 1}.jpg`;
+                dlBtn.innerHTML = currentLang === 'mr' ? '⬇️ HD फोटो डाउनलोड करा' : '⬇️ Download HD Photo';
             }
 
             // Render Thumbnails Strip
