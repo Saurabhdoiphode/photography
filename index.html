@@ -222,6 +222,25 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Language Toggle Button High Contrast Styling */
+        .lang-toggle-btn {
+            background: #0F172A !important;
+            color: #F59E0B !important;
+            border: 1.5px solid #F59E0B !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+        }
+        .lang-toggle-btn span, #langBtnText, .langBtnTextMobile {
+            color: #F59E0B !important;
+            font-weight: 800 !important;
+        }
+        .lang-toggle-btn:hover {
+            background: #F59E0B !important;
+            color: #0F172A !important;
+        }
+        .lang-toggle-btn:hover span, .lang-toggle-btn:hover #langBtnText, .lang-toggle-btn:hover .langBtnTextMobile {
+            color: #0F172A !important;
+        }
+
         /* --- STICKY GLASSMORPHIC HEADER --- */
         header {
             position: sticky;
@@ -2369,8 +2388,8 @@
                 <li><a href="/client-gallery.html" class="nav-pill-btn client-portal-pill" data-i18n="nav_client_portal">🔐 Client Portal</a></li>
                 <li><a href="/admin-login.html" class="nav-pill-btn admin-login-pill" data-i18n="nav_admin_login">⚙️ Admin Login</a></li>
                 <li>
-                    <button class="lang-toggle-btn" onclick="toggleLanguage()" style="background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%); color: var(--accent-gold); border: 1.5px solid var(--accent-gold); padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-                        <span id="langBtnText">🌐 मराठी</span>
+                    <button class="lang-toggle-btn" onclick="toggleLanguage()" style="background: #0F172A; color: #F59E0B !important; border: 1.5px solid #F59E0B; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                        <span id="langBtnText" style="color: #F59E0B !important; font-weight: 800;">🌐 मराठी</span>
                     </button>
                 </li>
             </ul>
@@ -2392,8 +2411,8 @@
                 <a href="#reviews" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_reviews">⭐ Client Reviews</a>
                 <a href="/client-gallery.html" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_client_portal">🔐 Client Photo Portal</a>
                 <a href="/admin-login.html" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_admin_login">⚙️ Admin Login</a>
-                <button class="lang-toggle-btn" onclick="toggleLanguage()" style="margin-top: 10px; background: var(--dark-charcoal); color: var(--accent-gold); border: 1.5px solid var(--accent-gold); padding: 10px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <span class="langBtnTextMobile">🌐 मराठी</span>
+                <button class="lang-toggle-btn" onclick="toggleLanguage()" style="margin-top: 10px; background: #0F172A; color: #F59E0B !important; border: 1.5px solid #F59E0B; padding: 10px 18px; border-radius: 25px; font-size: 14px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span class="langBtnTextMobile" style="color: #F59E0B !important; font-weight: 800;">🌐 मराठी</span>
                 </button>
             </div>
         </nav>
