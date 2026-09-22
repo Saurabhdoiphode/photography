@@ -1091,7 +1091,94 @@ app.post('/api/admin/reviews/:id/approve', async (req, res) => {
     }
 });
 
-// 16. Business Analytics API
+// 16. Portfolio Category Items Management APIs
+app.get(['/api/portfolio-items', '/api/gallery-items'], async (req, res) => {
+    try {
+        const targetCategory = req.query.category ? String(req.query.category).trim().toLowerCase() : '';
+        let items = [];
+
+        try {
+            let query = supabase.from('gallery_items').select('*').order('id', { ascending: false });
+            if (targetCategory && targetCategory !== 'all') {
+                query = query.eq('category', targetCategory);
+            }
+            const { data: sItems, error } = await query;
+            if (!error && sItems && sItems.length > 0) {
+                items = [...sItems];
+            }
+        } catch (e) {}
+
+        db.all('SELECT * FROM gallery_items ORDER BY id DESC', [], (err, rows) => {
+            if (rows && rows.length > 0) {
+                const existingIds = new Set(items.map(i => String(i.id)));
+                rows.forEach(r => {
+                    if (!existingIds.has(String(r.id))) {
+                        if (!targetCategory || targetCategory === 'all' || String(r.category).toLowerCase() === targetCategory) {
+                            items.push(r);
+                        }
+                    }
+                });
+            }
+            res.json({ success: true, items });
+        });
+    } catch (e) {
+        res.status(500).json({ error: 'Database error fetching portfolio items' });
+    }
+});
+
+app.post(['/api/portfolio-items', '/api/portfolio-items/upload', '/api/upload-gallery', '/api/gallery-upload'], async (req, res) => {
+    const { title, category, badge, imageUrl: rawUrl } = req.body;
+    const categoryClean = (category || 'wedding').trim().toLowerCase();
+    const titleClean = (title || `${categoryClean} Shoot`).trim();
+    const imageUrl = rawUrl || (req.file ? `data:${req.file.mimetype || 'image/jpeg'};base64,${req.file.buffer.toString('base64')}` : '');
+
+    if (!imageUrl || !categoryClean) {
+        return res.status(400).json({ error: 'Category and image are required' });
+    }
+
+    const newItem = {
+        title: titleClean,
+        category: categoryClean,
+        image_url: imageUrl,
+        badge: badge || ''
+    };
+
+    try {
+        let savedId = Date.now();
+        try {
+            const { data: inserted, error } = await supabase.from('gallery_items').insert([newItem]).select();
+            if (!error && inserted && inserted.length > 0) {
+                savedId = inserted[0].id;
+            }
+        } catch (e) {}
+
+        db.run(
+            'INSERT INTO gallery_items (title, category, image_url, badge) VALUES (?, ?, ?, ?)',
+            [newItem.title, newItem.category, newItem.image_url, newItem.badge],
+            function (err) {
+                const finalId = this ? this.lastID : savedId;
+                res.json({ success: true, message: 'Portfolio item added successfully!', item: { ...newItem, id: finalId } });
+            }
+        );
+    } catch (e) {
+        console.error('Portfolio item insert error:', e);
+        res.status(500).json({ error: 'Failed to upload portfolio item' });
+    }
+});
+
+app.delete(['/api/portfolio-items/:id', '/api/galleries/:id', '/api/gallery-items/:id'], async (req, res) => {
+    const id = req.params.id;
+    try {
+        try { await supabase.from('gallery_items').delete().eq('id', id); } catch (e) {}
+        db.run('DELETE FROM gallery_items WHERE id = ?', [id], () => {
+            res.json({ success: true, message: 'Portfolio item deleted' });
+        });
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to delete portfolio item' });
+    }
+});
+
+// 17. Business Analytics API
 app.get('/api/analytics', async (req, res) => {
     try {
         let bookings = [];
