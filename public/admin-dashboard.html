@@ -969,8 +969,11 @@
             <span class="header-brand-name">📷 OMKAR DOIPHODE <span style="color:#F59E0B !important;">PHOTOGRAPHY</span></span>
         </div>
         <div class="header-actions">
-            <a href="/" target="_blank" class="view-site-btn">🌐 View Website</a>
-            <button class="logout-btn" onclick="logout()">Logout 🚪</button>
+            <a href="/" target="_blank" class="view-site-btn" data-i18n="ad_view_site">🌐 View Website</a>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()" style="background: rgba(212, 165, 116, 0.15); color: #D4A574; border: 1px solid #D4A574; padding: 7px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 4px;">
+                <span id="langBtnText">🌐 मराठी</span>
+            </button>
+            <button class="logout-btn" onclick="logout()"><span data-i18n="ad_logout">Logout 🚪</span></button>
         </div>
     </header>
 
@@ -980,27 +983,27 @@
         <div class="tab-nav">
             <button class="tab-btn active" onclick="switchTab('bookingsTab', this)">
                 <span>📅</span>
-                <span>Booking Requests & Calendar</span>
+                <span data-i18n="ad_tab_bookings">Booking Requests & Calendar</span>
             </button>
             <button class="tab-btn" onclick="switchTab('analyticsTab', this); renderAnalyticsCharts();">
                 <span>📊</span>
-                <span>Business Analytics</span>
+                <span data-i18n="ad_tab_analytics">Business Analytics</span>
             </button>
             <button class="tab-btn" onclick="switchTab('galleriesTab', this); loadAdminGalleries();">
                 <span>🔐</span>
-                <span>Private Galleries</span>
+                <span data-i18n="ad_tab_galleries">Private Galleries</span>
             </button>
             <button class="tab-btn" onclick="switchTab('reviewsTab', this); loadAdminReviews();">
                 <span>⭐</span>
-                <span>Review Moderation</span>
+                <span data-i18n="ad_tab_reviews">Review Moderation</span>
             </button>
             <button class="tab-btn" onclick="switchTab('portfolioTab', this); loadCategoryCardPhotos();">
                 <span>📸</span>
-                <span>Category Cards Manager</span>
+                <span data-i18n="ad_tab_portfolio">Category Cards Manager</span>
             </button>
             <button class="tab-btn" onclick="switchTab('logosTab', this)">
                 <span>🎨</span>
-                <span>Logo & Branding</span>
+                <span data-i18n="ad_tab_logos">Logo & Branding</span>
             </button>
         </div>
 
@@ -1009,19 +1012,19 @@
             <!-- Metrics Summary Cards -->
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-title">Total Booking Requests</div>
+                    <div class="metric-title" data-i18n="ad_m_total">Total Booking Requests</div>
                     <div class="metric-value" id="metricTotal">0</div>
                 </div>
                 <div class="metric-card pending-card">
-                    <div class="metric-title">Pending Requests (Yellow ⏳)</div>
+                    <div class="metric-title" data-i18n="ad_m_pending">Pending Requests (Yellow ⏳)</div>
                     <div class="metric-value" id="metricPending">0</div>
                 </div>
                 <div class="metric-card confirmed-card">
-                    <div class="metric-title">Confirmed Bookings (Green ✅)</div>
+                    <div class="metric-title" data-i18n="ad_m_confirmed">Confirmed Bookings (Green ✅)</div>
                     <div class="metric-value" id="metricConfirmed">0</div>
                 </div>
                 <div class="metric-card blocked-card">
-                    <div class="metric-title">Blocked Dates (Red 🔴)</div>
+                    <div class="metric-title" data-i18n="ad_m_blocked">Blocked Dates (Red 🔴)</div>
                     <div class="metric-value" id="metricBlocked">0</div>
                 </div>
             </div>
@@ -1029,15 +1032,15 @@
             <!-- Bookings List & Controls -->
             <div class="control-panel">
                 <div class="panel-header">
-                    <h2 class="section-title">Client Booking Requests</h2>
+                    <h2 class="section-title" data-i18n="ad_sec_bookings">Client Booking Requests</h2>
                     <div class="filter-buttons">
-                        <button class="filter-btn active" onclick="filterBookings('all', this)">All</button>
-                        <button class="filter-btn" onclick="filterBookings('pending', this)">Pending ⏳</button>
-                        <button class="filter-btn" onclick="filterBookings('confirmed', this)">Confirmed ✅</button>
-                        <button class="filter-btn" onclick="filterBookings('blocked', this)">Blocked 🔴</button>
+                        <button class="filter-btn active" onclick="filterBookings('all', this)" data-i18n="ad_flt_all">All</button>
+                        <button class="filter-btn" onclick="filterBookings('pending', this)" data-i18n="ad_flt_pending">Pending ⏳</button>
+                        <button class="filter-btn" onclick="filterBookings('confirmed', this)" data-i18n="ad_flt_confirmed">Confirmed ✅</button>
+                        <button class="filter-btn" onclick="filterBookings('blocked', this)" data-i18n="ad_flt_blocked">Blocked 🔴</button>
                         <button id="refreshBookingsBtn" onclick="loadBookings(true)" style="background:#0F172A !important; color:#D4A574 !important; border:1.5px solid #D4A574 !important; font-weight:800 !important; padding:8px 18px !important; border-radius:20px !important; cursor:pointer !important; transition:all 0.25s ease !important; display:inline-flex !important; align-items:center !important; gap:6px !important; box-shadow:0 2px 8px rgba(15,23,42,0.3) !important;">
                             <span style="font-size:15px !important;">🔄</span>
-                            <span style="color:#D4A574 !important; font-weight:800 !important; font-size:13.5px !important; letter-spacing:0.3px !important;">Refresh Requests</span>
+                            <span style="color:#D4A574 !important; font-weight:800 !important; font-size:13.5px !important; letter-spacing:0.3px !important;" data-i18n="ad_btn_refresh">Refresh Requests</span>
                         </button>
                     </div>
                 </div>
@@ -1047,12 +1050,12 @@
                     <table class="bookings-table">
                         <thead>
                             <tr>
-                                <th>Event Date</th>
-                                <th>Client Name</th>
-                                <th>Contact Number</th>
-                                <th>Event Type</th>
-                                <th>Location</th>
-                                <th>Status</th>
+                                <th data-i18n="ad_th_date">Event Date</th>
+                                <th data-i18n="ad_th_name">Client Name</th>
+                                <th data-i18n="ad_th_phone">Contact Number</th>
+                                <th data-i18n="ad_th_event">Event Type</th>
+                                <th data-i18n="ad_th_loc">Location</th>
+                                <th data-i18n="ad_th_status">Status</th>
                                 <th>Actions for Omkar</th>
                             </tr>
                         </thead>
@@ -1078,14 +1081,14 @@
             <!-- Calendar Management: Admin Monthly Calendar Grid -->
             <div class="block-date-box" style="margin-top:2rem;">
                 <div class="panel-header" style="margin-bottom:0.5rem;">
-                    <h3 class="section-title">🗓️ Calendar Management (Admin View)</h3>
+                    <h3 class="section-title" data-i18n="ad_sec_cal">🗓️ Calendar Management (Admin View)</h3>
                     <div class="admin-legend-bar" style="display:flex; gap:8px; font-size:12px; font-weight:700; flex-wrap:wrap;">
-                        <span class="admin-legend-badge" style="background:rgba(74,222,128,0.15); color:#166534; border:1px solid #86EFAC; padding:4px 10px; border-radius:20px;">🟢 Available</span>
-                        <span class="admin-legend-badge" style="background:rgba(250,204,21,0.15); color:#92400E; border:1px solid #FCD34D; padding:4px 10px; border-radius:20px;">⏳ Pending Request</span>
-                        <span class="admin-legend-badge" style="background:rgba(248,113,113,0.15); color:#991B1B; border:1px solid #FCA5A5; padding:4px 10px; border-radius:20px;">🔴 Blocked / Booked</span>
+                        <span class="admin-legend-badge" style="background:rgba(74,222,128,0.15); color:#166534; border:1px solid #86EFAC; padding:4px 10px; border-radius:20px;" data-i18n="ad_leg_avail">🟢 Available</span>
+                        <span class="admin-legend-badge" style="background:rgba(250,204,21,0.15); color:#92400E; border:1px solid #FCD34D; padding:4px 10px; border-radius:20px;" data-i18n="ad_leg_pend">⏳ Pending Request</span>
+                        <span class="admin-legend-badge" style="background:rgba(248,113,113,0.15); color:#991B1B; border:1px solid #FCA5A5; padding:4px 10px; border-radius:20px;" data-i18n="ad_leg_block">🔴 Blocked / Booked</span>
                     </div>
                 </div>
-                <p style="font-size: 13px; color: #94A3B8; margin-bottom: 1.2rem;">
+                <p style="font-size: 13px; color: #94A3B8; margin-bottom: 1.2rem;" data-i18n="ad_cal_help">
                     Click on any date in the calendar below to toggle its availability, block offline dates, or unblock dates instantly.
                 </p>
 
@@ -1114,10 +1117,10 @@
 
                 <!-- Quick Date Input Picker Alternative -->
                 <div class="block-date-form" style="margin-top:1.5rem; border-top:1px solid #E2E8F0; padding-top:1.2rem;">
-                    <span style="font-size:13px; font-weight:600; color:var(--dark-charcoal);">Quick Select Date:</span>
+                    <span style="font-size:13px; font-weight:600; color:var(--dark-charcoal);" data-i18n="ad_lbl_quick_date">Quick Select Date:</span>
                     <input type="date" id="manualDateInput" class="date-picker-input">
-                    <button class="btn-confirm" style="background:#EF4444; padding:10px 18px;" onclick="handleManualBlock('block')">🔴 Mark as Blocked / Unavailable</button>
-                    <button class="btn-confirm" style="background:#22C55E; padding:10px 18px;" onclick="handleManualBlock('unblock')">🟢 Mark as Available</button>
+                    <button class="btn-confirm" style="background:#EF4444; padding:10px 18px;" onclick="handleManualBlock('block')" data-i18n="ad_btn_block_date">🔴 Mark as Blocked / Unavailable</button>
+                    <button class="btn-confirm" style="background:#22C55E; padding:10px 18px;" onclick="handleManualBlock('unblock')" data-i18n="ad_btn_unblock_date">🟢 Mark as Available</button>
                 </div>
 
 
@@ -1129,27 +1132,27 @@
             <!-- Executive KPI Cards (2 Cards Per Line Grid Layout) -->
             <div class="analytics-kpi-grid" style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.6rem !important; margin-bottom: 1.2rem !important; width: 100% !important; box-sizing: border-box !important;">
                 <div class="analytics-kpi-card" style="background:white !important; border-radius:12px !important; padding:0.75rem 0.65rem !important; border:1px solid #E2E8F0 !important; border-left:4px solid var(--accent-gold) !important; box-shadow:0 4px 15px rgba(0,0,0,0.03) !important; box-sizing:border-box !important; min-width:0 !important; width:100% !important;">
-                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">📩 Total Inquiries</div>
+                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_inquiries">📩 Total Inquiries</div>
                     <div id="analyticsTotalBox" class="analytics-kpi-val" style="font-size:1.4rem !important; font-family:'Playfair Display',serif !important; font-weight:900 !important; color:var(--dark-charcoal) !important; margin:2px 0 !important;">0</div>
-                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#64748B !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">Requests Received</div>
+                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#64748B !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_req_rec">Requests Received</div>
                 </div>
 
                 <div class="analytics-kpi-card" style="background:white !important; border-radius:12px !important; padding:0.75rem 0.65rem !important; border:1px solid #E2E8F0 !important; border-left:4px solid #22C55E !important; box-shadow:0 4px 15px rgba(0,0,0,0.03) !important; box-sizing:border-box !important; min-width:0 !important; width:100% !important;">
-                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">📈 Conversion Rate</div>
+                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_conv">📈 Conversion Rate</div>
                     <div id="analyticsConversionBox" class="analytics-kpi-val" style="font-size:1.4rem !important; font-family:'Playfair Display',serif !important; font-weight:900 !important; color:#15803D !important; margin:2px 0 !important;">0%</div>
-                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#166534 !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">Confirmed Ratio</div>
+                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#166534 !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_conf_ratio">Confirmed Ratio</div>
                 </div>
 
                 <div class="analytics-kpi-card" style="background:white !important; border-radius:12px !important; padding:0.75rem 0.65rem !important; border:1px solid #E2E8F0 !important; border-left:4px solid #38BDF8 !important; box-shadow:0 4px 15px rgba(0,0,0,0.03) !important; box-sizing:border-box !important; min-width:0 !important; width:100% !important;">
-                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">👑 Top Package</div>
+                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_top_pkg">👑 Top Package</div>
                     <div id="analyticsTopPackageBox" class="analytics-kpi-val" style="font-size:1.1rem !important; font-family:'Playfair Display',serif !important; font-weight:900 !important; color:var(--dark-charcoal) !important; margin:2px 0 !important;">Marriage</div>
-                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#0284C7 !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">Highest Demand</div>
+                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#0284C7 !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_high_demand">Highest Demand</div>
                 </div>
 
                 <div class="analytics-kpi-card" style="background:white !important; border-radius:12px !important; padding:0.75rem 0.65rem !important; border:1px solid #E2E8F0 !important; border-left:4px solid #A855F7 !important; box-shadow:0 4px 15px rgba(0,0,0,0.03) !important; box-sizing:border-box !important; min-width:0 !important; width:100% !important;">
-                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">✅ Confirmed Shoots</div>
+                    <div class="analytics-kpi-title" style="font-size:10.5px !important; font-weight:800 !important; color:#64748B !important; text-transform:uppercase !important; letter-spacing:0.2px !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_conf_shoots">✅ Confirmed Shoots</div>
                     <div id="analyticsConfirmedCountBox" class="analytics-kpi-val" style="font-size:1.4rem !important; font-family:'Playfair Display',serif !important; font-weight:900 !important; color:#7E22CE !important; margin:2px 0 !important;">0</div>
-                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#64748B !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;">Locked Calendar Dates</div>
+                    <div class="analytics-kpi-sub" style="font-size:9.5px !important; color:#64748B !important; font-weight:600 !important; white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important;" data-i18n="ad_an_locked_dates">Locked Calendar Dates</div>
                 </div>
             </div>
 
@@ -1158,7 +1161,7 @@
                 <!-- Chart 1: Doughnut Chart -->
                 <div style="background:white; padding:1.5rem; border-radius:12px; border:1px solid #E2E8F0; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;">🍩 Package Demand Share</h4>
+                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;" data-i18n="ad_ch_pkg">🍩 Package Demand Share</h4>
                         <span style="font-size:11px; background:#F1F5F9; padding:4px 10px; border-radius:12px; color:#475569; font-weight:600;">Doughnut Chart</span>
                     </div>
                     <div style="height:220px; position:relative;">
@@ -1169,7 +1172,7 @@
                 <!-- Chart 2: Bar Chart -->
                 <div style="background:white; padding:1.5rem; border-radius:12px; border:1px solid #E2E8F0; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;">📊 Booking Request Pipeline</h4>
+                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;" data-i18n="ad_ch_pipe">📊 Booking Request Pipeline</h4>
                         <span style="font-size:11px; background:#F1F5F9; padding:4px 10px; border-radius:12px; color:#475569; font-weight:600;">Bar Chart</span>
                     </div>
                     <div style="height:220px; position:relative;">
@@ -1180,7 +1183,7 @@
                 <!-- Chart 3: Smooth Area Line Chart -->
                 <div style="background:white; padding:1.5rem; border-radius:12px; border:1px solid #E2E8F0; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;">📈 Monthly Inquiries Trend</h4>
+                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;" data-i18n="ad_ch_trend">📈 Monthly Inquiries Trend</h4>
                         <span style="font-size:11px; background:#F1F5F9; padding:4px 10px; border-radius:12px; color:#475569; font-weight:600;">Line Trend</span>
                     </div>
                     <div style="height:220px; position:relative;">
@@ -1191,7 +1194,7 @@
                 <!-- Chart 4: Polar Area Chart -->
                 <div style="background:white; padding:1.5rem; border-radius:12px; border:1px solid #E2E8F0; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;">🎯 Event Density & Preferences</h4>
+                        <h4 style="font-weight:700; font-size:15px; font-family:'Playfair Display',serif;" data-i18n="ad_ch_polar">🎯 Event Density & Preferences</h4>
                         <span style="font-size:11px; background:#F1F5F9; padding:4px 10px; border-radius:12px; color:#475569; font-weight:600;">Polar Area</span>
                     </div>
                     <div style="height:220px; position:relative;">
@@ -1202,7 +1205,7 @@
 
             <!-- Package Breakdown Cards Section -->
             <div class="control-panel" style="margin-bottom:1.5rem;">
-                <h2 class="section-title">📦 Package Inquiries & Demand Breakdown</h2>
+                <h2 class="section-title" data-i18n="ad_sec_pkg_bd">📦 Package Inquiries & Demand Breakdown</h2>
                 <p style="font-size:13px; color:#94A3B8; margin-bottom:1.2rem;">Detailed metrics on client requests and confirmed shoots for each package type.</p>
 
                 <div id="analyticsPackageCards" style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.6rem !important; margin-bottom: 1.2rem !important; width: 100% !important; box-sizing: border-box !important;">
@@ -1212,7 +1215,7 @@
 
             <!-- Confirmed Shoots Summary Table -->
             <div class="control-panel">
-                <h2 class="section-title">📅 Confirmed Shoots Log</h2>
+                <h2 class="section-title" data-i18n="ad_sec_conf_log">📅 Confirmed Shoots Log</h2>
                 <p style="font-size:13px; color:#94A3B8; margin-bottom:1rem;">List of confirmed client photography shoots and event dates.</p>
                 <div id="analyticsConfirmedTable" style="margin-top:1rem;"></div>
             </div>
@@ -1221,30 +1224,30 @@
         <!-- TAB 4: Private Client Galleries Management -->
         <div id="galleriesTab" class="tab-content">
             <div class="control-panel">
-                <h2 class="section-title">🔐 Create New Private Client Gallery</h2>
-                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;">Generate passcode-protected client galleries for photo delivery.</p>
+                <h2 class="section-title" data-i18n="ad_sec_create_gal">🔐 Create New Private Client Gallery</h2>
+                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;" data-i18n="ad_sub_create_gal">Generate passcode-protected client galleries for photo delivery.</p>
 
                 <form id="createGalleryForm" class="space-y-4" style="max-width:600px;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
                         <div>
-                            <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;">Gallery Code</label>
-                            <input type="text" id="gCode" required placeholder="e.g. RAHUL2026" style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-weight:700;">
+                            <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;" data-i18n="ad_lbl_gcode">Gallery Code</label>
+                            <input type="text" id="gCode" required data-i18n-ph="ad_ph_gcode" placeholder="e.g. RAHUL2026" style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-weight:700;">
                         </div>
                         <div>
-                            <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;">Secret Passcode</label>
-                            <input type="text" id="gPass" required placeholder="e.g. 1234" style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-weight:700;">
+                            <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;" data-i18n="ad_lbl_gpass">Secret Passcode</label>
+                            <input type="text" id="gPass" required data-i18n-ph="ad_ph_gpass" placeholder="e.g. 1234" style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-weight:700;">
                         </div>
                     </div>
                     <div>
-                        <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;">Client Name</label>
-                        <input type="text" id="gClient" required placeholder="e.g. Rahul & Priya" style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-weight:700;">
+                        <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;" data-i18n="ad_lbl_gclient">Client Name</label>
+                        <input type="text" id="gClient" required data-i18n-ph="ad_ph_gclient" placeholder="e.g. Rahul & Priya" style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-weight:700;">
                     </div>
 
                     <div>
-                        <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;">📸 Select Photos or an Entire Folder from Device</label>
+                        <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;" data-i18n="ad_lbl_gupload">📸 Select Photos or an Entire Folder from Device</label>
                         <div style="border: 2px dashed #D4A574; border-radius: 12px; padding: 1.8rem; text-align: center; background: #F8FAFC; margin-bottom: 10px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);">
                             <div style="font-size: 36px; margin-bottom: 4px;">📂</div>
-                            <div style="font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 10px;">Select an entire photo folder OR pick individual images</div>
+                            <div style="font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 10px;" data-i18n="ad_lbl_folder_hint">Select an entire photo folder OR pick individual images</div>
                             
                             <!-- Folder Selection Input -->
                             <input type="file" id="galleryPhotoFolder" webkitdirectory mozdirectory directory multiple accept="image/*" style="display:none;" onchange="uploadSelectedGalleryPhotos(this)">
@@ -1253,10 +1256,10 @@
                             <input type="file" id="galleryPhotoFiles" multiple accept="image/*" style="display:none;" onchange="uploadSelectedGalleryPhotos(this)">
 
                             <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
-                                <button type="button" onclick="document.getElementById('galleryPhotoFolder').click()" class="btn-confirm" style="background:#0F172A; color:#FFFFFF; font-weight:700; border:none; padding:10px 22px; font-size:13px; border-radius:8px; cursor:pointer;">
+                                <button type="button" onclick="document.getElementById('galleryPhotoFolder').click()" class="btn-confirm" style="background:#0F172A; color:#FFFFFF; font-weight:700; border:none; padding:10px 22px; font-size:13px; border-radius:8px; cursor:pointer;" data-i18n="ad_btn_folder">
                                     📁 Select & Upload Entire Folder
                                 </button>
-                                <button type="button" onclick="document.getElementById('galleryPhotoFiles').click()" class="btn-confirm" style="background:#D4A574; color:#0F172A; font-weight:700; border:none; padding:10px 22px; font-size:13px; border-radius:8px; cursor:pointer;">
+                                <button type="button" onclick="document.getElementById('galleryPhotoFiles').click()" class="btn-confirm" style="background:#D4A574; color:#0F172A; font-weight:700; border:none; padding:10px 22px; font-size:13px; border-radius:8px; cursor:pointer;" data-i18n="ad_btn_files">
                                     🖼️ Select Photo Files
                                 </button>
                             </div>
@@ -1266,15 +1269,15 @@
                     </div>
 
                     <div>
-                        <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;">Embedded Photos — auto-filled after selecting files</label>
-                        <textarea id="gPhotos" required rows="3" placeholder='Photo list (auto-filled). Photos are compressed & embedded so gallery works on any hosting...' style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-family:monospace; font-size:12px; font-weight:600;"></textarea>
+                        <label style="font-size:12px; font-weight:800; color:#0F172A; text-transform:uppercase;" data-i18n="ad_lbl_embed_photos">Embedded Photos — auto-filled after selecting files</label>
+                        <textarea id="gPhotos" required rows="3" data-i18n-ph="ad_ph_embed_photos" placeholder='Photo list (auto-filled). Photos are compressed & embedded so gallery works on any hosting...' style="width:100%; padding:10px 14px; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; border-radius:8px; font-family:monospace; font-size:12px; font-weight:600;"></textarea>
                     </div>
-                    <button type="submit" class="btn-confirm" style="padding:12px 28px; background:#0F172A; color:#D4A574; font-weight:800; border:1.5px solid #D4A574; border-radius:8px; cursor:pointer; font-size:14px;">Create Gallery & Generate Passcode →</button>
+                    <button type="submit" class="btn-confirm" style="padding:12px 28px; background:#0F172A; color:#D4A574; font-weight:800; border:1.5px solid #D4A574; border-radius:8px; cursor:pointer; font-size:14px;" data-i18n="ad_btn_cre_gal">Create Gallery & Generate Passcode →</button>
                 </form>
             </div>
 
             <div class="control-panel">
-                <h2 class="section-title">Active Private Client Galleries</h2>
+                <h2 class="section-title" data-i18n="ad_sec_act_gal">Active Private Client Galleries</h2>
                 <div id="adminGalleriesList" style="margin-top:1rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;"></div>
             </div>
         </div>
@@ -1282,8 +1285,8 @@
         <!-- TAB 5: Review Moderation System -->
         <div id="reviewsTab" class="tab-content">
             <div class="control-panel">
-                <h2 class="section-title">⭐ Client Review Moderation</h2>
-                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;">Review and approve client feedback before it appears on the public website.</p>
+                <h2 class="section-title" data-i18n="ad_sec_rev_mod">⭐ Client Review Moderation</h2>
+                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;" data-i18n="ad_sub_rev_mod">Review and approve client feedback before it appears on the public website.</p>
 
                 <div id="adminReviewsList" style="display:flex; flex-direction:column; gap:1rem;"></div>
             </div>
@@ -1294,8 +1297,8 @@
             <div class="control-panel">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
                     <div>
-                        <h2 class="section-title" style="margin:0;">📸 Manage Portfolio Category Cards Photos</h2>
-                        <p style="font-size:13px; color:#475569; font-weight:500; margin-top:4px;">Upload, view, and delete photos for specific cards shown on your public website.</p>
+                        <h2 class="section-title" style="margin:0;" data-i18n="ad_sec_cat_mgr">📸 Manage Portfolio Category Cards Photos</h2>
+                        <p style="font-size:13px; color:#475569; font-weight:500; margin-top:4px;" data-i18n="ad_sub_cat_mgr">Upload, view, and delete photos for specific cards shown on your public website.</p>
                     </div>
                     <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:700; color:#0F172A;">
                         Active Card: <span id="categoryPhotosCount" style="color:#D4A574;">0 photo(s)</span>
@@ -1304,13 +1307,13 @@
 
                 <!-- Category Selector Filter Bar -->
                 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem; background:#F1F5F9; padding:8px; border-radius:12px;">
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('wedding', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #0F172A; background:#0F172A; color:#D4A574; cursor:pointer;">💍 Weddings</button>
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('prewedding', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;">💑 Pre-Wedding</button>
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('baby', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;">👶 Baby Shoot</button>
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('birthday', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;">🎂 Birthday Shoot</button>
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('events', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;">🎉 Events & Lifestyle</button>
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('photoshoot', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;">📸 Model Photoshoots</button>
-                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('maternity', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;">🤰 Maternity Shoot</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('wedding', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #0F172A; background:#0F172A; color:#D4A574; cursor:pointer;" data-i18n="ad_cat_w">💍 Weddings</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('prewedding', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;" data-i18n="ad_cat_pw">💑 Pre-Wedding</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('baby', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;" data-i18n="ad_cat_b">👶 Baby Shoot</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('birthday', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;" data-i18n="ad_cat_bd">🎂 Birthday Shoot</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('events', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;" data-i18n="ad_cat_e">🎉 Events & Lifestyle</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('photoshoot', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;" data-i18n="ad_cat_m">📸 Model Photoshoots</button>
+                    <button type="button" class="cat-filter-btn" onclick="setCategoryFilter('maternity', this)" style="padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; border:1.5px solid #CBD5E1; background:#FFFFFF; color:#0F172A; cursor:pointer;" data-i18n="ad_cat_mat">🤰 Maternity Shoot</button>
                 </div>
 
                 <!-- Upload Form for Active Category -->
@@ -1319,7 +1322,7 @@
                     <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
                         <input type="text" id="catPhotoTitle" placeholder="Optional Photo Title (e.g. Royal Marathi Wedding)" style="flex:1; min-width:240px; padding:10px 14px; border:1.5px solid #CBD5E1; border-radius:8px; font-size:13px; color:#0F172A; font-weight:600;">
                         <input type="file" id="catPhotoFiles" multiple accept="image/*" style="display:none;" onchange="uploadCategoryCardPhotos(this)">
-                        <button type="button" onclick="document.getElementById('catPhotoFiles').click()" class="btn-confirm" style="background:#0F172A; color:#D4A574; border:1.5px solid #D4A574; padding:10px 22px; font-size:13px; font-weight:800; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                        <button type="button" onclick="document.getElementById('catPhotoFiles').click()" class="btn-confirm" style="background:#0F172A; color:#D4A574; border:1.5px solid #D4A574; padding:10px 22px; font-size:13px; font-weight:800; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;" data-i18n="ad_btn_cat_upload">
                             <span>➕ Select & Upload Photos</span>
                         </button>
                     </div>
@@ -1336,7 +1339,7 @@
         <div id="logosTab" class="tab-content">
             <!-- Upload Section -->
             <div class="upload-section">
-                <h2 class="section-title">Upload New Logo</h2>
+                <h2 class="section-title" data-i18n="ad_sec_logo_up">Upload New Logo</h2>
                 
                 <div class="message" id="uploadMessage" style="display:none; padding:12px; margin-bottom:1rem; border-radius:6px;"></div>
 
@@ -1366,7 +1369,7 @@
 
             <!-- Omkar Profile Photo Management Card -->
             <div class="upload-section" style="margin-top:2rem;">
-                <h2 class="section-title">👤 Omkar Profile Photo (About Us Section)</h2>
+                <h2 class="section-title" data-i18n="ad_sec_prof_photo">👤 Omkar Profile Photo (About Us Section)</h2>
                 <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;">Upload, change, or delete Omkar's circular profile photo displayed in the About Us section.</p>
 
                 <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; background:#F8FAFC; padding:1.5rem; border-radius:16px; border:1px solid #E2E8F0; width:100%; box-sizing:border-box; overflow:hidden;">
@@ -1392,22 +1395,22 @@
 
             <!-- Studio Visiting Card Management Section -->
             <div class="upload-section">
-                <h2 class="section-title">🎴 Manage Studio Visiting Card</h2>
-                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;">Upload a new custom studio visiting card to replace the default card shown to clients on the website.</p>
+                <h2 class="section-title" data-i18n="ad_sec_vis_card">🎴 Manage Studio Visiting Card</h2>
+                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;" data-i18n="ad_sub_vis_card">Upload a new custom studio visiting card to replace the default card shown to clients on the website.</p>
 
                 <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; background:#F8FAFC; padding:1.5rem; border-radius:16px; border:1px solid #E2E8F0; width:100%; box-sizing:border-box; overflow:hidden;">
                     <div style="text-align:center; flex-shrink:0; max-width:180px; margin:0 auto;">
                         <img id="adminVisitingCardPreviewImg" src="/visiting_card.jpg" alt="Visiting Card Preview" style="width:100%; height:auto; max-height:110px; border-radius:10px; object-fit:contain; border:1.5px solid var(--accent-gold); box-shadow:0 4px 15px rgba(0,0,0,0.1);" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='/uploads/visiting_card.jpg';}">
-                        <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;">Current Visiting Card</div>
+                        <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;" data-i18n="ad_lbl_cur_vis">Current Visiting Card</div>
                     </div>
 
                     <div style="display:flex; flex-direction:column; gap:12px; flex:1; min-width:240px; width:100%; box-sizing:border-box;">
                         <input type="file" id="visitingCardFileInput" accept="image/*" style="font-size:12.5px; color:#0F172A; font-weight:600; width:100%; max-width:100%; box-sizing:border-box;">
                         <div style="display:flex; gap:8px; flex-wrap:wrap; width:100%; box-sizing:border-box;">
-                            <button onclick="uploadVisitingCard()" class="btn-confirm" style="flex:1 1 130px; background:#16A34A; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(22,163,74,0.2);">
+                            <button onclick="uploadVisitingCard()" class="btn-confirm" style="flex:1 1 130px; background:#16A34A; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(22,163,74,0.2);" data-i18n="ad_btn_vis_up">
                                 🎴 Upload New Card
                             </button>
-                            <button onclick="resetVisitingCard()" class="btn-confirm" style="flex:1 1 120px; background:#DC2626; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(220,38,38,0.2);">
+                            <button onclick="resetVisitingCard()" class="btn-confirm" style="flex:1 1 120px; background:#DC2626; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(220,38,38,0.2);" data-i18n="ad_btn_vis_rev">
                                 🔄 Revert to Default
                             </button>
                         </div>
@@ -1418,7 +1421,7 @@
 
             <!-- Logo History Section -->
             <div class="upload-section">
-                <h2 class="section-title">Uploaded Logo History</h2>
+                <h2 class="section-title" data-i18n="ad_sec_logo_hist">Uploaded Logo History</h2>
                 <div class="logo-grid" id="logoGrid"></div>
             </div>
         </div>
@@ -1426,6 +1429,237 @@
 
     <!-- JavaScript Logic -->
     <script>
+        const i18nDict = {
+            en: {
+                ad_view_site: "🌐 View Website",
+                ad_logout: "Logout 🚪",
+                ad_tab_bookings: "Booking Requests & Calendar",
+                ad_tab_analytics: "Business Analytics",
+                ad_tab_galleries: "Private Galleries",
+                ad_tab_reviews: "Review Moderation",
+                ad_tab_portfolio: "Category Cards Manager",
+                ad_tab_logos: "Logo & Branding",
+                ad_m_total: "Total Booking Requests",
+                ad_m_pending: "Pending Requests (Yellow ⏳)",
+                ad_m_confirmed: "Confirmed Bookings (Green ✅)",
+                ad_m_blocked: "Blocked Dates (Red 🔴)",
+                ad_sec_bookings: "Client Booking Requests",
+                ad_flt_all: "All",
+                ad_flt_pending: "Pending ⏳",
+                ad_flt_confirmed: "Confirmed ✅",
+                ad_flt_blocked: "Blocked 🔴",
+                ad_btn_refresh: "Refresh Requests",
+                ad_th_date: "Event Date",
+                ad_th_name: "Client Name",
+                ad_th_phone: "Contact Number",
+                ad_th_event: "Event Type",
+                ad_th_loc: "Location",
+                ad_th_status: "Status",
+                ad_th_actions: "Actions for Omkar",
+                ad_btn_seemore: "See More Requests 🔽",
+                ad_sec_cal: "🗓️ Calendar Management (Admin View)",
+                ad_leg_avail: "🟢 Available",
+                ad_leg_pend: "⏳ Pending Request",
+                ad_leg_block: "🔴 Blocked / Booked",
+                ad_cal_help: "Click on any date in the calendar below to toggle its availability, block offline dates, or unblock dates instantly.",
+                ad_lbl_quick_date: "Quick Select Date:",
+                ad_btn_block_date: "🔴 Mark as Blocked / Unavailable",
+                ad_btn_unblock_date: "🟢 Mark as Available",
+                ad_an_inquiries: "📩 Total Inquiries",
+                ad_an_req_rec: "Requests Received",
+                ad_an_conv: "📈 Conversion Rate",
+                ad_an_conf_ratio: "Confirmed Ratio",
+                ad_an_top_pkg: "👑 Top Package",
+                ad_an_high_demand: "Highest Demand",
+                ad_an_conf_shoots: "✅ Confirmed Shoots",
+                ad_an_locked_dates: "Locked Calendar Dates",
+                ad_ch_pkg: "🍩 Package Demand Share",
+                ad_ch_pipe: "📊 Booking Request Pipeline",
+                ad_ch_trend: "📈 Monthly Inquiries Trend",
+                ad_ch_polar: "🎯 Event Density & Preferences",
+                ad_sec_pkg_bd: "📦 Package Inquiries & Demand Breakdown",
+                ad_sec_conf_log: "📅 Confirmed Shoots Log",
+                ad_sec_create_gal: "🔐 Create New Private Client Gallery",
+                ad_sub_create_gal: "Generate passcode-protected client galleries for photo delivery.",
+                ad_lbl_gcode: "Gallery Code",
+                ad_ph_gcode: "e.g. RAHUL2026",
+                ad_lbl_gpass: "Secret Passcode",
+                ad_ph_gpass: "e.g. 1234",
+                ad_lbl_gclient: "Client Name",
+                ad_ph_gclient: "e.g. Rahul & Priya",
+                ad_lbl_gupload: "📸 Select Photos or an Entire Folder from Device",
+                ad_lbl_folder_hint: "Select an entire photo folder OR pick individual images",
+                ad_btn_folder: "📁 Select & Upload Entire Folder",
+                ad_btn_files: "🖼️ Select Photo Files",
+                ad_lbl_embed_photos: "Embedded Photos — auto-filled after selecting files",
+                ad_ph_embed_photos: "Photo list (auto-filled). Photos are compressed & embedded so gallery works on any hosting...",
+                ad_btn_cre_gal: "Create Gallery & Generate Passcode →",
+                ad_sec_act_gal: "Active Private Client Galleries",
+                ad_sec_rev_mod: "⭐ Client Review Moderation",
+                ad_sub_rev_mod: "Review and approve client feedback before it appears on the public website.",
+                ad_sec_cat_mgr: "📸 Manage Portfolio Category Cards Photos",
+                ad_sub_cat_mgr: "Upload, view, and delete photos for specific cards shown on your public website.",
+                ad_cat_w: "💍 Weddings",
+                ad_cat_pw: "💑 Pre-Wedding",
+                ad_cat_b: "👶 Baby Shoot",
+                ad_cat_bd: "🎂 Birthday Shoot",
+                ad_cat_e: "🎉 Events & Lifestyle",
+                ad_cat_m: "📸 Model Photoshoots",
+                ad_cat_mat: "🤰 Maternity Shoot",
+                ad_btn_cat_upload: "➕ Select & Upload Photos",
+                ad_sec_logo_up: "Upload New Logo",
+                ad_sec_prof_photo: "👤 Omkar Profile Photo (About Us Section)",
+                ad_sec_vis_card: "🎴 Manage Studio Visiting Card",
+                ad_sub_vis_card: "Upload a new custom studio visiting card to replace the default card shown to clients on the website.",
+                ad_lbl_cur_vis: "Current Visiting Card",
+                ad_btn_vis_up: "🎴 Upload New Card",
+                ad_btn_vis_rev: "🔄 Revert to Default",
+                ad_sec_logo_hist: "Uploaded Logo History",
+                ad_btn_confirm: "मंजूर करा ✅",
+                ad_btn_block: "ब्लॉक करा 🔴",
+                ad_btn_delete: "डिलीट करा 🗑️",
+                ad_btn_contact: "संपर्क साधा 📱",
+                ad_st_confirmed: "निश्चित ✅",
+                ad_st_pending: "प्रक्रियेत ⏳",
+                ad_st_blocked: "रद्द / ब्लॉक 🔴"
+            },
+            mr: {
+                ad_view_site: "🌐 वेबसाईट बघा",
+                ad_logout: "लॉगआउट 🚪",
+                ad_tab_bookings: "बुकिंग अर्ज आणि कॅलेंडर",
+                ad_tab_analytics: "व्यवसाय विश्लेषण",
+                ad_tab_galleries: "खाजगी गॅलरी",
+                ad_tab_reviews: "ग्राहकांचे अभिप्राय",
+                ad_tab_portfolio: "फोटो कलेक्शन कार्ड्स",
+                ad_tab_logos: "लोगो व व्हिजिटिंग कार्ड",
+                ad_m_total: "एकूण बुकिंग अर्ज",
+                ad_m_pending: "प्रक्रियेतील अर्ज (पिवळा ⏳)",
+                ad_m_confirmed: "निश्चित बुकिंग (हिरवा ✅)",
+                ad_m_blocked: "रद्द / बुक तारखा (लाल 🔴)",
+                ad_sec_bookings: "ग्राहकांचे बुकिंग अर्ज",
+                ad_flt_all: "सर्व",
+                ad_flt_pending: "प्रक्रियेत ⏳",
+                ad_flt_confirmed: "निश्चित ✅",
+                ad_flt_blocked: "बुक / ब्लॉक 🔴",
+                ad_btn_refresh: "नवीन अर्ज लोड करा",
+                ad_th_date: "तारीख",
+                ad_th_name: "ग्राहकाचे नाव",
+                ad_th_phone: "मोबाईल नंबर",
+                ad_th_event: "प्रसंग / प्रकार",
+                ad_th_loc: "ठिकाण",
+                ad_th_status: "स्थिती",
+                ad_th_actions: "ॲडमीन कृती",
+                ad_btn_seemore: "अजून अर्ज बघा 🔽",
+                ad_sec_cal: "🗓️ कॅलेंडर व्यवस्थापन (ॲडमीन व्ह्यू)",
+                ad_leg_avail: "🟢 उपलब्ध",
+                ad_leg_pend: "⏳ अर्जाची वाट",
+                ad_leg_block: "🔴 बुक / ब्लॉक",
+                ad_cal_help: "खालील कॅलेंडरमधील कोणत्याही तारखेवर क्लिक करून ती उपलब्ध करा किंवा ब्लॉक करा.",
+                ad_lbl_quick_date: "तारीख निवडा:",
+                ad_btn_block_date: "🔴 ब्लॉक करा / अनव्हेलेबल करा",
+                ad_btn_unblock_date: "🟢 उपलब्ध करा",
+                ad_an_inquiries: "📩 एकूण चौकशी अर्ज",
+                ad_an_req_rec: "प्राप्त झालेले अर्ज",
+                ad_an_conv: "📈 बुकिंग प्रमाण",
+                ad_an_conf_ratio: "निश्चित बुकिंगची टक्केवारी",
+                ad_an_top_pkg: "👑 सर्वात जास्त पसंती",
+                ad_an_high_demand: "जास्त मागणी असलेला प्रकार",
+                ad_an_conf_shoots: "✅ निश्चित झालेले शूट्स",
+                ad_an_locked_dates: "निश्चित तारखा",
+                ad_ch_pkg: "🍩 फोटो प्रकारानुसार मागणी",
+                ad_ch_pipe: "📊 बुकिंग अर्जांची स्थिती",
+                ad_ch_trend: "📈 महिन्यानुसार चौकशी ट्रेंड",
+                ad_ch_polar: "🎯 प्रसंगांची घनता आणि पसंती",
+                ad_sec_pkg_bd: "📦 प्रकारानुसार मागणी विवरण",
+                ad_sec_conf_log: "📅 निश्चित झालेल्या फोटोग्राफी शूटची यादी",
+                ad_sec_create_gal: "🔐 नवीन खाजगी ग्राहक गॅलरी तयार करा",
+                ad_sub_create_gal: "ग्राहकांना फोटो देण्यासाठी पासकोड गॅलरी तयार करा.",
+                ad_lbl_gcode: "गॅलरी कोड",
+                ad_ph_gcode: "उदा. RAHUL2026",
+                ad_lbl_gpass: "गुप्त पासकोड",
+                ad_ph_gpass: "उदा. १२३४",
+                ad_lbl_gclient: "ग्राहकाचे नाव",
+                ad_ph_gclient: "उदा. राहुल आणि प्रिया",
+                ad_lbl_gupload: "📸 डिव्हाईसवरून फोटो किंवा फोल्डर निवडा",
+                ad_lbl_folder_hint: "संपूर्ण फोटो फोल्डर निवडा किंवा एक-एक फोटो निवडा",
+                ad_btn_folder: "📁 संपूर्ण फोल्डर निवडा आणि अपलोड करा",
+                ad_btn_files: "🖼️ फोटो फाईल्स निवडा",
+                ad_lbl_embed_photos: "निवडलेले फोटो फाईल्स (आपोआप भरले जाईल)",
+                ad_ph_embed_photos: "फोटो यादी (आपोआप भरली जाईल)...",
+                ad_btn_cre_gal: "गॅलरी तयार करा आणि पासकोड बनवा →",
+                ad_sec_act_gal: "सध्याच्या खाजगी ग्राहक गॅलरी",
+                ad_sec_rev_mod: "⭐ ग्राहक अभिप्राय तपासणी",
+                ad_sub_rev_mod: "वेबसाईटवर दिसण्यापूर्वी ग्राहकांचे अभिप्राय तपासा आणि मंजूर करा.",
+                ad_sec_cat_mgr: "📸 फोटो कलेक्शन कार्ड्स व्यवस्थापन",
+                ad_sub_cat_mgr: "वेबसाईटवरील विशिष्ट कॅटेगरीसाठी फोटो अपलोड करा, बघा आणि डिलीट करा.",
+                ad_cat_w: "💍 लग्न सोहळे",
+                ad_cat_pw: "💑 प्री-वेडिंग",
+                ad_cat_b: "👶 बाळाचे फोटो",
+                ad_cat_bd: "🎂 वाढदिवस",
+                ad_cat_e: "🎉 कार्यक्रम व सोहळे",
+                ad_cat_m: "📸 मॉडेल फोटोशूट",
+                ad_cat_mat: "🤰 मॅटर्निटी फोटोशूट",
+                ad_btn_cat_upload: "➕ फोटो निवडा आणि अपलोड करा",
+                ad_sec_logo_up: "नवीन लोगो अपलोड करा",
+                ad_sec_prof_photo: "👤 ओमकार प्रोफाइल फोटो (आमच्याबद्दल विभाग)",
+                ad_sec_vis_card: "🎴 स्टुडिओ व्हिजिटिंग कार्ड व्यवस्थापन",
+                ad_sub_vis_card: "वेबसाईटवर दाखवण्यासाठी नवीन स्टुडिओ व्हिजिटिंग कार्ड अपलोड करा.",
+                ad_lbl_cur_vis: "सध्याचे व्हिजिटिंग कार्ड",
+                ad_btn_vis_up: "🎴 नवीन कार्ड अपलोड करा",
+                ad_btn_vis_rev: "🔄 ओरिजिनल कार्ड वापरा",
+                ad_sec_logo_hist: "अपलोड केलेल्या लोगोचा इतिहास",
+                ad_btn_confirm: "मंजूर करा ✅",
+                ad_btn_block: "ब्लॉक करा 🔴",
+                ad_btn_delete: "डिलीट करा 🗑️",
+                ad_btn_contact: "संपर्क साधा 📱",
+                ad_st_confirmed: "निश्चित ✅",
+                ad_st_pending: "प्रक्रियेत ⏳",
+                ad_st_blocked: "रद्द / ब्लॉक 🔴"
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'en';
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'mr' : 'en';
+            localStorage.setItem('selectedLang', currentLang);
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            const dict = i18nDict[lang] || i18nDict['en'];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (dict[key]) {
+                    el.placeholder = dict[key];
+                }
+            });
+
+            const btnText = lang === 'en' ? '🌐 मराठी' : '🌐 English';
+            const b = document.getElementById('langBtnText');
+            if (b) b.textContent = btnText;
+        }
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'selectedLang' && e.newValue) {
+                currentLang = e.newValue;
+                applyLanguage(currentLang);
+            }
+        });
+
+        window.addEventListener('pageshow', () => {
+            currentLang = localStorage.getItem('selectedLang') || 'en';
+            applyLanguage(currentLang);
+        });
+
         let allBookings = [];
         let currentFilter = 'all';
         let visibleBookingsLimit = 5;
@@ -1774,9 +2008,12 @@
                 }
             }
 
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+
             tbody.innerHTML = visibleItems.map(b => {
                 const statusClass = b.status || 'pending';
                 const phoneClean = (b.client_phone || '').replace(/\D/g, '');
+                const statusBadgeText = statusClass === 'pending' ? (dict.ad_st_pending || '⏳ Pending') : statusClass === 'confirmed' ? (dict.ad_st_confirmed || '✅ Confirmed') : (dict.ad_st_blocked || '🔴 Blocked');
 
                 return `
                     <tr>
@@ -1793,18 +2030,18 @@
                         <td style="white-space:nowrap;">📍 ${escapeHtml(b.event_location)}</td>
                         <td style="white-space:nowrap;">
                             <span class="status-badge ${statusClass}">
-                                ${statusClass === 'pending' ? '⏳ Pending' : statusClass === 'confirmed' ? '✅ Confirmed' : '🔴 Blocked'}
+                                ${statusBadgeText}
                             </span>
                         </td>
                          <td style="white-space:nowrap;">
                             <div class="action-group">
                                 ${b.status !== 'confirmed' ? `
-                                    <button class="btn-confirm" onclick="updateStatus('${b.id}', 'confirmed')" title="Confirm Booking & Lock Date Red">Confirm ✅</button>
+                                    <button class="btn-confirm" onclick="updateStatus('${b.id}', 'confirmed')" title="Confirm Booking">${dict.ad_btn_confirm || 'Confirm ✅'}</button>
                                 ` : ''}
                                 ${b.status !== 'blocked' ? `
-                                    <button class="btn-block" onclick="updateStatus('${b.id}', 'blocked')" title="Cancel Request / Block Date">Cancel 🔴</button>
+                                    <button class="btn-block" onclick="updateStatus('${b.id}', 'blocked')" title="Cancel Request / Block Date">${dict.ad_btn_block || 'Cancel 🔴'}</button>
                                 ` : ''}
-                                <button class="btn-delete" onclick="deleteBooking('${b.id}')" title="Delete Request">🗑️ Delete</button>
+                                <button class="btn-delete" onclick="deleteBooking('${b.id}')" title="Delete Request">${dict.ad_btn_delete || '🗑️ Delete'}</button>
                             </div>
                         </td>
                     </tr>
@@ -1817,13 +2054,14 @@
                     const statusClass = b.status || 'pending';
                     const phoneClean = (b.client_phone || '').replace(/\D/g, '');
                     const borderColor = statusClass === 'confirmed' ? '#22C55E' : statusClass === 'blocked' ? '#EF4444' : '#D4A574';
+                    const statusBadgeText = statusClass === 'pending' ? (dict.ad_st_pending || '⏳ Pending') : statusClass === 'confirmed' ? (dict.ad_st_confirmed || '✅ Confirmed') : (dict.ad_st_blocked || '🔴 Blocked');
 
                     return `
                         <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:14px; padding:1.1rem; margin-bottom:0.9rem; box-shadow:0 4px 15px rgba(0,0,0,0.03); border-left:5px solid ${borderColor};">
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
                                 <span style="font-weight:800; font-size:14px; color:#0F172A;">📅 ${b.booking_date}</span>
                                 <span class="status-badge ${statusClass}">
-                                    ${statusClass === 'pending' ? '⏳ Pending' : statusClass === 'confirmed' ? '✅ Confirmed' : '🔴 Blocked'}
+                                    ${statusBadgeText}
                                 </span>
                             </div>
                             <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:0.2rem;">${escapeHtml(b.client_name)}</div>
@@ -3140,6 +3378,7 @@
 
         // Initialize Page
         checkAuth();
+        applyLanguage(currentLang);
         loadBookings();
         loadBlockedDatesList();
         renderAdminCalendar();

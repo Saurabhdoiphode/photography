@@ -116,32 +116,42 @@
 <body>
 
     <!-- Header / Brand -->
-    <header class="py-6 text-center border-b border-rose-200 bg-white/80 backdrop-blur">
-        <h1 class="text-2xl font-bold tracking-wider serif-title text-gray-900">OMKAR DOIPHODE</h1>
-        <p class="text-xs uppercase tracking-widest text-amber-700 font-semibold">Private Client Photo Portal</p>
+    <header class="py-4 px-6 flex justify-between items-center border-b border-rose-200 bg-white/80 backdrop-blur sticky top-0 z-50">
+        <div>
+            <a href="/" class="text-xl font-bold tracking-wider serif-title text-gray-900 block hover:text-amber-700 transition">OMKAR DOIPHODE</a>
+            <p class="text-xs uppercase tracking-widest text-amber-700 font-semibold" data-i18n="cg_subtitle">Private Client Photo Portal</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="/" class="text-xs font-bold text-gray-700 hover:text-amber-700 transition flex items-center gap-1 bg-gray-100 px-3 py-1.5 rounded-full" data-i18n="cg_back_link">
+                🏠 Back to Website
+            </a>
+            <button class="lang-toggle-btn" onclick="toggleLanguage()" style="background: #1A1A1A; color: #D4A574; border: 1.5px solid #D4A574; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <span id="langBtnText">🌐 मराठी</span>
+            </button>
+        </div>
     </header>
 
     <!-- Passcode Login View -->
     <div id="loginView" class="px-4">
         <div class="login-card">
             <div class="text-4xl mb-3">🔐</div>
-            <h2 class="text-2xl font-bold serif-title text-gray-900 mb-2">Private Client Gallery</h2>
-            <p class="text-sm text-gray-600 mb-6">Enter your unique Gallery Code & Passcode provided by Omkar to access your private high-res photos.</p>
+            <h2 class="text-2xl font-bold serif-title text-gray-900 mb-2" data-i18n="cg_login_title">Private Client Gallery</h2>
+            <p class="text-sm text-gray-600 mb-6" data-i18n="cg_login_desc">Enter your unique Gallery Code & Passcode provided by Omkar to access your private high-res photos.</p>
 
             <form id="passcodeForm" class="space-y-4 text-left">
                 <div>
-                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Gallery Code</label>
-                    <input type="text" id="galleryCodeInput" placeholder="e.g. RAHUL2026" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 uppercase font-semibold">
+                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1" data-i18n="cg_code_label">Gallery Code</label>
+                    <input type="text" id="galleryCodeInput" data-i18n-ph="cg_code_ph" placeholder="e.g. RAHUL2026" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 uppercase font-semibold">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Passcode</label>
-                    <input type="password" id="passcodeInput" placeholder="Enter secret passcode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600">
+                    <label class="block text-xs font-bold uppercase text-gray-700 mb-1" data-i18n="cg_pass_label">Passcode</label>
+                    <input type="password" id="passcodeInput" data-i18n-ph="cg_pass_ph" placeholder="Enter secret passcode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600">
                 </div>
                 
                 <div id="errorMsg" class="hidden text-xs text-red-600 bg-red-50 p-3 rounded-lg text-center font-medium"></div>
 
                 <button type="submit" class="w-full bg-gray-900 hover:bg-amber-600 text-white font-semibold py-3 rounded-lg transition duration-300">
-                    Unlock Private Gallery →
+                    <span data-i18n="cg_btn_unlock">Unlock Private Gallery →</span>
                 </button>
             </form>
         </div>
@@ -153,14 +163,14 @@
         <div class="download-bar">
             <div>
                 <h2 id="clientTitle" class="text-xl font-bold serif-title text-gray-900">Client Gallery</h2>
-                <p class="text-xs text-gray-600"><span id="favCount">0</span> Favorite(s) selected • <span id="expiryBadge" class="font-bold text-amber-700">⏰ Auto-deletes in 30 days</span></p>
+                <p class="text-xs text-gray-600"><span id="favCount">0</span> <span data-i18n="cg_fav_label">Favorite(s) selected</span> • <span id="expiryBadge" class="font-bold text-amber-700">⏰ Auto-deletes in 30 days</span></p>
             </div>
             <div class="flex gap-2">
                 <button onclick="downloadFavorites()" class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-1">
-                    <span>❤️ Download Favorites</span>
+                    <span data-i18n="cg_btn_dl_fav">❤️ Download Favorites</span>
                 </button>
                 <button onclick="downloadAllPhotos()" class="bg-gray-900 hover:bg-amber-600 text-white px-4 py-2 rounded-full text-xs font-bold transition flex items-center gap-1">
-                    <span>📥 Download All Photos</span>
+                    <span data-i18n="cg_btn_dl_all">📥 Download All Photos</span>
                 </button>
             </div>
         </div>
@@ -180,21 +190,126 @@
 
         <!-- Lightbox Action Bar -->
         <div style="margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center;">
-            <button onclick="prevLightboxPhoto()" style="background:white; color:#1A1A1A; border:none; padding:8px 18px; border-radius:20px; font-weight:700; cursor:pointer;">⬅️ Previous</button>
-            <a id="lightboxDownloadBtn" href="" download target="_blank" style="background:#D4A574; color:#1A1A1A; border:none; padding:10px 24px; border-radius:20px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+            <button onclick="prevLightboxPhoto()" style="background:white; color:#1A1A1A; border:none; padding:8px 18px; border-radius:20px; font-weight:700; cursor:pointer;" data-i18n="cg_lb_prev">⬅️ Previous</button>
+            <a id="lightboxDownloadBtn" href="" download target="_blank" style="background:#D4A574; color:#1A1A1A; border:none; padding:10px 24px; border-radius:20px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;" data-i18n="cg_lb_dl">
                 📥 Download Full Clarity High-Res Photo
             </a>
-            <button onclick="nextLightboxPhoto()" style="background:white; color:#1A1A1A; border:none; padding:8px 18px; border-radius:20px; font-weight:700; cursor:pointer;">Next ➡️</button>
+            <button onclick="nextLightboxPhoto()" style="background:white; color:#1A1A1A; border:none; padding:8px 18px; border-radius:20px; font-weight:700; cursor:pointer;" data-i18n="cg_lb_next">Next ➡️</button>
         </div>
     </div>
 
     <script>
+        const i18nDict = {
+            en: {
+                cg_subtitle: "Private Client Photo Portal",
+                cg_back_link: "🏠 Back to Website",
+                cg_login_title: "Private Client Gallery",
+                cg_login_desc: "Enter your unique Gallery Code & Passcode provided by Omkar to access your private high-res photos.",
+                cg_code_label: "Gallery Code",
+                cg_code_ph: "e.g. RAHUL2026",
+                cg_pass_label: "Passcode",
+                cg_pass_ph: "Enter secret passcode",
+                cg_btn_unlock: "Unlock Private Gallery →",
+                cg_fav_label: "Favorite(s) selected",
+                cg_btn_dl_fav: "❤️ Download Favorites",
+                cg_btn_dl_all: "📥 Download All Photos",
+                cg_empty: "No photos available in this gallery yet.",
+                cg_lb_prev: "⬅️ Previous",
+                cg_lb_dl: "📥 Download Full Clarity High-Res Photo",
+                cg_lb_next: "Next ➡️",
+                cg_err_both: "⚠️ Please enter both Gallery Code and Passcode.",
+                cg_err_conn: "⚠️ Server connection error. Please try again.",
+                cg_autodelete: "⏰ Auto-deletes in {days} day(s)",
+                cg_title_prefix: "✨ Gallery for ",
+                cg_alert_sel_fav: "❤️ Please select at least one favorite photo first by clicking the heart button on images!",
+                cg_alert_dl_fav: "📥 Downloading {count} full clarity photo(s)...",
+                cg_alert_dl_all: "📥 Starting full clarity download for {count} photo(s)..."
+            },
+            mr: {
+                cg_subtitle: "खाजगी ग्राहक फोटो पोर्टल",
+                cg_back_link: "🏠 मुख्य वेबसाईटवर जा",
+                cg_login_title: "खाजगी ग्राहक फोटो गॅलरी",
+                cg_login_desc: "ओमकार यांनी दिलेला गॅलरी कोड आणि पासकोड टाकून तुमचे खाजगी एचडी फोटो बघा.",
+                cg_code_label: "गॅलरी कोड",
+                cg_code_ph: "उदा. RAHUL2026",
+                cg_pass_label: "पासकोड",
+                cg_pass_ph: "गुप्त पासकोड टाका",
+                cg_btn_unlock: "फोटो गॅलरी उघडा →",
+                cg_fav_label: "फोटो आवडले",
+                cg_btn_dl_fav: "❤️ आवडलेले फोटो डाऊनलोड करा",
+                cg_btn_dl_all: "📥 सर्व फोटो डाऊनलोड करा",
+                cg_empty: "या गॅलरीमध्ये अद्याप कोणतेही फोटो नाहीत.",
+                cg_lb_prev: "⬅️ मागे",
+                cg_lb_dl: "📥 ओरिजिनल एचडी फोटो डाऊनलोड करा",
+                cg_lb_next: "पुढे ➡️",
+                cg_err_both: "⚠️ कृपया गॅलरी कोड आणि पासकोड दोन्ही टाका.",
+                cg_err_conn: "⚠️ सर्व्हर जोडणीत अडचण येत आहे. कृपया पुन्हा प्रयत्न करा.",
+                cg_autodelete: "⏰ {days} दिवसात आपोआप डिलीट होईल",
+                cg_title_prefix: "✨ फोटो गॅलरी: ",
+                cg_alert_sel_fav: "❤️ कृपया फोटोवरील हार्ट बटणावर क्लिक करून किमान एक आवडता फोटो निवडा!",
+                cg_alert_dl_fav: "📥 {count} आवडलेले एचडी फोटो डाऊनलोड होत आहेत...",
+                cg_alert_dl_all: "📥 सर्व {count} एचडी फोटो डाऊनलोड होत आहेत..."
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'en';
         let currentPhotos = [];
         let favorites = new Set();
         let currentLightboxIdx = 0;
+        let activeClientName = '';
+        let activeDaysRemaining = 30;
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'mr' : 'en';
+            localStorage.setItem('selectedLang', currentLang);
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            const dict = i18nDict[lang] || i18nDict['en'];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (dict[key]) {
+                    el.placeholder = dict[key];
+                }
+            });
+
+            const btnText = lang === 'en' ? '🌐 मराठी' : '🌐 English';
+            const b = document.getElementById('langBtnText');
+            if (b) b.textContent = btnText;
+
+            if (activeClientName) {
+                document.getElementById('clientTitle').textContent = `${dict.cg_title_prefix}${activeClientName}`;
+            }
+            if (activeDaysRemaining !== undefined) {
+                document.getElementById('expiryBadge').textContent = dict.cg_autodelete.replace('{days}', activeDaysRemaining);
+            }
+        }
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'selectedLang' && e.newValue) {
+                currentLang = e.newValue;
+                applyLanguage(currentLang);
+            }
+        });
+
+        window.addEventListener('pageshow', () => {
+            currentLang = localStorage.getItem('selectedLang') || 'en';
+            applyLanguage(currentLang);
+        });
 
         // Check if query params present in URL (e.g. ?code=RAHUL2026&pass=1234)
         document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(currentLang);
+
             const params = new URLSearchParams(window.location.search);
             const code = params.get('code') || params.get('id');
             const pass = params.get('pass') || params.get('passcode') || params.get('password');
@@ -228,12 +343,13 @@
         // Passcode Form Submit
         document.getElementById('passcodeForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const dict = i18nDict[currentLang] || i18nDict['en'];
             const galleryCode = document.getElementById('galleryCodeInput').value.trim();
             const passcode = document.getElementById('passcodeInput').value.trim();
             const errorMsg = document.getElementById('errorMsg');
 
             if (!galleryCode || !passcode) {
-                errorMsg.textContent = '⚠️ Please enter both Gallery Code and Passcode.';
+                errorMsg.textContent = dict.cg_err_both;
                 errorMsg.classList.remove('hidden');
                 return;
             }
@@ -248,10 +364,12 @@
                 const data = await res.json();
                 if (data.success) {
                     currentPhotos = data.photos || [];
-                    document.getElementById('clientTitle').textContent = `✨ Gallery for ${data.clientName}`;
+                    activeClientName = data.clientName || '';
                     if (data.daysRemaining !== undefined) {
-                        document.getElementById('expiryBadge').textContent = `⏰ Auto-deletes in ${data.daysRemaining} day(s)`;
+                        activeDaysRemaining = data.daysRemaining;
                     }
+                    applyLanguage(currentLang);
+
                     document.getElementById('loginView').classList.add('hidden');
                     document.getElementById('galleryView').classList.remove('hidden');
                     renderPhotos(currentPhotos);
@@ -260,17 +378,18 @@
                     errorMsg.classList.remove('hidden');
                 }
             } catch (err) {
-                errorMsg.textContent = '⚠️ Server connection error. Please try again.';
+                errorMsg.textContent = dict.cg_err_conn;
                 errorMsg.classList.remove('hidden');
             }
         });
 
         function renderPhotos(photos) {
             const grid = document.getElementById('photoGrid');
+            const dict = i18nDict[currentLang] || i18nDict['en'];
             grid.innerHTML = '';
 
             if (photos.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">No photos available in this gallery yet.</div>';
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">${dict.cg_empty}</div>`;
                 return;
             }
 
@@ -327,11 +446,12 @@
         }
 
         function downloadFavorites() {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
             if (favorites.size === 0) {
-                alert('❤️ Please select at least one favorite photo first by clicking the heart button on images!');
+                alert(dict.cg_alert_sel_fav);
                 return;
             }
-            alert(`📥 Downloading ${favorites.size} full clarity photo(s)...`);
+            alert(dict.cg_alert_dl_fav.replace('{count}', favorites.size));
             Array.from(favorites).forEach((url, index) => {
                 setTimeout(() => {
                     const a = document.createElement('a');
@@ -346,8 +466,9 @@
         }
 
         function downloadAllPhotos() {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
             if (currentPhotos.length === 0) return;
-            alert(`📥 Starting full clarity download for ${currentPhotos.length} photo(s)...`);
+            alert(dict.cg_alert_dl_all.replace('{count}', currentPhotos.length));
             currentPhotos.forEach((url, index) => {
                 setTimeout(() => {
                     const a = document.createElement('a');
