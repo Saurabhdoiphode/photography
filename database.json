@@ -9,6 +9,16 @@
       "booking_date": "2026-09-12",
       "status": "confirmed",
       "created_at": "2026-09-12T06:33:49.097Z"
+    },
+    {
+      "id": 1790051994279,
+      "client_name": "Verification Test User",
+      "client_phone": "9876543210",
+      "event_type": "Pre-Wedding Shoot",
+      "event_location": "Pune Studio",
+      "booking_date": "2026-12-31",
+      "status": "pending",
+      "created_at": "2026-09-22T04:39:54.279Z"
     }
   ],
   "blocked_dates": [
