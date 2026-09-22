@@ -147,6 +147,18 @@
         }
       ]
     }
+    </script>      "Event Photography",
+        "Birthday Photography",
+        "Cinematic Wedding Films"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "500",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -2474,9 +2486,14 @@
             <div class="portfolio-grid" id="portfolioGrid">
                 <!-- Wedding Collection Card -->
                 <div class="portfolio-card wedding-card" data-category="wedding" onclick="openCategoryLightbox('wedding')" style="cursor:pointer;">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80" alt="Wedding Photography">
-                        <span class="card-badge">💍 Weddings</span>
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Wedding Photography" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">💍 0 Photos</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Wedding Collections</h3>
@@ -2486,9 +2503,14 @@
 
                 <!-- Pre-Wedding Card -->
                 <div class="portfolio-card prewedding-card" data-category="prewedding" onclick="openCategoryLightbox('prewedding')" style="cursor:pointer;">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop&q=80" alt="Pre-Wedding Shoot">
-                        <span class="card-badge">💑 Pre-Wedding</span>
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Pre-Wedding Shoot" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">💑 0 Photos</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Pre-Wedding Shoots</h3>
@@ -2498,9 +2520,14 @@
 
                 <!-- Baby Shoot Card -->
                 <div class="portfolio-card baby-card" data-category="baby" onclick="openCategoryLightbox('baby')" style="cursor:pointer;">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&auto=format&fit=crop&q=80" alt="Baby Shoot">
-                        <span class="card-badge">👶 Baby Shoot</span>
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Baby Shoot" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">👶 0 Photos</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Baby & Newborn</h3>
@@ -2510,9 +2537,14 @@
 
                 <!-- Birthday Shoot Card -->
                 <div class="portfolio-card birthday-card" data-category="birthday" onclick="openCategoryLightbox('birthday')" style="cursor:pointer;">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop&q=80" alt="Birthday Shoot">
-                        <span class="card-badge">🎂 Birthday Shoot</span>
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Birthday Shoot" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">🎂 0 Photos</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Birthday Shoots</h3>
@@ -2522,9 +2554,14 @@
 
                 <!-- Events Collection Card -->
                 <div class="portfolio-card events-card" data-category="events" onclick="openCategoryLightbox('events')" style="cursor:pointer;">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop&q=80" alt="Events Photography">
-                        <span class="card-badge">🎉 Events</span>
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Events Photography" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">🎉 0 Photos</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Events & Lifestyle</h3>
@@ -2534,9 +2571,14 @@
 
                 <!-- Photoshoot Collection Card -->
                 <div class="portfolio-card photoshoot-card" data-category="photoshoot" onclick="openCategoryLightbox('photoshoot')" style="cursor:pointer;">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80" alt="Model & Fashion Photoshoot">
-                        <span class="card-badge">📸 Photoshoot</span>
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Model & Fashion Photoshoot" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">📸 0 Photos</span>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Model Photoshoots</h3>
@@ -3174,8 +3216,14 @@
             const msgBox = document.getElementById('bookingMessage');
 
             if (bookingForm) {
+                let isSubmittingBooking = false;
                 bookingForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
+
+                    if (isSubmittingBooking) {
+                        return;
+                    }
+                    isSubmittingBooking = true;
 
                     if (!selectedBookingDate) {
                         selectedBookingDate = getTodayStr();
@@ -3188,6 +3236,7 @@
 
                     if (!clientName || !clientPhone || !eventType || !eventLocation) {
                         showToast('⚠️ Please fill out all required form fields.');
+                        isSubmittingBooking = false;
                         return;
                     }
 
@@ -3283,6 +3332,7 @@
                     } finally {
                         submitBtn.textContent = origBtnText;
                         submitBtn.disabled = false;
+                        isSubmittingBooking = false;
                     }
                 });
             }
@@ -3517,6 +3567,7 @@
                     }
                 });
             }
+
             // Load Portfolio Category Photos & Card Badges
             fetchCategoryPhotosData();
         });
@@ -3548,18 +3599,38 @@
                         const photos = categoryPhotosData[cat] || [];
                         const badgeEl = card.querySelector('.card-badge');
                         const imgEl = card.querySelector('.card-image img');
+                        const placeholderEl = card.querySelector('.no-photo-placeholder');
+
+                        const iconMap = {
+                            wedding: '💍', prewedding: '💑', baby: '👶',
+                            birthday: '🎂', events: '🎉', photoshoot: '📸', maternity: '🤰'
+                        };
+                        const icon = iconMap[cat] || '📸';
 
                         if (badgeEl) {
-                            const iconMap = {
-                                wedding: '💍', prewedding: '💑', baby: '👶',
-                                birthday: '🎂', events: '🎉', photoshoot: '📸', maternity: '🤰'
-                            };
-                            const icon = iconMap[cat] || '📸';
-                            badgeEl.innerHTML = `${icon} ${photos.length} Photo${photos.length === 1 ? '' : 's'}`;
+                            if (photos.length > 0) {
+                                badgeEl.innerHTML = `${icon} ${photos.length} Photo${photos.length === 1 ? '' : 's'}`;
+                            } else {
+                                badgeEl.innerHTML = `${icon} 0 Photos`;
+                            }
                         }
 
-                        if (imgEl && photos.length > 0 && photos[0].image_url) {
-                            imgEl.src = photos[0].image_url;
+                        if (photos.length > 0 && photos[0].image_url) {
+                            if (imgEl) {
+                                imgEl.src = photos[0].image_url;
+                                imgEl.style.display = 'block';
+                            }
+                            if (placeholderEl) {
+                                placeholderEl.style.display = 'none';
+                            }
+                        } else {
+                            if (imgEl) {
+                                imgEl.src = '';
+                                imgEl.style.display = 'none';
+                            }
+                            if (placeholderEl) {
+                                placeholderEl.style.display = 'flex';
+                            }
                         }
                     }
                 });
@@ -3576,34 +3647,9 @@
             const modal = document.getElementById('categoryLightboxModal');
             if (!modal) return;
 
-            // Fallback featured photos if no custom photos uploaded by admin yet
             if (photos.length === 0) {
-                const defaultSampleMap = {
-                    wedding: [
-                        { title: 'Grand Royal Wedding Rituals', image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80' },
-                        { title: 'Candid Couple Moments', image_url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&auto=format&fit=crop&q=80' }
-                    ],
-                    prewedding: [
-                        { title: 'Scenic Sunset Pre-Wedding Story', image_url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&auto=format&fit=crop&q=80' },
-                        { title: 'Romantic Nature Couple Shoot', image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=80' }
-                    ],
-                    baby: [
-                        { title: 'Precious Baby Portraits', image_url: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&auto=format&fit=crop&q=80' }
-                    ],
-                    birthday: [
-                        { title: 'Birthday Celebration & Cake Smash', image_url: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&auto=format&fit=crop&q=80' }
-                    ],
-                    events: [
-                        { title: 'Grand Engagement & Event Celebrations', image_url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&auto=format&fit=crop&q=80' }
-                    ],
-                    photoshoot: [
-                        { title: 'Fashion Model Studio Folio', image_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&auto=format&fit=crop&q=80' }
-                    ],
-                    maternity: [
-                        { title: 'Maternity Mom-To-Be Portrait', image_url: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&auto=format&fit=crop&q=80' }
-                    ]
-                };
-                photos = defaultSampleMap[cat] || [{ title: 'Featured Collection', image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200' }];
+                showToast(`📷 No photos uploaded for '${cat.toUpperCase()}' category yet. Admin can add photos in Admin Panel!`);
+                return;
             }
 
             categoryPhotosData[cat + '_active'] = photos;
