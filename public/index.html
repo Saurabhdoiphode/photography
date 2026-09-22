@@ -2360,14 +2360,19 @@
         <!-- Navigation Menu -->
         <nav class="relative" style="display:flex; justify-content:center; align-items:center; gap:20px;">
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="javascript:void(0)" onclick="openVisitingCardModal()">Visiting Card</a></li>
-                <li><a href="#book">Book Now</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-                <li><a href="#reviews" style="color:var(--accent-gold); font-weight:700;">⭐ Reviews</a></li>
-                <li><a href="/client-gallery.html" class="nav-pill-btn client-portal-pill">🔐 Client Portal</a></li>
-                <li><a href="/admin-login.html" class="nav-pill-btn admin-login-pill">⚙️ Admin Login</a></li>
+                <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                <li><a href="#about" data-i18n="nav_about">About Us</a></li>
+                <li><a href="javascript:void(0)" onclick="openVisitingCardModal()" data-i18n="nav_visiting">Visiting Card</a></li>
+                <li><a href="#book" data-i18n="nav_book">Book Now</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact Us</a></li>
+                <li><a href="#reviews" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_reviews">⭐ Reviews</a></li>
+                <li><a href="/client-gallery.html" class="nav-pill-btn client-portal-pill" data-i18n="nav_client_portal">🔐 Client Portal</a></li>
+                <li><a href="/admin-login.html" class="nav-pill-btn admin-login-pill" data-i18n="nav_admin_login">⚙️ Admin Login</a></li>
+                <li>
+                    <button class="lang-toggle-btn" onclick="toggleLanguage()" style="background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%); color: var(--accent-gold); border: 1.5px solid var(--accent-gold); padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                        <span id="langBtnText">🌐 मराठी</span>
+                    </button>
+                </li>
             </ul>
 
             <!-- Hamburger Menu -->
@@ -2379,14 +2384,17 @@
 
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobileMenu">
-                <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="javascript:void(0)" onclick="openVisitingCardModal()">Visiting Card</a>
-                <a href="#book">Book Now</a>
-                <a href="#contact">Contact Us</a>
-                <a href="#reviews" style="color:var(--accent-gold); font-weight:700;">⭐ Client Reviews</a>
-                <a href="/client-gallery.html" style="color:var(--accent-gold); font-weight:700;">🔐 Client Photo Portal</a>
-                <a href="/admin-login.html" style="color:var(--accent-gold); font-weight:700;">⚙️ Admin Login</a>
+                <a href="#home" data-i18n="nav_home">Home</a>
+                <a href="#about" data-i18n="nav_about">About Us</a>
+                <a href="javascript:void(0)" onclick="openVisitingCardModal()" data-i18n="nav_visiting">Visiting Card</a>
+                <a href="#book" data-i18n="nav_book">Book Now</a>
+                <a href="#contact" data-i18n="nav_contact">Contact Us</a>
+                <a href="#reviews" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_reviews">⭐ Client Reviews</a>
+                <a href="/client-gallery.html" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_client_portal">🔐 Client Photo Portal</a>
+                <a href="/admin-login.html" style="color:var(--accent-gold); font-weight:700;" data-i18n="nav_admin_login">⚙️ Admin Login</a>
+                <button class="lang-toggle-btn" onclick="toggleLanguage()" style="margin-top: 10px; background: var(--dark-charcoal); color: var(--accent-gold); border: 1.5px solid var(--accent-gold); padding: 10px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span class="langBtnTextMobile">🌐 मराठी</span>
+                </button>
             </div>
         </nav>
     </header>
@@ -2401,31 +2409,31 @@
             <div class="hero-content-wrapper">
                 <!-- Hero Tag Badge -->
                 <div class="hero-tag-badge">
-                    <span>✨ SIGNATURE INDIAN WEDDING & EVENT PHOTOGRAPHY</span>
+                    <span data-i18n="hero_tag">✨ SIGNATURE INDIAN WEDDING & EVENT PHOTOGRAPHY</span>
                 </div>
                 
                 <!-- Main Shimmer Title -->
-                <h1 class="hero-main-title">Capturing Eternal Moments With Artistry</h1>
+                <h1 class="hero-main-title" data-i18n="hero_title">Capturing Eternal Moments With Artistry</h1>
                 
                 <!-- Decorative Line -->
                 <div class="hero-divider"></div>
                 
                 <!-- Subtitle -->
-                <p class="hero-subtitle">Omkar Doiphode Signature Photography</p>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">Omkar Doiphode Signature Photography</p>
                 
                 <!-- Descriptive Text -->
-                <p class="hero-description">From intimate wedding vows to grand celebrations, we frame emotions that last a lifetime with timeless elegance.</p>
+                <p class="hero-description" data-i18n="hero_desc">From intimate wedding vows to grand celebrations, we frame emotions that last a lifetime with timeless elegance.</p>
                 
                 <!-- Call-to-Action Buttons -->
                 <div class="hero-buttons">
                     <button class="cta-button primary-btn" onclick="openVisitingCardModal()">
-                        <span>🎴 Visiting Card</span>
+                        <span data-i18n="hero_btn_visiting">🎴 Visiting Card</span>
                     </button>
                     <button class="cta-button secondary-btn" onclick="document.querySelector('#book').scrollIntoView({behavior: 'smooth'})">
-                        <span>🗓️ Check Availability</span>
+                        <span data-i18n="hero_btn_check">🗓️ Check Availability</span>
                     </button>
                     <a href="/client-gallery.html" class="cta-button secondary-btn" style="border-color:var(--accent-gold); color:var(--accent-gold); text-decoration:none;">
-                        <span>🔐 Client Photo Portal</span>
+                        <span data-i18n="nav_client_portal">🔐 Client Photo Portal</span>
                     </a>
                 </div>
             </div>
@@ -2437,19 +2445,19 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">500+</div>
-                <div class="stat-label">Happy Couples</div>
+                <div class="stat-label" data-i18n="stat_couples">Happy Couples</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">5+</div>
-                <div class="stat-label">Years Experience</div>
+                <div class="stat-label" data-i18n="stat_exp">Years Experience</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">100k+</div>
-                <div class="stat-label">Moments Captured</div>
+                <div class="stat-label" data-i18n="stat_moments">Moments Captured</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">5★</div>
-                <div class="stat-label">Top Rated</div>
+                <div class="stat-label" data-i18n="stat_top">Top Rated</div>
             </div>
         </div>
     </section>
@@ -2457,18 +2465,18 @@
     <!-- Portfolio Section with Category Filter -->
     <section class="portfolio-section reveal-on-scroll" id="portfolio-section">
         <div class="portfolio-container">
-            <h2 class="section-title">Featured Collections</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 0.95rem;">Filter by occasion to explore our signature visual stories</p>
+            <h2 class="section-title" data-i18n="port_title">Featured Collections</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 0.95rem;" data-i18n="port_desc">Filter by occasion to explore our signature visual stories</p>
             
             <!-- Category Filter Bar (2 per row on mobile) -->
             <div class="portfolio-filter-bar">
-                <button class="filter-tab-btn active" onclick="filterPortfolio('all', this)">All Collections</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('wedding', this)">Weddings 💍</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('prewedding', this)">Pre-Wedding 💑</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('baby', this)">Baby Shoot 👶</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('birthday', this)">Birthday Shoot 🎂</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('events', this)">Events & Lifestyle 🎉</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('photoshoot', this)">Photoshoot 📸</button>
+                <button class="filter-tab-btn active" onclick="filterPortfolio('all', this)" data-i18n="filter_all">All Collections</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('wedding', this)" data-i18n="filter_wedding">Weddings 💍</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('prewedding', this)" data-i18n="filter_prewedding">Pre-Wedding 💑</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('baby', this)" data-i18n="filter_baby">Baby Shoot 👶</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('birthday', this)" data-i18n="filter_birthday">Birthday Shoot 🎂</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('events', this)" data-i18n="filter_events">Events & Lifestyle 🎉</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('photoshoot', this)" data-i18n="filter_photoshoot">Photoshoot 📸</button>
             </div>
 
             <div class="portfolio-grid" id="portfolioGrid">
@@ -2915,6 +2923,190 @@
 
     <!-- JavaScript for Mobile Menu Toggle, Logo Loading, Calendar & Booking -->
     <script>
+        // --- MULTI-LANGUAGE (ENGLISH & MARATHI) I18N DICTIONARY ---
+        const i18nDict = {
+            en: {
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_visiting: "Visiting Card",
+                nav_book: "Book Now",
+                nav_contact: "Contact Us",
+                nav_reviews: "⭐ Reviews",
+                nav_client_portal: "🔐 Client Portal",
+                nav_admin_login: "⚙️ Admin Login",
+
+                hero_tag: "✨ SIGNATURE INDIAN WEDDING & EVENT PHOTOGRAPHY",
+                hero_title: "Capturing Eternal Moments With Artistry",
+                hero_subtitle: "Omkar Doiphode Signature Photography",
+                hero_desc: "From intimate wedding vows to grand celebrations, we frame emotions that last a lifetime with timeless elegance.",
+                hero_btn_visiting: "🎴 Visiting Card",
+                hero_btn_check: "🗓️ Check Availability",
+
+                stat_couples: "Happy Couples",
+                stat_exp: "Years Experience",
+                stat_moments: "Moments Captured",
+                stat_top: "Top Rated",
+
+                port_title: "Featured Collections",
+                port_desc: "Filter by occasion to explore our signature visual stories",
+                filter_all: "All Collections",
+                filter_wedding: "Weddings 💍",
+                filter_prewedding: "Pre-Wedding 💑",
+                filter_baby: "Baby Shoot 👶",
+                filter_birthday: "Birthday Shoot 🎂",
+                filter_events: "Events & Lifestyle 🎉",
+                filter_photoshoot: "Photoshoot 📸",
+
+                cat_wedding_title: "Wedding Collections",
+                cat_wedding_desc: "Timeless wedding rituals & grand receptions.",
+                cat_prewedding_title: "Pre-Wedding Shoots",
+                cat_prewedding_desc: "Scenic outdoor & aesthetic studio couple stories.",
+                cat_baby_title: "Baby & Newborn",
+                cat_baby_desc: "Precious newborn portraits & milestone themes.",
+                cat_birthday_title: "Birthday Shoots",
+                cat_birthday_desc: "Special birthday party moments & cake smash.",
+                cat_events_title: "Events & Lifestyle",
+                cat_events_desc: "Engagements, ring ceremony & celebrations.",
+                cat_photoshoot_title: "Model Photoshoots",
+                cat_photoshoot_desc: "Fashion model folios & studio portraits.",
+
+                ba_title: "Signature Color Grading & Editing",
+                ba_desc: "Drag the slider left or right to see how we transform raw moments into magazine-quality art",
+
+                track_title: "🔍 Check Your Booking Request Status",
+                track_desc: "Already submitted a request? Enter your phone number below to check status live!",
+                track_ph_placeholder: "Enter 10-digit phone number",
+                track_btn_search: "Search",
+
+                cal_title: "Check Availability & Book",
+                cal_legend_available: "Available",
+                cal_legend_unavailable: "Unavailable",
+                cal_legend_pending: "Pending",
+
+                form_title: "Booking Request",
+                form_name: "Full Name *",
+                form_phone: "Phone Number *",
+                form_event: "Event Type *",
+                form_location: "Event Location *",
+                form_btn_submit: "Send Booking Request",
+
+                rev_title: "Client Words & Love ⭐",
+                rev_desc: "Real stories and reviews from couples and families we've photographed",
+                rev_btn_leave: "⭐ Write a Review",
+
+                about_tag: "ABOUT OMKAR DOIPHODE",
+                about_title: "Crafting Timeless Indian Wedding & Event Visual Stories",
+                about_p1: "Welcome to Omkar Doiphode Photography. Based out of Maharashtra, Omkar brings over 5+ years of dedicated excellence in high-end wedding cinematography, candid couple portraits, and lifestyle storytelling.",
+                about_p2: "We believe that every wedding and event is a masterpiece of unscripted emotions. Our signature approach combines editorial color grading with warm, authentic lighting to capture memories that your family will treasure for generations."
+            },
+            mr: {
+                nav_home: "मुख्य पान",
+                nav_about: "आमच्याबद्दल",
+                nav_visiting: "व्हिजिटिंग कार्ड",
+                nav_book: "बुकिंग करा",
+                nav_contact: "संपर्क करा",
+                nav_reviews: "⭐ अभिप्राय",
+                nav_client_portal: "🔐 फोटो दालन",
+                nav_admin_login: "⚙️ ॲडमीन",
+
+                hero_tag: "✨ मानांकित भारतीय लग्न आणि सोहळे छायाचित्रण",
+                hero_title: "खास क्षणांना आठवणीत जपणारी छायाचित्रकला",
+                hero_subtitle: "ओमकार दोइफोडे फोटोग्राफी",
+                hero_desc: "लग्नाचे मंगल क्षण असो वा भव्य सोहळे, प्रत्येक सुंदर आठवण आम्ही नेहमीसाठी जपून ठेवतो.",
+                hero_btn_visiting: "🎴 व्हिजिटिंग कार्ड",
+                hero_btn_check: "🗓️ तारीख तपासा",
+
+                stat_couples: "आनंदी जोडपे",
+                stat_exp: "वर्षांचा अनुभव",
+                stat_moments: "टिपलेले सुंदर क्षण",
+                stat_top: "ग्राहकांची पसंती",
+
+                port_title: "आमचे खास फोटो कलेक्शन",
+                port_desc: "तुमच्या आवडीनुसार प्रसंग निवडा आणि फोटो बघा",
+                filter_all: "सर्व फोटो कलेक्शन",
+                filter_wedding: "लग्न 💍",
+                filter_prewedding: "प्री-वेडिंग 💑",
+                filter_baby: "बाळाचे फोटो 👶",
+                filter_birthday: "वाढदिवस 🎂",
+                filter_events: "कार्यक्रम व सोहळे 🎉",
+                filter_photoshoot: "मॉडेल फोटोशूट 📸",
+
+                cat_wedding_title: "लग्न सोहळे कलेक्शन",
+                cat_wedding_desc: "विवाह विधी, हळदी, रिसेप्शनचे सुंदर क्षण.",
+                cat_prewedding_title: "प्री-वेडिंग फोटोशूट",
+                cat_prewedding_desc: "निसर्गरम्य आणि स्टुडिओ कपल लव्ह स्टोरीज.",
+                cat_baby_title: "बाळ व लहान मुले",
+                cat_baby_desc: "लहान बाळांचे गोंडस फोटो आणि थिम्स.",
+                cat_birthday_title: "वाढदिवस फोटोशूट",
+                cat_birthday_desc: "वाढदिवसाचे आनंददायी क्षण आणि केक स्मॅश.",
+                cat_events_title: "कार्यक्रम व सोहळे",
+                cat_events_desc: "साखरपुडा, मुंज आणि कौटुंबिक सोहळे.",
+                cat_photoshoot_title: "मॉडेल फोटोशूट",
+                cat_photoshoot_desc: "फॅशन मॉडेल पोर्टफोलिओ आणि स्टुडिओ फोटो.",
+
+                ba_title: "फोटो एडिटिंग आणि कलर कल्पकता",
+                ba_desc: "स्लायडर डावीकडे किंवा उजवीकडे सरकवून मॅगझिन-क्वालिटी एडिटिंगमधील फरक बघा",
+
+                track_title: "🔍 बुकिंग अर्जाचे स्टेटस बघा",
+                track_desc: "अर्ज पाठवला आहे का? स्टेटस पाहण्यासाठी मोबाईल नंबर टाका",
+                track_ph_placeholder: "१० अंकी मोबाईल नंबर टाका",
+                track_btn_search: "शोधा",
+
+                cal_title: "उपलब्ध तारखा आणि ऑनलाईन बुकिंग",
+                cal_legend_available: "तारीख उपलब्ध आहे",
+                cal_legend_unavailable: "तारीख बुक आहे",
+                cal_legend_pending: "अर्ज प्रक्रियेत आहे",
+
+                form_title: "बुकिंग अर्ज",
+                form_name: "पूर्ण नाव *",
+                form_phone: "मोबाईल नंबर *",
+                form_event: "फोटोशूटचा प्रकार *",
+                form_location: "ठिकाण / शहर *",
+                form_btn_submit: "बुकिंग अर्ज पाठवा",
+
+                rev_title: "ग्राहकांचे अभिप्राय ⭐",
+                rev_desc: "महाराष्ट्रातील आनंदी कुटुंबांचे आणि जोडप्यांचे अनुभव",
+                rev_btn_leave: "⭐ तुमचा अभिप्राय द्या",
+
+                about_tag: "ओमकार दोइफोडे यांच्याबद्दल",
+                about_title: "भारतीय लग्न व सोहळ्यांची सुंदर चित्रे रेखाटणारा कलाकार",
+                about_p1: "ओमकार दोइफोडे फोटोग्राफीमध्ये आपले सहर्ष स्वागत आहे. महाराष्ट्रात ५+ वर्षांपेक्षा जास्त काळ उच्च दर्जाची वेडिंग सिनेमॅटोग्राफी, कॅनडिड पोर्ट्रेट्स आणि लाईफस्टाईल फोटोग्राफीचा अनुभव.",
+                about_p2: "प्रत्येक लग्न आणि सोहळा हा भावनांचा सुंदर ठेवा असतो. योग्य प्रकाशयोजना आणि अप्रतिम कलर ग्रेडिंगच्या जोरावर आम्ही या क्षणांना आयुष्यभरासाठी अजरामर करतो."
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'en';
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'mr' : 'en';
+            localStorage.setItem('selectedLang', currentLang);
+            applyLanguage(currentLang);
+            showToast(currentLang === 'mr' ? '🌐 भाषा बदलली: मराठी' : '🌐 Language changed: English');
+        }
+
+        function applyLanguage(lang) {
+            const dict = i18nDict[lang] || i18nDict['en'];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (dict[key]) {
+                    el.placeholder = dict[key];
+                }
+            });
+
+            const btnText = lang === 'en' ? '🌐 मराठी' : '🌐 English';
+            const b1 = document.getElementById('langBtnText');
+            if (b1) b1.textContent = btnText;
+            document.querySelectorAll('.langBtnTextMobile').forEach(el => el.textContent = btnText);
+        }
+
         // State variables for Calendar & Booking
         let now = new Date();
         let currentYear = now.getFullYear();
@@ -3505,6 +3697,7 @@
 
         // Public Review Form Submit
         document.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(currentLang);
             loadReviews();
 
             // Load custom uploaded admin logo if present
