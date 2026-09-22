@@ -1515,13 +1515,13 @@
                 ad_btn_vis_up: "🎴 Upload New Card",
                 ad_btn_vis_rev: "🔄 Revert to Default",
                 ad_sec_logo_hist: "Uploaded Logo History",
-                ad_btn_confirm: "मंजूर करा ✅",
-                ad_btn_block: "ब्लॉक करा 🔴",
-                ad_btn_delete: "डिलीट करा 🗑️",
-                ad_btn_contact: "संपर्क साधा 📱",
-                ad_st_confirmed: "निश्चित ✅",
-                ad_st_pending: "प्रक्रियेत ⏳",
-                ad_st_blocked: "रद्द / ब्लॉक 🔴"
+                ad_btn_confirm: "Approve ✅",
+                ad_btn_block: "Block Date 🔴",
+                ad_btn_delete: "Delete 🗑️",
+                ad_btn_contact: "Contact 📱",
+                ad_st_confirmed: "Confirmed ✅",
+                ad_st_pending: "Pending ⏳",
+                ad_st_blocked: "Cancelled / Blocked 🔴"
             },
             mr: {
                 ad_view_site: "🌐 वेबसाईट बघा",
@@ -1646,6 +1646,31 @@
             const btnText = lang === 'en' ? '🌐 मराठी' : '🌐 English';
             const b = document.getElementById('langBtnText');
             if (b) b.textContent = btnText;
+
+            if (typeof renderBookingsTable === 'function' && typeof allBookings !== 'undefined' && allBookings.length > 0) {
+                renderBookingsTable();
+            }
+        }
+
+        function getLocalizedEventType(eventType) {
+            if (!eventType) return '';
+            if (currentLang === 'mr') {
+                const map = {
+                    'Marriage Package': 'लग्न सोहळा पॅकेज',
+                    'Wedding Photography': 'लग्न सोहळा फोटोग्राफी',
+                    'Pre Wedding Shoot': 'प्री-वेडिंग शूट',
+                    'Pre-Wedding Photography': 'प्री-वेडिंग फोटोग्राफी',
+                    'Baby Shoot': 'बाळाचे फोटो (बेबी शूट)',
+                    'Newborn Baby Photography': 'नवजात बाळाचे फोटोशूट',
+                    'Birthday Photography': 'वाढदिवस फोटोग्राफी',
+                    'Event Photography': 'कार्यक्रम व सोहळे',
+                    'Cinematic Wedding Films': 'सिनेमॅटिक लग्न चित्रपट',
+                    'Model Portfolio': 'मॉडेल पोर्टफोलिओ',
+                    'Maternity Shoot': 'मॅटर्निटी फोटोशूट'
+                };
+                return map[eventType] || eventType;
+            }
+            return eventType;
         }
 
         window.addEventListener('storage', (e) => {
@@ -2026,7 +2051,7 @@
                                 <a href="https://wa.me/91${phoneClean}?text=Hello%20${encodeURIComponent(b.client_name)},%20this%20is%20Omkar%20Doiphode%20Photography%20regarding%20your%20${encodeURIComponent(b.event_type)}%20booking%20request%20for%20${b.booking_date}." target="_blank" class="btn-contact" style="background:#25D366;" title="WhatsApp Client">💬 WhatsApp</a>
                             </div>
                         </td>
-                        <td style="white-space:nowrap;"><span style="font-weight:600; color:var(--dark-charcoal);">${escapeHtml(b.event_type)}</span></td>
+                        <td style="white-space:nowrap;"><span style="font-weight:600; color:var(--dark-charcoal);">${escapeHtml(getLocalizedEventType(b.event_type))}</span></td>
                         <td style="white-space:nowrap;">📍 ${escapeHtml(b.event_location)}</td>
                         <td style="white-space:nowrap;">
                             <span class="status-badge ${statusClass}">
@@ -2065,7 +2090,7 @@
                                 </span>
                             </div>
                             <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:0.2rem;">${escapeHtml(b.client_name)}</div>
-                            <div style="font-size:13px; color:#475569; font-weight:600; margin-bottom:0.8rem;">💍 ${escapeHtml(b.event_type)} &nbsp;•&nbsp; 📍 ${escapeHtml(b.event_location)}</div>
+                            <div style="font-size:13px; color:#475569; font-weight:600; margin-bottom:0.8rem;">💍 ${escapeHtml(getLocalizedEventType(b.event_type))} &nbsp;•&nbsp; 📍 ${escapeHtml(b.event_location)}</div>
                             
                             <div style="display:flex; gap:8px; margin-bottom:0.8rem;">
                                 <a href="tel:${phoneClean}" class="btn-contact" style="flex:1; justify-content:center; padding:8px; font-size:12px; border-radius:8px;">📞 Call ${escapeHtml(b.client_phone)}</a>
@@ -2073,9 +2098,9 @@
                             </div>
 
                             <div style="display:flex; gap:6px; border-top:1px solid #F1F5F9; padding-top:0.7rem;">
-                                ${b.status !== 'confirmed' ? `<button class="btn-confirm" style="flex:1; padding:8px; font-weight:700; border-radius:8px;" onclick="updateStatus('${b.id}', 'confirmed')">Confirm ✅</button>` : ''}
-                                ${b.status !== 'blocked' ? `<button class="btn-block" style="flex:1; padding:8px; font-weight:700; border-radius:8px;" onclick="updateStatus('${b.id}', 'blocked')">Cancel 🔴</button>` : ''}
-                                <button class="btn-delete" style="flex:1; padding:8px; font-weight:700; border-radius:8px;" onclick="deleteBooking('${b.id}')">Delete 🗑️</button>
+                                ${b.status !== 'confirmed' ? `<button class="btn-confirm" style="flex:1; padding:8px; font-weight:700; border-radius:8px;" onclick="updateStatus('${b.id}', 'confirmed')">${dict.ad_btn_confirm || 'Approve ✅'}</button>` : ''}
+                                ${b.status !== 'blocked' ? `<button class="btn-block" style="flex:1; padding:8px; font-weight:700; border-radius:8px;" onclick="updateStatus('${b.id}', 'blocked')">${dict.ad_btn_block || 'Block Date 🔴'}</button>` : ''}
+                                <button class="btn-delete" style="flex:1; padding:8px; font-weight:700; border-radius:8px;" onclick="deleteBooking('${b.id}')">${dict.ad_btn_delete || 'Delete 🗑️'}</button>
                             </div>
                         </div>
                     `;
