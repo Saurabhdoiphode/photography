@@ -2495,7 +2495,8 @@
                 <button class="filter-tab-btn" onclick="filterPortfolio('baby', this)" data-i18n="filter_baby">Baby Shoot 👶</button>
                 <button class="filter-tab-btn" onclick="filterPortfolio('birthday', this)" data-i18n="filter_birthday">Birthday Shoot 🎂</button>
                 <button class="filter-tab-btn" onclick="filterPortfolio('events', this)" data-i18n="filter_events">Events & Lifestyle 🎉</button>
-                <button class="filter-tab-btn" onclick="filterPortfolio('photoshoot', this)" data-i18n="filter_photoshoot">Photoshoot 📸</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('photoshoot', this)" data-i18n="filter_photoshoot">Model Photoshoots 📸</button>
+                <button class="filter-tab-btn" onclick="filterPortfolio('maternity', this)" data-i18n="filter_maternity">Maternity Shoot 🤰</button>
             </div>
 
             <div class="portfolio-grid" id="portfolioGrid">
@@ -2598,6 +2599,23 @@
                     <div class="card-content">
                         <h3 class="card-title" data-i18n="cat_photoshoot_title">Model Photoshoots</h3>
                         <p class="card-description"><span data-i18n="cat_photoshoot_desc">Fashion model folios & studio portraits.</span> <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;" data-i18n="click_view_gallery">🔍 Click to view gallery →</span></p>
+                    </div>
+                </div>
+
+                <!-- Maternity Shoot Card -->
+                <div class="portfolio-card maternity-card" data-category="maternity" onclick="openCategoryLightbox('maternity')" style="cursor:pointer;">
+                    <div class="card-image" style="position:relative; min-height:220px; background:#18181b; border-top-left-radius:12px; border-top-right-radius:12px; overflow:hidden;">
+                        <div class="no-photo-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:220px; width:100%; background:linear-gradient(135deg, #18181b 0%, #27272a 100%); color:#a1a1aa; text-align:center; padding:1rem;">
+                            <span style="font-size:2.2rem; margin-bottom:4px; opacity:0.7;">📷</span>
+                            <span style="font-size:0.85rem; font-weight:600; color:#e4e4e7; letter-spacing:0.5px;" data-i18n="ph_no_photos">No Photos Added Yet</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); margin-top:4px; font-weight:500;" data-i18n="ph_admin_add">Admin can add photos</span>
+                        </div>
+                        <img src="" alt="Maternity Shoot" style="display:none; width:100%; height:220px; object-fit:cover;">
+                        <span class="card-badge">🤰 0 Photos</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" data-i18n="cat_maternity_title">Maternity Shoot</h3>
+                        <p class="card-description"><span data-i18n="cat_maternity_desc">Mom-to-be portraits & pregnancy celebration stories.</span> <span style="color:var(--accent-gold); font-weight:700; font-size:0.8rem; display:block; margin-top:4px;" data-i18n="click_view_gallery">🔍 Click to view gallery →</span></p>
                     </div>
                 </div>
             </div>
@@ -2974,7 +2992,8 @@
                 filter_baby: "Baby Shoot 👶",
                 filter_birthday: "Birthday Shoot 🎂",
                 filter_events: "Events & Lifestyle 🎉",
-                filter_photoshoot: "Photoshoot 📸",
+                filter_photoshoot: "Model Photoshoots 📸",
+                filter_maternity: "Maternity Shoot 🤰",
 
                 ph_no_photos: "No Photos Added Yet",
                 ph_admin_add: "Admin can add photos",
@@ -2992,6 +3011,8 @@
                 cat_events_desc: "Engagements, ring ceremony & celebrations.",
                 cat_photoshoot_title: "Model Photoshoots",
                 cat_photoshoot_desc: "Fashion model folios & studio portraits.",
+                cat_maternity_title: "Maternity Shoot",
+                cat_maternity_desc: "Mom-to-be portraits & pregnancy celebration stories.",
 
                 ba_title: "Signature Color Grading & Editing",
                 ba_desc: "Drag the slider left or right to see how we transform raw moments into magazine-quality art",
@@ -3109,12 +3130,13 @@
                 port_title: "आमचे खास फोटो कलेक्शन",
                 port_desc: "तुमच्या आवडीनुसार प्रसंग निवडा आणि फोटो बघा",
                 filter_all: "सर्व फोटो कलेक्शन",
-                filter_wedding: "लग्न 💍",
+                filter_wedding: "लग्न सोहळे 💍",
                 filter_prewedding: "प्री-वेडिंग 💑",
                 filter_baby: "बाळाचे फोटो 👶",
                 filter_birthday: "वाढदिवस 🎂",
                 filter_events: "कार्यक्रम व सोहळे 🎉",
                 filter_photoshoot: "मॉडेल फोटोशूट 📸",
+                filter_maternity: "मॅटर्निटी फोटोशूट 🤰",
 
                 ph_no_photos: "अद्याप फोटो जोडले नाहीत",
                 ph_admin_add: "ॲडमीन फोटो जोडू शकतात",
@@ -3132,6 +3154,8 @@
                 cat_events_desc: "साखरपुडा, मुंज आणि कौटुंबिक सोहळे.",
                 cat_photoshoot_title: "मॉडेल फोटोशूट",
                 cat_photoshoot_desc: "फॅशन मॉडेल पोर्टफोलिओ आणि स्टुडिओ फोटो.",
+                cat_maternity_title: "मॅटर्निटी फोटोशूट",
+                cat_maternity_desc: "आई होणाऱ्या मातांचे फोटो आणि आठवणी.",
 
                 ba_title: "फोटो एडिटिंग आणि कलर कल्पकता",
                 ba_desc: "स्लायडर डावीकडे किंवा उजवीकडे सरकवून मॅगझिन-क्वालिटी एडिटिंगमधील फरक बघा",
