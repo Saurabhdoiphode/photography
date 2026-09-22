@@ -255,7 +255,7 @@
                 al_back: "🏠 Back to Main Website"
             },
             mr: {
-                al_title: "ओमकार दोइफोडे फोटोग्राफी",
+                al_title: "ओमकार डोईफोडे फोटोग्राफी",
                 al_subtitle: "ॲडमीन कंट्रोल सेंटर पोर्टल",
                 al_user_label: "फोन नंबर / युझरनेम",
                 al_user_ph: "युझरनेम किंवा ९१४६९२९६०८ टाका",
@@ -355,7 +355,14 @@
                     throw new Error(data.error || 'Login failed');
                 }
             } catch (error) {
-                errorMsg.textContent = error.message;
+                let msg = error.message || 'Login failed';
+                if (currentLang === 'mr') {
+                    if (msg.includes('Invalid credentials')) msg = 'चुकीचे युझरनेम किंवा पासवर्ड.';
+                    else if (msg.includes('Username and password required')) msg = 'युझरनेम आणि पासवर्ड दोन्ही आवश्यक आहेत.';
+                    else if (msg.includes('Login failed')) msg = 'लॉगिन अयशस्वी. कृपया युझरनेम व पासवर्ड तपासा.';
+                    else if (msg.includes('Failed to fetch')) msg = 'सर्व्हरशी संपर्क होऊ शकला नाही. इंटरनेट कनेक्शन तपासा.';
+                }
+                errorMsg.textContent = msg;
                 errorMsg.style.display = 'block';
                 submitBtn.style.display = 'block';
                 loading.style.display = 'none';
