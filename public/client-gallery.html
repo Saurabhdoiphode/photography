@@ -279,7 +279,7 @@
                 const card = document.createElement('div');
                 card.className = 'photo-card';
                 card.innerHTML = `
-                    <img src="${url}" alt="Gallery Photo ${idx+1}" onclick="openLightbox(${idx})" style="cursor:pointer;" title="Click to view full-screen high-res preview" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800'">
+                    <img src="${url}" alt="Gallery Photo ${idx+1}" onclick="openLightbox(${idx})" style="cursor:pointer;" title="Click to view full-screen high-res preview" loading="lazy" onerror="this.style.display='none'">
                     <button onclick="event.stopPropagation(); toggleFav('${url}', this)" class="fav-btn ${isFav ? 'active' : ''}">
                         ${isFav ? '❤️' : '🤍'}
                     </button>
