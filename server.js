@@ -593,6 +593,50 @@ app.delete('/api/omkar-photo', (req, res) => {
     });
 });
 
+// --- STUDIO VISITING CARD API ENDPOINTS ---
+// GET Studio Visiting Card
+app.get('/api/visiting-card', (req, res) => {
+    db.get('SELECT filepath FROM visiting_card ORDER BY id DESC LIMIT 1', (err, row) => {
+        if (err || !row) {
+            return res.json({ success: true, cardUrl: '/visiting_card.jpg' });
+        }
+        res.json({ success: true, cardUrl: row.filepath });
+    });
+});
+
+// POST Upload Studio Visiting Card
+app.post(['/api/upload-visiting-card', '/api/visiting-card'], uploadProfile.single('visiting_card'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ success: false, error: 'No photo file provided' });
+    }
+
+    const filepath = '/uploads/profile/' + req.file.filename;
+
+    db.run('CREATE TABLE IF NOT EXISTS visiting_card (id INTEGER PRIMARY KEY AUTOINCREMENT, filepath TEXT)');
+    db.run('DELETE FROM visiting_card');
+    db.run('INSERT INTO visiting_card (filepath) VALUES (?)', [filepath], function(err) {
+        if (err) {
+            return res.status(500).json({ success: false, error: 'Failed to save visiting card' });
+        }
+        res.json({ success: true, cardUrl: filepath, message: 'Visiting card updated successfully!' });
+    });
+});
+
+// DELETE Studio Visiting Card (Revert to default)
+app.delete('/api/visiting-card', (req, res) => {
+    db.all('SELECT filepath FROM visiting_card', (err, rows) => {
+        if (rows && rows.length > 0) {
+            rows.forEach(r => {
+                const fullP = path.join(__dirname, 'public', r.filepath);
+                fs.unlink(fullP, () => {});
+            });
+        }
+        db.run('DELETE FROM visiting_card', (err) => {
+            res.json({ success: true, message: 'Visiting card reset to default!', cardUrl: '/visiting_card.jpg' });
+        });
+    });
+});
+
 // 7. Get Calendar Date Statuses & Event Details
 app.get('/api/calendar-status', async (req, res) => {
     const statusMap = {};

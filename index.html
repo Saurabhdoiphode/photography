@@ -3529,6 +3529,18 @@
                     }
                 }).catch(e => {});
 
+            // Load Studio Visiting Card if custom uploaded
+            fetch('/api/visiting-card')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success && data.cardUrl) {
+                        const img = document.getElementById('visitingCardImg');
+                        const dl = document.getElementById('visitingCardDownloadBtn');
+                        if (img) img.src = data.cardUrl;
+                        if (dl) dl.href = data.cardUrl;
+                    }
+                }).catch(e => {});
+
             const revForm = document.getElementById('publicReviewForm');
             if (revForm) {
                 revForm.addEventListener('submit', async (e) => {
@@ -3775,12 +3787,12 @@
 
             <!-- Visiting Card Image -->
             <div style="border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:#000; margin-bottom:1.2rem;">
-                <img src="/visiting_card.jpg" alt="Omkar Doiphode Photography Visiting Card" style="width:100%; height:auto; display:block; object-fit:contain;" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='/uploads/visiting_card.jpg';}">
+                <img id="visitingCardImg" src="/visiting_card.jpg" alt="Omkar Doiphode Photography Visiting Card" style="width:100%; height:auto; display:block; object-fit:contain;" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='/uploads/visiting_card.jpg';}">
             </div>
 
             <!-- Download Action Button -->
             <div style="display:flex; justify-content:center; gap:10px;">
-                <a href="/visiting_card.jpg" download="Omkar_Doiphode_Photography_Visiting_Card.jpg" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent-gold); color:#18181B; padding:10px 22px; border-radius:25px; font-size:0.85rem; font-weight:700; text-decoration:none; box-shadow:0 4px 15px rgba(212,165,116,0.3);">
+                <a id="visitingCardDownloadBtn" href="/visiting_card.jpg" download="Omkar_Doiphode_Photography_Visiting_Card.jpg" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent-gold); color:#18181B; padding:10px 22px; border-radius:25px; font-size:0.85rem; font-weight:700; text-decoration:none; box-shadow:0 4px 15px rgba(212,165,116,0.3);">
                     <span>⬇️ Download Visiting Card</span>
                 </a>
                 <button onclick="closeVisitingCardModal()" style="background:transparent; color:#D4D4D8; border:1px solid rgba(255,255,255,0.2); padding:10px 20px; border-radius:25px; font-size:0.85rem; font-weight:600; cursor:pointer;">

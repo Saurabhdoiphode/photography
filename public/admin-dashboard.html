@@ -1390,6 +1390,32 @@
                 </div>
             </div>
 
+            <!-- Studio Visiting Card Management Section -->
+            <div class="upload-section">
+                <h2 class="section-title">🎴 Manage Studio Visiting Card</h2>
+                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;">Upload a new custom studio visiting card to replace the default card shown to clients on the website.</p>
+
+                <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; background:#F8FAFC; padding:1.5rem; border-radius:16px; border:1px solid #E2E8F0; width:100%; box-sizing:border-box; overflow:hidden;">
+                    <div style="text-align:center; flex-shrink:0; max-width:180px; margin:0 auto;">
+                        <img id="adminVisitingCardPreviewImg" src="/visiting_card.jpg" alt="Visiting Card Preview" style="width:100%; height:auto; max-height:110px; border-radius:10px; object-fit:contain; border:1.5px solid var(--accent-gold); box-shadow:0 4px 15px rgba(0,0,0,0.1);" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='/uploads/visiting_card.jpg';}">
+                        <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;">Current Visiting Card</div>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; gap:12px; flex:1; min-width:240px; width:100%; box-sizing:border-box;">
+                        <input type="file" id="visitingCardFileInput" accept="image/*" style="font-size:12.5px; color:#0F172A; font-weight:600; width:100%; max-width:100%; box-sizing:border-box;">
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; width:100%; box-sizing:border-box;">
+                            <button onclick="uploadVisitingCard()" class="btn-confirm" style="flex:1 1 130px; background:#16A34A; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(22,163,74,0.2);">
+                                🎴 Upload New Card
+                            </button>
+                            <button onclick="resetVisitingCard()" class="btn-confirm" style="flex:1 1 120px; background:#DC2626; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(220,38,38,0.2);">
+                                🔄 Revert to Default
+                            </button>
+                        </div>
+                        <div id="visitingCardStatus" style="font-size:12px; font-weight:700; color:#15803D; word-break:break-word;"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Logo History Section -->
             <div class="upload-section">
                 <h2 class="section-title">Uploaded Logo History</h2>
@@ -1500,6 +1526,74 @@
             }
         }
 
+        // --- FEATURE: STUDIO VISITING CARD MANAGEMENT ---
+        async function loadAdminVisitingCard() {
+            try {
+                const res = await fetch('/api/visiting-card');
+                const data = await res.json();
+                const img = document.getElementById('adminVisitingCardPreviewImg');
+                if (data.success && data.cardUrl) {
+                    img.src = data.cardUrl;
+                } else {
+                    img.src = '/visiting_card.jpg';
+                }
+            } catch (e) {}
+        }
+
+        async function uploadVisitingCard() {
+            const input = document.getElementById('visitingCardFileInput');
+            const status = document.getElementById('visitingCardStatus');
+            if (!input.files || input.files.length === 0) {
+                status.style.color = '#DC2626';
+                status.textContent = '⚠️ Please select an image file to upload.';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('visiting_card', input.files[0]);
+
+            try {
+                status.style.color = '#475569';
+                status.textContent = '⏳ Uploading visiting card...';
+                const res = await fetch('/api/upload-visiting-card', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                if (data.success) {
+                    status.style.color = '#15803D';
+                    status.textContent = '✅ Visiting card updated successfully!';
+                    const img = document.getElementById('adminVisitingCardPreviewImg');
+                    if (img && data.cardUrl) img.src = data.cardUrl;
+                    input.value = '';
+                } else {
+                    status.style.color = '#DC2626';
+                    status.textContent = `⚠️ ${data.error || 'Upload failed'}`;
+                }
+            } catch (e) {
+                status.style.color = '#DC2626';
+                status.textContent = '⚠️ Server connection error.';
+            }
+        }
+
+        async function resetVisitingCard() {
+            if (!confirm('Revert visiting card to default image (/visiting_card.jpg)?')) return;
+            const status = document.getElementById('visitingCardStatus');
+            try {
+                const res = await fetch('/api/visiting-card', { method: 'DELETE' });
+                const data = await res.json();
+                if (data.success) {
+                    status.style.color = '#15803D';
+                    status.textContent = '✅ Visiting card reverted to default!';
+                    const img = document.getElementById('adminVisitingCardPreviewImg');
+                    if (img) img.src = '/visiting_card.jpg';
+                }
+            } catch (e) {
+                status.style.color = '#DC2626';
+                status.textContent = '⚠️ Error resetting visiting card.';
+            }
+        }
+
         // Switch Tabs
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1521,6 +1615,8 @@
             } else if (tabId === 'logosTab') {
                 loadLogoHistory();
                 loadCurrentLogoPreview();
+                loadAdminProfilePhoto();
+                loadAdminVisitingCard();
             }
         }
 

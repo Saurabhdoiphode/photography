@@ -192,6 +192,7 @@ const localStore = {
     reviews: [] as any[],
     logos: [] as any[],
     profile_photo: [] as any[],
+    visiting_card: [] as any[],
     admin_users: [
       { username: '9146929608', password: 'Self@123' },
       { username: 'admin', password: 'admin123' }
@@ -946,6 +947,93 @@ app.delete('/api/omkar-photo', async (req: Request, res: Response) => {
     db.run('DELETE FROM profile_photo', [], (err) => {
       if (err) return res.status(500).json({ success: false, error: 'Database error' });
       res.json({ success: true, message: 'Profile photo deleted' });
+    });
+  } catch (e) {
+    res.status(500).json({ error: 'Delete error' });
+  }
+});
+
+// --- STUDIO VISITING CARD API ENDPOINTS ---
+// 5b. Get Studio Visiting Card
+app.get('/api/visiting-card', async (req: Request, res: Response) => {
+  try {
+    const { data, error } = await supabase
+      .from('visiting_card')
+      .select('*')
+      .order('id', { ascending: false })
+      .limit(1)
+      .single();
+
+    if (!error && data) {
+      const cardPath = data.card_path || data.filepath;
+      return res.json({ success: true, cardUrl: cardPath });
+    }
+
+    db.get('SELECT card_path, filepath FROM visiting_card ORDER BY id DESC LIMIT 1', [], (err: any, row: any) => {
+      if (row) {
+        const cardPath = row.card_path || row.filepath;
+        return res.json({ success: true, cardUrl: cardPath });
+      }
+      if (localStore.data.visiting_card && localStore.data.visiting_card.length > 0) {
+        const cardPath = localStore.data.visiting_card[0].card_path || localStore.data.visiting_card[0].filepath;
+        return res.json({ success: true, cardUrl: cardPath });
+      }
+      return res.json({ success: true, cardUrl: '/visiting_card.jpg' });
+    });
+  } catch (e) {
+    res.json({ success: true, cardUrl: '/visiting_card.jpg' });
+  }
+});
+
+// 5c. Upload Studio Visiting Card
+app.post(['/api/upload-visiting-card', '/api/visiting-card'], (req: Request, res: Response) => {
+  uploadMemoryProfile.single('visiting_card')(req, res, async (err: any) => {
+    if (err || !req.file) {
+      return res.status(400).json({ success: false, error: 'Please select a valid image file.' });
+    }
+
+    try {
+      const mime = req.file.mimetype || 'image/jpeg';
+      const base64Data = req.file.buffer.toString('base64');
+      const cardPath = `data:${mime};base64,${base64Data}`;
+
+      try {
+        const ext = path.extname(req.file.originalname || '.jpg') || '.jpg';
+        const filename = `visiting_card_${Date.now()}${ext}`;
+        const p1 = path.join(profileDir, filename);
+        const p2 = path.join(publicProfileDir, filename);
+        fs.writeFileSync(p1, req.file.buffer);
+        fs.writeFileSync(p2, req.file.buffer);
+      } catch(e) {}
+
+      try {
+        await supabase.from('visiting_card').insert([{ card_path: cardPath }]);
+      } catch (e) {}
+
+      db.run('CREATE TABLE IF NOT EXISTS visiting_card (id INTEGER PRIMARY KEY AUTOINCREMENT, card_path TEXT, filepath TEXT)', () => {
+        db.run('DELETE FROM visiting_card', () => {
+          db.run('INSERT INTO visiting_card (card_path, filepath) VALUES (?, ?)', [cardPath, cardPath], () => {
+            localStore.data.visiting_card = [{ id: Date.now(), card_path: cardPath, filepath: cardPath }];
+            localStore.save();
+            res.json({ success: true, message: 'Visiting card updated successfully!', cardUrl: cardPath });
+          });
+        });
+      });
+    } catch (e) {
+      console.error('Save visiting card DB error:', e);
+      res.status(500).json({ success: false, error: 'Failed to save visiting card' });
+    }
+  });
+});
+
+// 5d. Delete Studio Visiting Card (Revert to default)
+app.delete('/api/visiting-card', async (req: Request, res: Response) => {
+  try {
+    try { await supabase.from('visiting_card').delete().neq('id', 0); } catch(e) {}
+    localStore.data.visiting_card = [];
+    localStore.save();
+    db.run('DELETE FROM visiting_card', [], (err: any) => {
+      res.json({ success: true, message: 'Visiting card reset to default!', cardUrl: '/visiting_card.jpg' });
     });
   } catch (e) {
     res.status(500).json({ error: 'Delete error' });
