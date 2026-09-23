@@ -3397,11 +3397,11 @@
                         <div style="display:flex; gap:8px; align-items:center;">
                             ${r.is_approved ? `
                                 <span class="status-badge confirmed">${currentLang === 'mr' ? 'मंजूर ✓' : 'Approved ✓'}</span>
-                                <button class="btn-block" onclick="approveReview(${r.id}, false)">${currentLang === 'mr' ? 'नाकारा / लपवा 🚫' : 'Reject / Hide 🚫'}</button>
+                                <button class="btn-block" onclick="approveReview('${r.id}', false)">${currentLang === 'mr' ? 'नाकारा / लपवा 🚫' : 'Reject / Hide 🚫'}</button>
                             ` : `
-                                <button class="btn-confirm" onclick="approveReview(${r.id}, true)">${currentLang === 'mr' ? 'मंजूर करा व दाखवा ✅' : 'Approve & Show on Website ✅'}</button>
+                                <button class="btn-confirm" onclick="approveReview('${r.id}', true)">${currentLang === 'mr' ? 'मंजूर करा व दाखवा ✅' : 'Approve & Show on Website ✅'}</button>
                             `}
-                            <button class="btn-delete" onclick="deleteReview(${r.id})">${currentLang === 'mr' ? '🗑️ डिलीट' : '🗑️ Delete'}</button>
+                            <button class="btn-delete" onclick="deleteReview('${r.id}')">${currentLang === 'mr' ? '🗑️ डिलीट' : '🗑️ Delete'}</button>
                         </div>
                     </div>
                 `).join('');

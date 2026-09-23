@@ -388,7 +388,7 @@ if (!db) {
             event_type: type,
             rating: Number(rating) || 5,
             review_text: text,
-            is_approved: 1,
+            is_approved: 0,
             created_at: new Date().toISOString()
           });
           localStore.save();
@@ -1941,15 +1941,13 @@ app.get('/api/reviews', async (req: Request, res: Response) => {
       }
     } catch (e) {}
 
-    db.all('SELECT * FROM reviews WHERE is_approved = 1 ORDER BY created_at DESC', [], (err: any, rows: any[]) => {
-      const dbRows = (rows || []).filter(r => Number(r.is_approved) === 1);
-      const combined = [...approvedReviews];
-      const existingIds = new Set(combined.map(r => String(r.id)));
-      dbRows.forEach(r => {
-        if (!existingIds.has(String(r.id))) combined.push(r);
-      });
-      res.json({ success: true, reviews: deduplicateReviews(combined) });
+    const localRows = (localStore.data.reviews || []).filter(r => Number(r.is_approved) === 1);
+    const combined = [...approvedReviews];
+    const existingIds = new Set(combined.map(r => String(r.id)));
+    localRows.forEach(r => {
+      if (!existingIds.has(String(r.id))) combined.push(r);
     });
+    res.json({ success: true, reviews: deduplicateReviews(combined) });
   } catch (e) {
     res.status(500).json({ error: 'Database error' });
   }
@@ -1966,21 +1964,19 @@ app.get('/api/admin/reviews', async (req: Request, res: Response) => {
       }
     } catch (e) {}
 
-    db.all('SELECT * FROM reviews ORDER BY created_at DESC', [], (err: any, rows: any[]) => {
-      const dbRows = rows || [];
-      const combined = [...allRevs];
-      const existingIds = new Set(combined.map(r => String(r.id)));
-      dbRows.forEach(r => {
-        if (!existingIds.has(String(r.id))) combined.push(r);
-      });
-      res.json({ success: true, reviews: deduplicateReviews(combined) });
+    const localRows = localStore.data.reviews || [];
+    const combined = [...allRevs];
+    const existingIds = new Set(combined.map(r => String(r.id)));
+    localRows.forEach(r => {
+      if (!existingIds.has(String(r.id))) combined.push(r);
     });
+    res.json({ success: true, reviews: deduplicateReviews(combined) });
   } catch (e) {
     res.status(500).json({ error: 'Database error' });
   }
 });
 
-// 22. Submit Client Review
+// 22. Submit Client Review (Default: is_approved = 0, awaiting admin moderation)
 app.post('/api/reviews', async (req: Request, res: Response) => {
   const { clientName, eventType, rating, reviewText } = req.body;
   if (!clientName || !eventType || !rating || !reviewText) {
@@ -1991,23 +1987,45 @@ app.post('/api/reviews', async (req: Request, res: Response) => {
   const eventTrimmed = String(eventType).trim();
   const numRating = parseInt(rating, 10) || 5;
   const textTrimmed = String(reviewText).trim();
+  const newId = Date.now();
+  const createdAt = new Date().toISOString();
 
   try {
     try {
       await supabase.from('reviews').insert([{
+        id: newId,
         client_name: nameTrimmed,
         event_type: eventTrimmed,
         rating: numRating,
         review_text: textTrimmed,
-        is_approved: 1
+        is_approved: 0
       }]);
     } catch (e) {}
 
+    if (localStore.data && Array.isArray(localStore.data.reviews)) {
+      const exists = localStore.data.reviews.some(r =>
+        String(r.client_name || '').trim().toLowerCase() === nameTrimmed.toLowerCase() &&
+        String(r.review_text || '').trim().toLowerCase() === textTrimmed.toLowerCase()
+      );
+      if (!exists) {
+        localStore.data.reviews.push({
+          id: newId,
+          client_name: nameTrimmed,
+          event_type: eventTrimmed,
+          rating: numRating,
+          review_text: textTrimmed,
+          is_approved: 0,
+          created_at: createdAt
+        });
+        localStore.save();
+      }
+    }
+
     db.run(
-      'INSERT INTO reviews (client_name, event_type, rating, review_text, is_approved) VALUES (?, ?, ?, ?, 1)',
+      'INSERT INTO reviews (client_name, event_type, rating, review_text, is_approved) VALUES (?, ?, ?, ?, 0)',
       [nameTrimmed, eventTrimmed, numRating, textTrimmed],
       () => {
-        res.json({ success: true, message: 'Thank you! Your review has been submitted successfully.' });
+        res.json({ success: true, message: 'Thank you! Your review has been submitted for approval.' });
       }
     );
   } catch (e) {
@@ -2022,6 +2040,16 @@ const approveReviewHandler = async (req: Request, res: Response) => {
 
   try {
     try { await supabase.from('reviews').update({ is_approved: isApproved }).eq('id', id); } catch(e) {}
+
+    if (localStore.data && Array.isArray(localStore.data.reviews)) {
+      localStore.data.reviews.forEach(r => {
+        if (String(r.id) === String(id)) {
+          r.is_approved = isApproved;
+        }
+      });
+      localStore.save();
+    }
+
     db.run('UPDATE reviews SET is_approved = ? WHERE id = ?', [isApproved, id], () => {
       res.json({ success: true, message: 'Review status updated!' });
     });
@@ -2038,6 +2066,12 @@ const deleteReviewHandler = async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
     try { await supabase.from('reviews').delete().eq('id', id); } catch(e) {}
+
+    if (localStore.data && Array.isArray(localStore.data.reviews)) {
+      localStore.data.reviews = localStore.data.reviews.filter(r => String(r.id) !== String(id));
+      localStore.save();
+    }
+
     db.run('DELETE FROM reviews WHERE id = ?', [id], () => {
       res.json({ success: true, message: 'Review deleted successfully!' });
     });

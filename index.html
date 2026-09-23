@@ -3298,6 +3298,9 @@
             if (typeof renderCatLightboxState === 'function' && document.getElementById('categoryLightboxModal')?.style.display !== 'none') {
                 renderCatLightboxState();
             }
+            if (typeof loadReviews === 'function') {
+                loadReviews();
+            }
         }
 
         // Helper function for Marathi Event Type translation
@@ -3983,7 +3986,9 @@
                 });
 
                 if (reviews.length === 0) {
-                    container.innerHTML = currentLang === 'mr' ? '<div style="color:#666;">अद्याप कोणतेही अभिप्राय नाहीत. पहिला अभिप्राय तुम्ही द्या!</div>' : '<div style="color:#666;">No reviews submitted yet. Be the first to leave a review!</div>';
+                    container.innerHTML = currentLang === 'mr'
+                        ? '<div style="color:#666; text-align:center; grid-column:1/-1; padding:2rem; background:#FDFBF7; border-radius:12px; border:1px dashed var(--soft-rose); font-size:0.95rem;">अद्याप कोणतेही अभिप्राय आलेले नाहीत. पहिला अभिप्राय तुम्ही द्या! ⭐</div>'
+                        : '<div style="color:#666; text-align:center; grid-column:1/-1; padding:2rem; background:#FDFBF7; border-radius:12px; border:1px dashed var(--soft-rose); font-size:0.95rem;">No reviews submitted yet. Be the first to leave a review! ⭐</div>';
                     return;
                 }
 
@@ -3995,7 +4000,7 @@
                         </div>
                         <div style="border-top:1px solid #F3EAE1; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-weight:700; color:#1A1A1A; font-size:0.9rem;">${r.client_name}</span>
-                            <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:600;">${r.event_type}</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:600;">${currentLang === 'mr' ? getLocalizedEventType(r.event_type) : r.event_type}</span>
                         </div>
                     </div>
                 `).join('');

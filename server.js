@@ -260,32 +260,13 @@ function initializeDatabase() {
             is_approved BOOLEAN DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
-    `, () => {
-        seedDefaultReviews();
-    });
+    `);
 
     // Create default admin user
     db.run(`
         INSERT OR IGNORE INTO admin_users (username, password) 
         VALUES ('9146929608', 'Self@123')
     `);
-}
-
-// Function to seed default reviews
-function seedDefaultReviews() {
-    db.get('SELECT COUNT(*) as count FROM reviews', [], (err, row) => {
-        if (!err && row && row.count === 0) {
-            const defaultReviews = [
-                { name: 'Amit & Priya', type: 'Marriage Package', rating: 5, text: 'Omkar captured our wedding so beautifully! The lighting and emotional shots were beyond expectation.' },
-                { name: 'Siddharth Patil', type: 'Pre-Wedding Shoot', rating: 5, text: 'Amazing pre-wedding shoot experience at Mahabaleshwar. Super professional and creative team!' },
-                { name: 'Neha Deshmukh', type: 'Baby Shoot', rating: 5, text: 'Loved the newborn baby photoshoot themes! So patient and gentle with our baby. Highly recommended!' }
-            ];
-            defaultReviews.forEach(r => {
-                db.run('INSERT INTO reviews (client_name, event_type, rating, review_text, is_approved) VALUES (?, ?, ?, ?, 1)',
-                    [r.name, r.type, r.rating, r.text]);
-            });
-        }
-    });
 }
 
 // 🧹 Automatic 6-Month Booking Cleanup Function (Prevents Database Bloat)
@@ -1143,7 +1124,7 @@ app.get('/api/admin/reviews', async (req, res) => {
     }
 });
 
-app.post('/api/admin/reviews/:id/approve', async (req, res) => {
+const approveReviewHandler = async (req, res) => {
     const { id } = req.params;
     const { isApproved } = req.body;
     try {
@@ -1153,7 +1134,24 @@ app.post('/api/admin/reviews/:id/approve', async (req, res) => {
     } catch (e) {
         res.status(500).json({ error: 'Failed to update review' });
     }
-});
+};
+
+app.post('/api/reviews/:id/approve', approveReviewHandler);
+app.post('/api/admin/reviews/:id/approve', approveReviewHandler);
+
+const deleteReviewHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+        await supabase.from('reviews').delete().eq('id', id);
+        db.run('DELETE FROM reviews WHERE id = ?', [id]);
+        res.json({ success: true, message: `Review deleted successfully!` });
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to delete review' });
+    }
+};
+
+app.delete('/api/reviews/:id', deleteReviewHandler);
+app.delete('/api/admin/reviews/:id', deleteReviewHandler);
 
 // 16. Portfolio Category Items Management APIs
 app.get(['/api/portfolio-items', '/api/gallery-items'], async (req, res) => {

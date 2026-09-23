@@ -88,35 +88,7 @@
       "created_at": "2026-08-20T19:12:11.840Z"
     }
   ],
-  "reviews": [
-    {
-      "id": 1,
-      "client_name": "Amit & Priya",
-      "event_type": "Marriage Package",
-      "rating": 5,
-      "review_text": "Omkar captured our wedding so beautifully! The lighting and emotional shots were beyond expectation.",
-      "is_approved": 0,
-      "created_at": "2026-08-11T08:56:19.166Z"
-    },
-    {
-      "id": 2,
-      "client_name": "Siddharth Patil",
-      "event_type": "Pre-Wedding Shoot",
-      "rating": 5,
-      "review_text": "Amazing pre-wedding shoot experience at Mahabaleshwar. Super professional and creative team!",
-      "is_approved": 0,
-      "created_at": "2026-08-11T08:56:19.167Z"
-    },
-    {
-      "id": 3,
-      "client_name": "Neha Deshmukh",
-      "event_type": "Baby Shoot",
-      "rating": 5,
-      "review_text": "Loved the newborn baby photoshoot themes! So patient and gentle with our baby. Highly recommended!",
-      "is_approved": 1,
-      "created_at": "2026-08-11T08:56:19.167Z"
-    }
-  ],
+  "reviews": [],
   "logos": [],
   "profile_photo": [],
   "visiting_card": [],
