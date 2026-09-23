@@ -2975,7 +2975,6 @@
                 filter_birthday: "Birthday Shoot 🎂",
                 filter_events: "Events & Lifestyle 🎉",
                 filter_photoshoot: "Model Photoshoots 📸",
-                filter_maternity: "Maternity Shoot 🤰",
 
                 ph_no_photos: "No Photos Added Yet",
                 ph_admin_add: "Admin can add photos",
@@ -2993,8 +2992,6 @@
                 cat_events_desc: "Engagements, ring ceremony & celebrations.",
                 cat_photoshoot_title: "Model Photoshoots",
                 cat_photoshoot_desc: "Fashion model folios & studio portraits.",
-                cat_maternity_title: "Maternity Shoot",
-                cat_maternity_desc: "Mom-to-be portraits & pregnancy celebration stories.",
 
                 ba_title: "Signature Color Grading & Editing",
                 ba_desc: "Drag the slider left or right to see how we transform raw moments into magazine-quality art",
@@ -3118,7 +3115,6 @@
                 filter_birthday: "वाढदिवस 🎂",
                 filter_events: "कार्यक्रम व सोहळे 🎉",
                 filter_photoshoot: "मॉडेल फोटोशूट 📸",
-                filter_maternity: "मॅटर्निटी फोटोशूट 🤰",
 
                 ph_no_photos: "अद्याप फोटो जोडले नाहीत",
                 ph_admin_add: "ॲडमीन फोटो जोडू शकतात",
@@ -3136,8 +3132,6 @@
                 cat_events_desc: "साखरपुडा, मुंज आणि कौटुंबिक सोहळे.",
                 cat_photoshoot_title: "मॉडेल फोटोशूट",
                 cat_photoshoot_desc: "फॅशन मॉडेल पोर्टफोलिओ आणि स्टुडिओ फोटो.",
-                cat_maternity_title: "मॅटर्निटी फोटोशूट",
-                cat_maternity_desc: "आई होणाऱ्या मातांचे फोटो आणि आठवणी.",
 
                 ba_title: "फोटो एडिटिंग आणि कलर कल्पकता",
                 ba_desc: "स्लायडर डावीकडे किंवा उजवीकडे सरकवून मॅगझिन-क्वालिटी एडिटिंगमधील फरक बघा",
@@ -4018,7 +4012,7 @@
                 });
 
                 // Update card badges & covers
-                const categories = ['wedding', 'prewedding', 'baby', 'birthday', 'events', 'photoshoot', 'maternity'];
+                const categories = ['wedding', 'prewedding', 'baby', 'birthday', 'events', 'photoshoot'];
                 categories.forEach(cat => {
                     const card = document.querySelector(`.portfolio-card[data-category="${cat}"]`);
                     if (card) {
@@ -4029,7 +4023,7 @@
 
                         const iconMap = {
                             wedding: '💍', prewedding: '💑', baby: '👶',
-                            birthday: '🎂', events: '🎉', photoshoot: '📸', maternity: '🤰'
+                            birthday: '🎂', events: '🎉', photoshoot: '📸'
                         };
                         const icon = iconMap[cat] || '📸';
 
@@ -4105,8 +4099,7 @@
                 baby: '👶 Baby & Newborn',
                 birthday: '🎂 Birthday Shoots',
                 events: '🎉 Events & Lifestyle',
-                photoshoot: '📸 Model Photoshoots',
-                maternity: '🤰 Maternity Shoots'
+                photoshoot: '📸 Model Photoshoots'
             };
             const catTitlesMr = {
                 wedding: '💍 लग्न सोहळे कलेक्शन',
@@ -4114,8 +4107,7 @@
                 baby: '👶 बाळ व लहान मुले',
                 birthday: '🎂 वाढदिवस फोटोशूट',
                 events: '🎉 कार्यक्रम व सोहळे',
-                photoshoot: '📸 मॉडेल फोटोशूट',
-                maternity: '🤰 मॅटर्निटी फोटोशूट'
+                photoshoot: '📸 मॉडेल फोटोशूट'
             };
 
             const catTitles = currentLang === 'mr' ? catTitlesMr : catTitlesEn;
