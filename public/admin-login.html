@@ -289,6 +289,8 @@
         function applyLanguage(lang) {
             const dict = i18nDict[lang] || i18nDict['en'];
 
+            document.title = lang === 'mr' ? 'ॲडमीन लॉगिन - ओमकार डोईफोडे फोटोग्राफी' : 'Admin Login - Omkar Doiphode Photography';
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (dict[key]) {
@@ -371,6 +373,7 @@
                     else if (msg.includes('Username and password required')) msg = 'युझरनेम आणि पासवर्ड दोन्ही आवश्यक आहेत.';
                     else if (msg.includes('Login failed')) msg = 'लॉगिन अयशस्वी. कृपया युझरनेम व पासवर्ड तपासा.';
                     else if (msg.includes('Failed to fetch')) msg = 'सर्व्हरशी संपर्क होऊ शकला नाही. इंटरनेट कनेक्शन तपासा.';
+                    else msg = 'लॉगिन अयशस्वी. कृपया पुन्हा प्रयत्न करा.';
                 }
                 errorMsg.textContent = msg;
                 errorMsg.style.display = 'block';

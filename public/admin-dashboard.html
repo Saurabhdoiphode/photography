@@ -966,7 +966,7 @@
     <!-- Header -->
     <header>
         <div class="header-title">
-            <span class="header-brand-name">📷 OMKAR DOIPHODE <span style="color:#F59E0B !important;">PHOTOGRAPHY</span></span>
+            <span class="header-brand-name" data-i18n="ad_brand_name">📷 OMKAR DOIPHODE <span style="color:#F59E0B !important;">PHOTOGRAPHY</span></span>
         </div>
         <div class="header-actions">
             <a href="/" target="_blank" class="view-site-btn" data-i18n="ad_view_site">🌐 View Website</a>
@@ -1056,12 +1056,12 @@
                                 <th data-i18n="ad_th_event">Event Type</th>
                                 <th data-i18n="ad_th_loc">Location</th>
                                 <th data-i18n="ad_th_status">Status</th>
-                                <th>Actions for Omkar</th>
+                                <th data-i18n="ad_th_actions">Actions for Omkar</th>
                             </tr>
                         </thead>
                         <tbody id="bookingsTableBody">
                             <tr>
-                                <td colspan="7" class="empty-state">Loading booking requests...</td>
+                                <td colspan="7" class="empty-state" data-i18n="ad_loading_reqs">Loading booking requests...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1103,13 +1103,13 @@
                     </div>
 
                     <div class="weekday-header" style="display:grid !important; grid-template-columns:repeat(7, 1fr) !important; text-align:center !important; font-weight:900 !important; font-size:13px !important; margin-bottom:12px !important; gap:6px !important; width:100% !important;">
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">SUN</div>
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">MON</div>
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">TUE</div>
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">WED</div>
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">THU</div>
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">FRI</div>
-                        <div style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">SAT</div>
+                        <div data-i18n="cal_sun" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">SUN</div>
+                        <div data-i18n="cal_mon" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">MON</div>
+                        <div data-i18n="cal_tue" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">TUE</div>
+                        <div data-i18n="cal_wed" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">WED</div>
+                        <div data-i18n="cal_thu" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">THU</div>
+                        <div data-i18n="cal_fri" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">FRI</div>
+                        <div data-i18n="cal_sat" style="color:#D4A574 !important; font-weight:900 !important; font-size:13px !important; text-align:center !important; letter-spacing:0.8px !important; text-shadow:0 1px 3px rgba(0,0,0,0.8) !important;">SAT</div>
                     </div>
 
                     <div id="adminCalendarGrid" style="display:grid !important; grid-template-columns:repeat(7, 1fr) !important; gap:6px !important; width:100% !important;"></div>
@@ -1206,7 +1206,7 @@
             <!-- Package Breakdown Cards Section -->
             <div class="control-panel" style="margin-bottom:1.5rem;">
                 <h2 class="section-title" data-i18n="ad_sec_pkg_bd">📦 Package Inquiries & Demand Breakdown</h2>
-                <p style="font-size:13px; color:#94A3B8; margin-bottom:1.2rem;">Detailed metrics on client requests and confirmed shoots for each package type.</p>
+                <p style="font-size:13px; color:#94A3B8; margin-bottom:1.2rem;" data-i18n="ad_desc_pkg_bd">Detailed metrics on client requests and confirmed shoots for each package type.</p>
 
                 <div id="analyticsPackageCards" style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.6rem !important; margin-bottom: 1.2rem !important; width: 100% !important; box-sizing: border-box !important;">
                     <!-- Loaded dynamically from JS -->
@@ -1216,7 +1216,7 @@
             <!-- Confirmed Shoots Summary Table -->
             <div class="control-panel">
                 <h2 class="section-title" data-i18n="ad_sec_conf_log">📅 Confirmed Shoots Log</h2>
-                <p style="font-size:13px; color:#94A3B8; margin-bottom:1rem;">List of confirmed client photography shoots and event dates.</p>
+                <p style="font-size:13px; color:#94A3B8; margin-bottom:1rem;" data-i18n="ad_desc_conf_log">List of confirmed client photography shoots and event dates.</p>
                 <div id="analyticsConfirmedTable" style="margin-top:1rem;"></div>
             </div>
         </div>
@@ -1301,7 +1301,7 @@
                         <p style="font-size:13px; color:#475569; font-weight:500; margin-top:4px;" data-i18n="ad_sub_cat_mgr">Upload, view, and delete photos for specific cards shown on your public website.</p>
                     </div>
                     <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:700; color:#0F172A;">
-                        Active Card: <span id="categoryPhotosCount" style="color:#D4A574;">0 photo(s)</span>
+                        <span data-i18n="ad_lbl_active_card">Active Card:</span> <span id="categoryPhotosCount" style="color:#D4A574;">0 photo(s)</span>
                     </div>
                 </div>
 
@@ -1317,9 +1317,9 @@
 
                 <!-- Upload Form for Active Category -->
                 <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; padding:1.2rem; border-radius:12px; margin-bottom:1.5rem;">
-                    <h3 style="font-size:14px; font-weight:800; color:#0F172A; text-transform:uppercase; margin-bottom:0.8rem;">📤 Upload New Photos to Selected Category</h3>
+                    <h3 style="font-size:14px; font-weight:800; color:#0F172A; text-transform:uppercase; margin-bottom:0.8rem;" data-i18n="ad_hdr_up_cat">📤 Upload New Photos to Selected Category</h3>
                     <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
-                        <input type="text" id="catPhotoTitle" placeholder="Optional Photo Title (e.g. Royal Marathi Wedding)" style="flex:1; min-width:240px; padding:10px 14px; border:1.5px solid #CBD5E1; border-radius:8px; font-size:13px; color:#0F172A; font-weight:600;">
+                        <input type="text" id="catPhotoTitle" data-i18n-ph="ad_ph_cat_title" placeholder="Optional Photo Title (e.g. Royal Marathi Wedding)" style="flex:1; min-width:240px; padding:10px 14px; border:1.5px solid #CBD5E1; border-radius:8px; font-size:13px; color:#0F172A; font-weight:600;">
                         <input type="file" id="catPhotoFiles" multiple accept="image/*" style="display:none;" onchange="uploadCategoryCardPhotos(this)">
                         <button type="button" onclick="document.getElementById('catPhotoFiles').click()" class="btn-confirm" style="background:#0F172A; color:#D4A574; border:1.5px solid #D4A574; padding:10px 22px; font-size:13px; font-weight:800; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;" data-i18n="ad_btn_cat_upload">
                             <span>➕ Select & Upload Photos</span>
@@ -1329,7 +1329,7 @@
                 </div>
 
                 <!-- Category Photos Grid -->
-                <h3 style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:1rem;">🖼️ Current Photos in Selected Category Card</h3>
+                <h3 style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:1rem;" data-i18n="ad_hdr_cur_photos">🖼️ Current Photos in Selected Category Card</h3>
                 <div id="categoryPhotosGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:1.2rem;"></div>
             </div>
         </div>
@@ -1344,10 +1344,10 @@
 
                 <div class="upload-area" id="uploadArea" style="background:#F8FAFC; border:2px dashed #D4A574; border-radius:16px; padding:2rem; text-align:center;" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
                     <div style="font-size:48px; margin-bottom:1rem;">📁</div>
-                    <div style="font-size:16px; font-weight:700; color:#0F172A; margin-bottom:0.5rem;">Drag and drop your logo here</div>
-                    <div style="font-size:13px; color:#475569; font-weight:500;">or click to select a file (PNG, JPG, GIF)</div>
+                    <div style="font-size:16px; font-weight:700; color:#0F172A; margin-bottom:0.5rem;" data-i18n="ad_logo_drop">Drag and drop your logo here</div>
+                    <div style="font-size:13px; color:#475569; font-weight:500;" data-i18n="ad_logo_drop_sub">or click to select a file (PNG, JPG, GIF)</div>
                     <input type="file" id="fileInput" style="display:none;" accept="image/*" onchange="handleFileSelect(event)">
-                    <button class="btn-confirm" style="background:#0F172A; color:#D4A574; font-weight:800; margin-top:1rem; padding:10px 24px; border-radius:8px; cursor:pointer;" onclick="document.getElementById('fileInput').click()" type="button">Select File</button>
+                    <button class="btn-confirm" style="background:#0F172A; color:#D4A574; font-weight:800; margin-top:1rem; padding:10px 24px; border-radius:8px; cursor:pointer;" onclick="document.getElementById('fileInput').click()" type="button" data-i18n="ad_logo_btn_sel">Select File</button>
                 </div>
             </div>
 
@@ -1357,33 +1357,33 @@
                     <div style="background:#FFFFFF; border:2px dashed #D4A574; border-radius:12px; padding:12px; display:flex; align-items:center; justify-content:center; width:180px; height:90px;">
                         <img id="currentLogoPreviewImg" src="" alt="Current Active Logo" style="max-height:70px; max-width:150px; object-fit:contain;">
                     </div>
-                    <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;">Current Active Logo</div>
+                    <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;" data-i18n="ad_lbl_cur_logo">Current Active Logo</div>
                 </div>
                 <div style="flex:1; min-width:180px;">
-                    <span id="currentLogoBadge" style="display:inline-block; font-size:11px; font-weight:800; background:#DCFCE7; color:#15803D; padding:4px 10px; border-radius:12px; margin-bottom:6px;">✓ ACTIVE ON WEBSITE</span>
-                    <div style="font-size:14px; font-weight:700; color:#0F172A;">⭐ This is the logo currently shown on your website</div>
-                    <div style="font-size:12px; color:#64748B; font-weight:500; margin-top:4px;">Uploading a new logo will automatically replace it. You can also manage all logos in the history grid below.</div>
+                    <span id="currentLogoBadge" style="display:inline-block; font-size:11px; font-weight:800; background:#DCFCE7; color:#15803D; padding:4px 10px; border-radius:12px; margin-bottom:6px;" data-i18n="ad_badge_active_logo">✓ ACTIVE ON WEBSITE</span>
+                    <div style="font-size:14px; font-weight:700; color:#0F172A;" data-i18n="ad_txt_cur_logo">⭐ This is the logo currently shown on your website</div>
+                    <div style="font-size:12px; color:#64748B; font-weight:500; margin-top:4px;" data-i18n="ad_sub_cur_logo">Uploading a new logo will automatically replace it. You can also manage all logos in the history grid below.</div>
                 </div>
             </div>
 
             <!-- Omkar Profile Photo Management Card -->
             <div class="upload-section" style="margin-top:2rem;">
                 <h2 class="section-title" data-i18n="ad_sec_prof_photo">👤 Omkar Profile Photo (About Us Section)</h2>
-                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;">Upload, change, or delete Omkar's circular profile photo displayed in the About Us section.</p>
+                <p style="font-size:13px; color:#475569; font-weight:500; margin-bottom:1.5rem;" data-i18n="ad_desc_prof_photo">Upload, change, or delete Omkar's circular profile photo displayed in the About Us section.</p>
 
                 <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; background:#F8FAFC; padding:1.5rem; border-radius:16px; border:1px solid #E2E8F0; width:100%; box-sizing:border-box; overflow:hidden;">
                     <div style="text-align:center; flex-shrink:0; margin:0 auto;">
                         <img id="adminProfilePreviewImg" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'><rect width='400' height='400' fill='%2318181b'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' font-size='80' fill='%23d4a574'>📷</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23e4e4e7'>Omkar Doiphode</text></svg>" alt="Profile Preview" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid var(--accent-gold); box-shadow:0 4px 15px rgba(0,0,0,0.1);">
-                        <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;">Current Photo</div>
+                        <div style="font-size:11px; font-weight:700; color:#475569; margin-top:6px;" data-i18n="ad_lbl_cur_prof">Current Photo</div>
                     </div>
 
                     <div style="display:flex; flex-direction:column; gap:12px; flex:1; min-width:240px; width:100%; box-sizing:border-box;">
                         <input type="file" id="omkarPhotoFileInput" accept="image/*" style="font-size:12.5px; color:#0F172A; font-weight:600; width:100%; max-width:100%; box-sizing:border-box;">
                         <div style="display:flex; gap:8px; flex-wrap:wrap; width:100%; box-sizing:border-box;">
-                            <button onclick="uploadOmkarProfilePhoto()" class="btn-confirm" style="flex:1 1 130px; background:#16A34A; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(22,163,74,0.2);">
+                            <button onclick="uploadOmkarProfilePhoto()" class="btn-confirm" style="flex:1 1 130px; background:#16A34A; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(22,163,74,0.2);" data-i18n="ad_btn_prof_up">
                                 📷 Upload Photo
                             </button>
-                            <button onclick="deleteOmkarProfilePhoto()" class="btn-confirm" style="flex:1 1 120px; background:#DC2626; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(220,38,38,0.2);">
+                            <button onclick="deleteOmkarProfilePhoto()" class="btn-confirm" style="flex:1 1 120px; background:#DC2626; color:white; padding:9px 12px; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-size:12px; text-align:center; box-shadow:0 2px 6px rgba(220,38,38,0.2);" data-i18n="ad_btn_prof_del">
                                 🗑️ Delete Photo
                             </button>
                         </div>
@@ -1447,7 +1447,26 @@
                 ad_flt_pending: "Pending ⏳",
                 ad_flt_confirmed: "Confirmed ✅",
                 ad_flt_blocked: "Blocked 🔴",
+                ad_brand_name: '📷 OMKAR DOIPHODE <span style="color:#F59E0B !important;">PHOTOGRAPHY</span>',
+                ad_view_site: "🌐 View Website",
+                ad_logout: "Logout 🚪",
+                ad_tab_bookings: "Booking Requests & Calendar",
+                ad_tab_analytics: "Business Analytics",
+                ad_tab_galleries: "Private Galleries",
+                ad_tab_reviews: "Review Moderation",
+                ad_tab_portfolio: "Category Cards Manager",
+                ad_tab_logos: "Logo & Branding",
+                ad_m_total: "Total Booking Requests",
+                ad_m_pending: "Pending Requests (Yellow ⏳)",
+                ad_m_confirmed: "Confirmed Bookings (Green ✅)",
+                ad_m_blocked: "Blocked Dates (Red 🔴)",
+                ad_sec_bookings: "Client Booking Requests",
+                ad_flt_all: "All",
+                ad_flt_pending: "Pending ⏳",
+                ad_flt_confirmed: "Confirmed ✅",
+                ad_flt_blocked: "Blocked 🔴",
                 ad_btn_refresh: "Refresh Requests",
+                ad_loading_reqs: "Loading booking requests...",
                 ad_th_date: "Event Date",
                 ad_th_name: "Client Name",
                 ad_th_phone: "Contact Number",
@@ -1461,6 +1480,13 @@
                 ad_leg_pend: "⏳ Pending Request",
                 ad_leg_block: "🔴 Blocked / Booked",
                 ad_cal_help: "Click on any date in the calendar below to toggle its availability, block offline dates, or unblock dates instantly.",
+                cal_sun: "SUN",
+                cal_mon: "MON",
+                cal_tue: "TUE",
+                cal_wed: "WED",
+                cal_thu: "THU",
+                cal_fri: "FRI",
+                cal_sat: "SAT",
                 ad_lbl_quick_date: "Quick Select Date:",
                 ad_btn_block_date: "🔴 Mark as Blocked / Unavailable",
                 ad_btn_unblock_date: "🟢 Mark as Available",
@@ -1477,7 +1503,9 @@
                 ad_ch_trend: "📈 Monthly Inquiries Trend",
                 ad_ch_polar: "🎯 Event Density & Preferences",
                 ad_sec_pkg_bd: "📦 Package Inquiries & Demand Breakdown",
+                ad_desc_pkg_bd: "Detailed metrics on client requests and confirmed shoots for each package type.",
                 ad_sec_conf_log: "📅 Confirmed Shoots Log",
+                ad_desc_conf_log: "List of confirmed client photography shoots and event dates.",
                 ad_sec_create_gal: "🔐 Create New Private Client Gallery",
                 ad_sub_create_gal: "Generate passcode-protected client galleries for photo delivery.",
                 ad_lbl_gcode: "Gallery Code",
@@ -1498,15 +1526,30 @@
                 ad_sub_rev_mod: "Review and approve client feedback before it appears on the public website.",
                 ad_sec_cat_mgr: "📸 Manage Portfolio Category Cards Photos",
                 ad_sub_cat_mgr: "Upload, view, and delete photos for specific cards shown on your public website.",
+                ad_lbl_active_card: "Active Card:",
                 ad_cat_w: "Weddings 💍",
                 ad_cat_pw: "Pre-Wedding 💑",
                 ad_cat_b: "Baby Shoot 👶",
                 ad_cat_bd: "Birthday Shoot 🎂",
                 ad_cat_e: "Events & Lifestyle 🎉",
                 ad_cat_m: "Model Photoshoots 📸",
+                ad_hdr_up_cat: "📤 Upload New Photos to Selected Category",
+                ad_ph_cat_title: "Optional Photo Title (e.g. Royal Marathi Wedding)",
                 ad_btn_cat_upload: "➕ Select & Upload Photos",
+                ad_hdr_cur_photos: "🖼️ Current Photos in Selected Category Card",
                 ad_sec_logo_up: "Upload New Logo",
+                ad_logo_drop: "Drag and drop your logo here",
+                ad_logo_drop_sub: "or click to select a file (PNG, JPG, GIF)",
+                ad_logo_btn_sel: "Select File",
+                ad_lbl_cur_logo: "Current Active Logo",
+                ad_badge_active_logo: "✓ ACTIVE ON WEBSITE",
+                ad_txt_cur_logo: "⭐ This is the logo currently shown on your website",
+                ad_sub_cur_logo: "Uploading a new logo will automatically replace it. You can also manage all logos in the history grid below.",
                 ad_sec_prof_photo: "👤 Omkar Profile Photo (About Us Section)",
+                ad_desc_prof_photo: "Upload, change, or delete Omkar's circular profile photo displayed in the About Us section.",
+                ad_lbl_cur_prof: "Current Photo",
+                ad_btn_prof_up: "📷 Upload Photo",
+                ad_btn_prof_del: "🗑️ Delete Photo",
                 ad_sec_vis_card: "🎴 Manage Studio Visiting Card",
                 ad_sub_vis_card: "Upload a new custom studio visiting card to replace the default card shown to clients on the website.",
                 ad_lbl_cur_vis: "Current Visiting Card",
@@ -1522,6 +1565,7 @@
                 ad_st_blocked: "Cancelled / Blocked 🔴"
             },
             mr: {
+                ad_brand_name: '📷 ओमकार डोईफोडे <span style="color:#F59E0B !important;">फोटोग्राफी</span>',
                 ad_view_site: "🌐 वेबसाईट बघा",
                 ad_logout: "लॉगआउट 🚪",
                 ad_tab_bookings: "बुकिंग अर्ज आणि कॅलेंडर",
@@ -1540,6 +1584,7 @@
                 ad_flt_confirmed: "निश्चित ✅",
                 ad_flt_blocked: "बुक / ब्लॉक 🔴",
                 ad_btn_refresh: "नवीन अर्ज लोड करा",
+                ad_loading_reqs: "बुकिंग अर्ज लोड होत आहेत...",
                 ad_th_date: "तारीख",
                 ad_th_name: "ग्राहकाचे नाव",
                 ad_th_phone: "मोबाईल नंबर",
@@ -1553,6 +1598,13 @@
                 ad_leg_pend: "⏳ अर्जाची वाट",
                 ad_leg_block: "🔴 बुक / ब्लॉक",
                 ad_cal_help: "खालील कॅलेंडरमधील कोणत्याही तारखेवर क्लिक करून ती उपलब्ध करा किंवा ब्लॉक करा.",
+                cal_sun: "रवि",
+                cal_mon: "सोम",
+                cal_tue: "मंगळ",
+                cal_wed: "बुध",
+                cal_thu: "गुरु",
+                cal_fri: "शुक्र",
+                cal_sat: "शनि",
                 ad_lbl_quick_date: "तारीख निवडा:",
                 ad_btn_block_date: "🔴 ब्लॉक करा / अनव्हेलेबल करा",
                 ad_btn_unblock_date: "🟢 उपलब्ध करा",
@@ -1569,7 +1621,9 @@
                 ad_ch_trend: "📈 महिन्यानुसार चौकशी ट्रेंड",
                 ad_ch_polar: "🎯 प्रसंगांची घनता आणि पसंती",
                 ad_sec_pkg_bd: "📦 प्रकारानुसार मागणी विवरण",
+                ad_desc_pkg_bd: "प्रत्येक पॅकेज प्रकारानुसार ग्राहकांचे अर्ज आणि मागणीचे विवरण.",
                 ad_sec_conf_log: "📅 निश्चित झालेल्या फोटोग्राफी शूटची यादी",
+                ad_desc_conf_log: "निश्चित झालेल्या फोटोग्राफी शूट आणि कार्यक्रमांच्या तारखांची यादी.",
                 ad_sec_create_gal: "🔐 नवीन खाजगी ग्राहक गॅलरी तयार करा",
                 ad_sub_create_gal: "ग्राहकांना फोटो देण्यासाठी पासकोड गॅलरी तयार करा.",
                 ad_lbl_gcode: "गॅलरी कोड",
@@ -1590,16 +1644,30 @@
                 ad_sub_rev_mod: "वेबसाईटवर दिसण्यापूर्वी ग्राहकांचे अभिप्राय तपासा आणि मंजूर करा.",
                 ad_sec_cat_mgr: "📸 फोटो कलेक्शन कार्ड्स व्यवस्थापन",
                 ad_sub_cat_mgr: "वेबसाईटवरील विशिष्ट कॅटेगरीसाठी फोटो अपलोड करा, बघा आणि डिलीट करा.",
+                ad_lbl_active_card: "सक्रिय कार्ड:",
                 ad_cat_w: "लग्न सोहळे 💍",
                 ad_cat_pw: "प्री-वेडिंग 💑",
                 ad_cat_b: "बाळाचे फोटो 👶",
                 ad_cat_bd: "वाढदिवस 🎂",
                 ad_cat_e: "कार्यक्रम व सोहळे 🎉",
                 ad_cat_m: "मॉडेल फोटोशूट 📸",
-                ad_cat_mat: "मॅटर्निटी फोटोशूट 🤰",
+                ad_hdr_up_cat: "📤 निवडलेल्या कॅटेगरीसाठी नवीन फोटो अपलोड करा",
+                ad_ph_cat_title: "पर्यायी फोटोचे नाव (उदा. शाही लग्न सोहळा)",
                 ad_btn_cat_upload: "➕ फोटो निवडा आणि अपलोड करा",
+                ad_hdr_cur_photos: "🖼️ निवडलेल्या कार्डमधील सध्याचे फोटो",
                 ad_sec_logo_up: "नवीन लोगो अपलोड करा",
+                ad_logo_drop: "लोगो फाईल इथे ड्रॅग आणि ड्रॉप करा",
+                ad_logo_drop_sub: "किंवा फाईल निवडण्यासाठी क्लिक करा (PNG, JPG, GIF)",
+                ad_logo_btn_sel: "फाईल निवडा",
+                ad_lbl_cur_logo: "सध्याचा सक्रिय लोगो",
+                ad_badge_active_logo: "✓ वेबसाईटवर सुरू आहे",
+                ad_txt_cur_logo: "⭐ हा लोगो सध्या तुमच्या वेबसाईटवर दिसत आहे",
+                ad_sub_cur_logo: "नवीन लोगो अपलोड केल्यावर जुना लोगो आपोआप बदलला जाईल. खालील इतिहासामधूनही लोगो व्यवस्थापित करू शकता.",
                 ad_sec_prof_photo: "👤 ओमकार प्रोफाइल फोटो (आमच्याबद्दल विभाग)",
+                ad_desc_prof_photo: "आमच्याबद्दल विभागात दिसणारा ओमकार यांचा प्रोफाइल फोटो बदला किंवा डिलीट करा.",
+                ad_lbl_cur_prof: "सध्याचा फोटो",
+                ad_btn_prof_up: "📷 फोटो अपलोड करा",
+                ad_btn_prof_del: "🗑️ फोटो डिलीट करा",
                 ad_sec_vis_card: "🎴 स्टुडिओ व्हिजिटिंग कार्ड व्यवस्थापन",
                 ad_sub_vis_card: "वेबसाईटवर दाखवण्यासाठी नवीन स्टुडिओ व्हिजिटिंग कार्ड अपलोड करा.",
                 ad_lbl_cur_vis: "सध्याचे व्हिजिटिंग कार्ड",
@@ -1627,6 +1695,8 @@
         function applyLanguage(lang) {
             const dict = i18nDict[lang] || i18nDict['en'];
 
+            document.title = lang === 'mr' ? 'ॲडमीन डॅशबोर्ड - ओमकार डोईफोडे फोटोग्राफी' : 'Admin Dashboard - Omkar Doiphode Photography';
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (dict[key]) {
@@ -1645,8 +1715,30 @@
             const b = document.getElementById('langBtnText');
             if (b) b.textContent = btnText;
 
-            if (typeof renderBookingsTable === 'function' && typeof allBookings !== 'undefined' && allBookings.length > 0) {
+            if (typeof renderBookingsTable === 'function' && typeof allBookings !== 'undefined') {
                 renderBookingsTable();
+            }
+            if (typeof renderAdminCalendar === 'function') {
+                renderAdminCalendar();
+            }
+            if (typeof loadBlockedDatesList === 'function') {
+                loadBlockedDatesList();
+            }
+            if (typeof renderAnalyticsCharts === 'function' && document.getElementById('analyticsTab')?.classList.contains('active')) {
+                renderAnalyticsCharts();
+            }
+            if (typeof loadCategoryCardPhotos === 'function' && document.getElementById('portfolioTab')?.classList.contains('active')) {
+                loadCategoryCardPhotos();
+            }
+            if (typeof loadAdminReviews === 'function' && document.getElementById('reviewsTab')?.classList.contains('active')) {
+                loadAdminReviews();
+            }
+            if (typeof loadAdminGalleries === 'function' && document.getElementById('galleriesTab')?.classList.contains('active')) {
+                loadAdminGalleries();
+            }
+            if (typeof loadLogoHistory === 'function' && document.getElementById('logosTab')?.classList.contains('active')) {
+                loadLogoHistory();
+                loadCurrentLogoPreview();
             }
         }
 
@@ -1656,15 +1748,30 @@
                 const map = {
                     'Marriage Package': 'लग्न सोहळा पॅकेज',
                     'Wedding Photography': 'लग्न सोहळा फोटोग्राफी',
-                    'Pre Wedding Shoot': 'प्री-वेडिंग शूट',
+                    'Pre-Wedding Shoot': 'प्री-वेडिंग फोटोशूट',
+                    'Pre Wedding Shoot': 'प्री-वेडिंग फोटोशूट',
                     'Pre-Wedding Photography': 'प्री-वेडिंग फोटोग्राफी',
-                    'Baby Shoot': 'बाळाचे फोटो (बेबी शूट)',
+                    'Baby Shoot': 'बाळाचे फोटोशूट',
                     'Newborn Baby Photography': 'नवजात बाळाचे फोटोशूट',
+                    'Birthday Shoot': 'वाढदिवस फोटोशूट 🎂',
                     'Birthday Photography': 'वाढदिवस फोटोग्राफी',
+                    'Events & Lifestyle': 'कार्यक्रम व सोहळे 🎉',
                     'Event Photography': 'कार्यक्रम व सोहळे',
                     'Cinematic Wedding Films': 'सिनेमॅटिक लग्न चित्रपट',
-                    'Model Portfolio': 'मॉडेल पोर्टफोलिओ'
+                    'Model Portfolio': 'मॉडेल पोर्टफोलिओ',
+                    'Photoshoot': 'मॉडेल / स्टुडिओ फोटोशूट 📸',
+                    'wedding': 'लग्न सोहळे 💍',
+                    'prewedding': 'प्री-वेडिंग 💑',
+                    'baby': 'बाळाचे फोटो 👶',
+                    'birthday': 'वाढदिवस 🎂',
+                    'events': 'कार्यक्रम व सोहळे 🎉',
+                    'photoshoot': 'मॉडेल फोटोशूट 📸'
                 };
+                for (let k in map) {
+                    if (eventType.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(eventType.toLowerCase())) {
+                        return map[k];
+                    }
+                }
                 return map[eventType] || eventType;
             }
             return eventType;
@@ -1711,7 +1818,7 @@
 
         // Logout function
         function logout() {
-            if (confirm('Are you sure you want to logout?')) {
+            if (confirm(currentLang === 'mr' ? 'तुम्हाला नक्की लॉगआउट करायचे आहे का?' : 'Are you sure you want to logout?')) {
                 localStorage.removeItem('adminToken');
                 window.location.href = '/admin-login.html';
             }
@@ -1735,7 +1842,7 @@
             const input = document.getElementById('omkarPhotoFileInput');
             const status = document.getElementById('omkarPhotoStatus');
             if (!input.files || input.files.length === 0) {
-                status.innerHTML = '⚠️ Please select an image file first.';
+                status.innerHTML = currentLang === 'mr' ? '⚠️ कृपया आधी इमेज फाईल निवडा.' : '⚠️ Please select an image file first.';
                 status.style.color = '#EF4444';
                 return;
             }
@@ -1744,7 +1851,7 @@
             formData.append('profile_photo', input.files[0]);
 
             try {
-                status.innerHTML = '⏳ Uploading profile photo...';
+                status.innerHTML = currentLang === 'mr' ? '⏳ प्रोफाइल फोटो अपलोड होत आहे...' : '⏳ Uploading profile photo...';
                 status.style.color = '#B45309';
                 const res = await fetch('/api/upload-omkar-photo', {
                     method: 'POST',
@@ -1752,32 +1859,32 @@
                 });
                 const data = await res.json();
                 if (data.success) {
-                    status.innerHTML = '✅ Profile photo updated successfully!';
+                    status.innerHTML = currentLang === 'mr' ? '✅ प्रोफाइल फोटो यशस्वीरित्या अपडेट झाला!' : '✅ Profile photo updated successfully!';
                     status.style.color = '#15803D';
                     loadAdminProfilePhoto();
                 } else {
-                    status.innerHTML = `⚠️ ${data.error || 'Upload failed'}`;
+                    status.innerHTML = currentLang === 'mr' ? `⚠️ ${data.error || 'अपलोड अयशस्वी'}` : `⚠️ ${data.error || 'Upload failed'}`;
                     status.style.color = '#EF4444';
                 }
             } catch (err) {
-                status.innerHTML = '⚠️ Upload error. Please try again.';
+                status.innerHTML = currentLang === 'mr' ? '⚠️ अपलोड करताना त्रुटी आली. कृपया पुन्हा प्रयत्न करा.' : '⚠️ Upload error. Please try again.';
                 status.style.color = '#EF4444';
             }
         }
 
         async function deleteOmkarProfilePhoto() {
-            if (!confirm('Are you sure you want to delete Omkar profile photo?')) return;
+            if (!confirm(currentLang === 'mr' ? 'तुम्हाला नक्की ओमकार यांचा प्रोफाइल फोटो डिलीट करायचा आहे का?' : 'Are you sure you want to delete Omkar profile photo?')) return;
             const status = document.getElementById('omkarPhotoStatus');
             try {
                 const res = await fetch('/api/omkar-photo', { method: 'DELETE' });
                 const data = await res.json();
                 if (data.success) {
-                    status.innerHTML = '🗑️ Profile photo deleted!';
+                    status.innerHTML = currentLang === 'mr' ? '🗑️ प्रोफाइल फोटो डिलीट झाला!' : '🗑️ Profile photo deleted!';
                     status.style.color = '#15803D';
                     loadAdminProfilePhoto();
                 }
             } catch (e) {
-                status.innerHTML = '⚠️ Delete failed.';
+                status.innerHTML = currentLang === 'mr' ? '⚠️ फोटो डिलीट करताना त्रुटी आली.' : '⚠️ Delete failed.';
                 status.style.color = '#EF4444';
             }
         }
@@ -1801,7 +1908,7 @@
             const status = document.getElementById('visitingCardStatus');
             if (!input.files || input.files.length === 0) {
                 status.style.color = '#DC2626';
-                status.textContent = '⚠️ Please select an image file to upload.';
+                status.textContent = currentLang === 'mr' ? '⚠️ कृपया अपलोड करण्यासाठी इमेज फाईल निवडा.' : '⚠️ Please select an image file to upload.';
                 return;
             }
 
@@ -1810,7 +1917,7 @@
 
             try {
                 status.style.color = '#475569';
-                status.textContent = '⏳ Uploading visiting card...';
+                status.textContent = currentLang === 'mr' ? '⏳ व्हिजिटिंग कार्ड अपलोड होत आहे...' : '⏳ Uploading visiting card...';
                 const res = await fetch('/api/upload-visiting-card', {
                     method: 'POST',
                     body: formData
@@ -1818,35 +1925,35 @@
                 const data = await res.json();
                 if (data.success) {
                     status.style.color = '#15803D';
-                    status.textContent = '✅ Visiting card updated successfully!';
+                    status.textContent = currentLang === 'mr' ? '✅ व्हिजिटिंग कार्ड यशस्वीरित्या अपडेट झाले!' : '✅ Visiting card updated successfully!';
                     const img = document.getElementById('adminVisitingCardPreviewImg');
                     if (img && data.cardUrl) img.src = data.cardUrl;
                     input.value = '';
                 } else {
                     status.style.color = '#DC2626';
-                    status.textContent = `⚠️ ${data.error || 'Upload failed'}`;
+                    status.textContent = currentLang === 'mr' ? `⚠️ ${data.error || 'अपलोड अयशस्वी'}` : `⚠️ ${data.error || 'Upload failed'}`;
                 }
             } catch (e) {
                 status.style.color = '#DC2626';
-                status.textContent = '⚠️ Server connection error.';
+                status.textContent = currentLang === 'mr' ? '⚠️ सर्व्हर कनेक्शन त्रुटी.' : '⚠️ Server connection error.';
             }
         }
 
         async function resetVisitingCard() {
-            if (!confirm('Revert visiting card to default image (/visiting_card.jpg)?')) return;
+            if (!confirm(currentLang === 'mr' ? 'व्हिजिटिंग कार्ड मूळ फोटोवर रिसेट करायचे आहे का (/visiting_card.jpg)?' : 'Revert visiting card to default image (/visiting_card.jpg)?')) return;
             const status = document.getElementById('visitingCardStatus');
             try {
                 const res = await fetch('/api/visiting-card', { method: 'DELETE' });
                 const data = await res.json();
                 if (data.success) {
                     status.style.color = '#15803D';
-                    status.textContent = '✅ Visiting card reverted to default!';
+                    status.textContent = currentLang === 'mr' ? '✅ व्हिजिटिंग कार्ड मूळ फोटोवर रिसेट झाले!' : '✅ Visiting card reverted to default!';
                     const img = document.getElementById('adminVisitingCardPreviewImg');
                     if (img) img.src = '/visiting_card.jpg';
                 }
             } catch (e) {
                 status.style.color = '#DC2626';
-                status.textContent = '⚠️ Error resetting visiting card.';
+                status.textContent = currentLang === 'mr' ? '⚠️ व्हिजिटिंग कार्ड रिसेट करताना त्रुटी आली.' : '⚠️ Error resetting visiting card.';
             }
         }
 
@@ -1882,7 +1989,7 @@
             const btn = document.getElementById('refreshBookingsBtn');
 
             if (btn) {
-                btn.innerHTML = '<span style="font-size:15px !important;">⏳</span><span style="color:#D4A574 !important; font-weight:800 !important; font-size:13.5px !important;">Refreshing...</span>';
+                btn.innerHTML = `<span style="font-size:15px !important;">⏳</span><span style="color:#D4A574 !important; font-weight:800 !important; font-size:13.5px !important;">${currentLang === 'mr' ? 'रिफ्रेश होत आहे...' : 'Refreshing...'}</span>`;
                 btn.style.opacity = '0.75';
                 btn.disabled = true;
             }
@@ -1925,19 +2032,20 @@
                             blockMsg.style.background = '#F0FDF4';
                             blockMsg.style.color = '#15803D';
                             blockMsg.style.border = '1px solid #86EFAC';
-                            blockMsg.innerHTML = '🔄 Client booking requests & calendar data refreshed successfully!';
+                            blockMsg.innerHTML = currentLang === 'mr' ? '🔄 ग्राहकांचे बुकिंग अर्ज आणि कॅलेंडर माहिती अपडेट झाली!' : '🔄 Client booking requests & calendar data refreshed successfully!';
                             setTimeout(() => { blockMsg.style.display = 'none'; }, 3500);
                         }
                     }
                 } else {
-                    if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="empty-state">No booking requests found.</td></tr>`;
+                    if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="empty-state">${currentLang === 'mr' ? 'कोणतेही बुकिंग अर्ज सापडले नाहीत.' : 'No booking requests found.'}</td></tr>`;
                 }
             } catch (err) {
                 console.error('Error fetching bookings:', err);
-                if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="empty-state" style="color:#EF4444;">Failed to load bookings from server.</td></tr>`;
+                if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="empty-state" style="color:#EF4444;">${currentLang === 'mr' ? 'सर्व्हरवरून अर्ज लोड करण्यात अडचण आली.' : 'Failed to load bookings from server.'}</td></tr>`;
             } finally {
                 if (btn) {
-                    btn.innerHTML = '<span style="font-size:15px !important;">🔄</span><span style="color:#D4A574 !important; font-weight:800 !important; font-size:13.5px !important;">Refresh Requests</span>';
+                    const dict = i18nDict[currentLang] || i18nDict['en'];
+                    btn.innerHTML = `<span style="font-size:15px !important;">🔄</span><span style="color:#D4A574 !important; font-weight:800 !important; font-size:13.5px !important;">${dict.ad_btn_refresh || 'Refresh Requests'}</span>`;
                     btn.style.opacity = '1';
                     btn.disabled = false;
                 }
@@ -1992,8 +2100,11 @@
             const mobileCardsContainer = document.getElementById('bookingsMobileCards');
 
             if (totalFilteredCount === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="empty-state">No ${currentFilter === 'all' ? '' : currentFilter} bookings found.</td></tr>`;
-                if (mobileCardsContainer) mobileCardsContainer.innerHTML = `<div class="empty-state" style="padding:1.5rem; text-align:center; background:#FFFFFF; border-radius:12px; border:1px solid #E2E8F0;">No ${currentFilter === 'all' ? '' : currentFilter} bookings found.</div>`;
+                const noFoundText = currentLang === 'mr' 
+                    ? `कोणतेही ${currentFilter === 'all' ? '' : (dict['ad_flt_' + currentFilter] || currentFilter)} अर्ज सापडले नाहीत.` 
+                    : `No ${currentFilter === 'all' ? '' : currentFilter} bookings found.`;
+                tbody.innerHTML = `<tr><td colspan="7" class="empty-state">${noFoundText}</td></tr>`;
+                if (mobileCardsContainer) mobileCardsContainer.innerHTML = `<div class="empty-state" style="padding:1.5rem; text-align:center; background:#FFFFFF; border-radius:12px; border:1px solid #E2E8F0;">${noFoundText}</div>`;
                 const seeMoreContainer = document.getElementById('seeMoreContainer');
                 if (seeMoreContainer) seeMoreContainer.style.display = 'none';
                 return;
@@ -2014,13 +2125,13 @@
                     if (totalFilterCountSpan) totalFilterCountSpan.textContent = totalFilteredCount;
 
                     if (visibleBookingsLimit >= totalFilteredCount) {
-                        seeMoreBtn.innerHTML = `All Requests Loaded ✓ (${totalFilteredCount} of ${totalFilteredCount})`;
+                        seeMoreBtn.innerHTML = currentLang === 'mr' ? `सर्व अर्ज लोड झाले ✓ (${totalFilteredCount} पैकी ${totalFilteredCount})` : `All Requests Loaded ✓ (${totalFilteredCount} of ${totalFilteredCount})`;
                         seeMoreBtn.disabled = true;
                         seeMoreBtn.style.opacity = '0.5';
                         seeMoreBtn.style.cursor = 'default';
                     } else {
                         const remaining = totalFilteredCount - visibleBookingsLimit;
-                        seeMoreBtn.innerHTML = `See More Requests 🔽 (${Math.min(visibleBookingsLimit, totalFilteredCount)} of ${totalFilteredCount} shown — ${remaining} more)`;
+                        seeMoreBtn.innerHTML = currentLang === 'mr' ? `अजून अर्ज बघा 🔽 (${totalFilteredCount} पैकी ${Math.min(visibleBookingsLimit, totalFilteredCount)} दाखवले — अजून ${remaining})` : `See More Requests 🔽 (${Math.min(visibleBookingsLimit, totalFilteredCount)} of ${totalFilteredCount} shown — ${remaining} more)`;
                         seeMoreBtn.disabled = false;
                         seeMoreBtn.style.opacity = '1';
                         seeMoreBtn.style.cursor = 'pointer';
@@ -2044,8 +2155,8 @@
                         <td style="white-space:nowrap;">
                             <div style="display:inline-flex; align-items:center; gap:8px; white-space:nowrap;">
                                 <span style="font-weight:700; color:#0F172A;">📞 ${escapeHtml(b.client_phone)}</span>
-                                <a href="tel:${phoneClean}" class="btn-contact" title="Call Client">📞 Call</a>
-                                <a href="https://wa.me/91${phoneClean}?text=Hello%20${encodeURIComponent(b.client_name)},%20this%20is%20Omkar%20Doiphode%20Photography%20regarding%20your%20${encodeURIComponent(b.event_type)}%20booking%20request%20for%20${b.booking_date}." target="_blank" class="btn-contact" style="background:#25D366;" title="WhatsApp Client">💬 WhatsApp</a>
+                                <a href="tel:${phoneClean}" class="btn-contact" title="${currentLang === 'mr' ? 'कॉल करा' : 'Call Client'}">📞 ${currentLang === 'mr' ? 'कॉल' : 'Call'}</a>
+                                <a href="https://wa.me/91${phoneClean}?text=Hello%20${encodeURIComponent(b.client_name)},%20this%20is%20Omkar%20Doiphode%20Photography%20regarding%20your%20${encodeURIComponent(b.event_type)}%20booking%20request%20for%20${b.booking_date}." target="_blank" class="btn-contact" style="background:#25D366;" title="${currentLang === 'mr' ? 'व्हॉट्सॲप मेसेज' : 'WhatsApp Client'}">💬 ${currentLang === 'mr' ? 'व्हॉट्सॲप' : 'WhatsApp'}</a>
                             </div>
                         </td>
                         <td style="white-space:nowrap;"><span style="font-weight:600; color:var(--dark-charcoal);">${escapeHtml(getLocalizedEventType(b.event_type))}</span></td>
@@ -2058,12 +2169,12 @@
                          <td style="white-space:nowrap;">
                             <div class="action-group">
                                 ${b.status !== 'confirmed' ? `
-                                    <button class="btn-confirm" onclick="updateStatus('${b.id}', 'confirmed')" title="Confirm Booking">${dict.ad_btn_confirm || 'Confirm ✅'}</button>
+                                    <button class="btn-confirm" onclick="updateStatus('${b.id}', 'confirmed')" title="${dict.ad_btn_confirm || 'Confirm'}">${dict.ad_btn_confirm || 'Confirm ✅'}</button>
                                 ` : ''}
                                 ${b.status !== 'blocked' ? `
-                                    <button class="btn-block" onclick="updateStatus('${b.id}', 'blocked')" title="Cancel Request / Block Date">${dict.ad_btn_block || 'Cancel 🔴'}</button>
+                                    <button class="btn-block" onclick="updateStatus('${b.id}', 'blocked')" title="${dict.ad_btn_block || 'Cancel'}">${dict.ad_btn_block || 'Cancel 🔴'}</button>
                                 ` : ''}
-                                <button class="btn-delete" onclick="deleteBooking('${b.id}')" title="Delete Request">${dict.ad_btn_delete || '🗑️ Delete'}</button>
+                                <button class="btn-delete" onclick="deleteBooking('${b.id}')" title="${dict.ad_btn_delete || 'Delete'}">${dict.ad_btn_delete || '🗑️ Delete'}</button>
                             </div>
                         </td>
                     </tr>
@@ -2090,8 +2201,8 @@
                             <div style="font-size:13px; color:#475569; font-weight:600; margin-bottom:0.8rem;">💍 ${escapeHtml(getLocalizedEventType(b.event_type))} &nbsp;•&nbsp; 📍 ${escapeHtml(b.event_location)}</div>
                             
                             <div style="display:flex; gap:8px; margin-bottom:0.8rem;">
-                                <a href="tel:${phoneClean}" class="btn-contact" style="flex:1; justify-content:center; padding:8px; font-size:12px; border-radius:8px;">📞 Call ${escapeHtml(b.client_phone)}</a>
-                                <a href="https://wa.me/91${phoneClean}?text=Hello%20${encodeURIComponent(b.client_name)},%20this%20is%20Omkar%20Doiphode%20Photography%20regarding%20your%20${encodeURIComponent(b.event_type)}%20booking%20request%20for%20${b.booking_date}." target="_blank" class="btn-contact" style="background:#25D366; flex:1; justify-content:center; padding:8px; font-size:12px; border-radius:8px;">💬 WhatsApp</a>
+                                <a href="tel:${phoneClean}" class="btn-contact" style="flex:1; justify-content:center; padding:8px; font-size:12px; border-radius:8px;">📞 ${currentLang === 'mr' ? 'कॉल' : 'Call'} ${escapeHtml(b.client_phone)}</a>
+                                <a href="https://wa.me/91${phoneClean}?text=Hello%20${encodeURIComponent(b.client_name)},%20this%20is%20Omkar%20Doiphode%20Photography%20regarding%20your%20${encodeURIComponent(b.event_type)}%20booking%20request%20for%20${b.booking_date}." target="_blank" class="btn-contact" style="background:#25D366; flex:1; justify-content:center; padding:8px; font-size:12px; border-radius:8px;">💬 ${currentLang === 'mr' ? 'व्हॉट्सॲप' : 'WhatsApp'}</a>
                             </div>
 
                             <div style="display:flex; gap:6px; border-top:1px solid #F1F5F9; padding-top:0.7rem;">
@@ -2120,17 +2231,17 @@
                     if (typeof renderAdminCalendar === 'function') renderAdminCalendar();
                     if (typeof loadBlockedDatesList === 'function') loadBlockedDatesList();
                 } else {
-                    alert('Error: ' + (result.error || 'Failed to update status'));
+                    alert(currentLang === 'mr' ? `त्रुटी: ${result.error || 'स्थिती अपडेट करण्यात अडचण आली'}` : 'Error: ' + (result.error || 'Failed to update status'));
                 }
             } catch (err) {
                 console.error('updateStatus error:', err);
-                alert('Network error updating status');
+                alert(currentLang === 'mr' ? 'स्थिती अपडेट करताना नेटवर्क त्रुटी आली' : 'Network error updating status');
             }
         }
 
         // Delete Booking Record API Call
         async function deleteBooking(id) {
-            if (!confirm('Are you sure you want to delete this booking request?')) return;
+            if (!confirm(currentLang === 'mr' ? 'तुम्हाला नक्की हा बुकिंग अर्ज डिलीट करायचा आहे का?' : 'Are you sure you want to delete this booking request?')) return;
 
             try {
                 const res = await fetch(`/api/bookings/${id}`, { method: 'DELETE' });
@@ -2140,11 +2251,11 @@
                     if (typeof renderAdminCalendar === 'function') renderAdminCalendar();
                     if (typeof loadBlockedDatesList === 'function') loadBlockedDatesList();
                 } else {
-                    alert('Error deleting booking');
+                    alert(currentLang === 'mr' ? 'अर्ज डिलीट करताना त्रुटी आली' : 'Error deleting booking');
                 }
             } catch (err) {
                 console.error('deleteBooking error:', err);
-                alert('Network error deleting booking');
+                alert(currentLang === 'mr' ? 'अर्ज डिलीट करताना नेटवर्क त्रुटी आली' : 'Network error deleting booking');
             }
         }
 
@@ -2159,9 +2270,9 @@
                     msgBox.style.display = 'block';
                     msgBox.style.background = '#FEE2E2';
                     msgBox.style.color = '#991B1B';
-                    msgBox.innerHTML = '⚠️ Please pick a valid date first.';
+                    msgBox.innerHTML = currentLang === 'mr' ? '⚠️ कृपया आधी वैध तारीख निवडा.' : '⚠️ Please pick a valid date first.';
                 } else {
-                    alert('Please select a date first.');
+                    alert(currentLang === 'mr' ? 'कृपया आधी तारीख निवडा.' : 'Please select a date first.');
                 }
                 return;
             }
@@ -2179,17 +2290,17 @@
                         msgBox.style.display = 'block';
                         msgBox.style.background = action === 'block' ? '#FEE2E2' : '#DCFCE7';
                         msgBox.style.color = action === 'block' ? '#991B1B' : '#15803D';
-                        msgBox.innerHTML = `✅ Date <strong>${dateStr}</strong> was successfully ${action}ed! Website calendar updated.`;
+                        msgBox.innerHTML = currentLang === 'mr' ? `✅ तारीख <strong>${dateStr}</strong> यशस्वीरित्या ${action === 'block' ? 'ब्लॉक' : 'उपलब्ध'} केली! वेबसाईट कॅलेंडर अपडेट झाले.` : `✅ Date <strong>${dateStr}</strong> was successfully ${action}ed! Website calendar updated.`;
                     }
                     dateInput.value = '';
                     loadBookings();
                     loadBlockedDatesList();
                     renderAdminCalendar();
                 } else {
-                    alert('Error: ' + (result.error || 'Operation failed'));
+                    alert(currentLang === 'mr' ? `त्रुटी: ${result.error || 'कृती अयशस्वी'}` : 'Error: ' + (result.error || 'Operation failed'));
                 }
             } catch (err) {
-                alert('Network error modifying date');
+                alert(currentLang === 'mr' ? 'तारीख बदलताना नेटवर्क त्रुटी आली' : 'Network error modifying date');
             }
         }
 
@@ -2199,9 +2310,13 @@
         let adminMonth = adminNow.getMonth(); // 0-indexed
         let adminCalendarStatuses = {};
 
-        const adminMonthNames = [
+        const adminMonthNamesEn = [
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
+        ];
+        const adminMonthNamesMr = [
+            "जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून",
+            "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर", "नोव्हेंबर", "डिसेंबर"
         ];
 
         async function renderAdminCalendar() {
@@ -2209,7 +2324,7 @@
             const grid = document.getElementById('adminCalendarGrid');
             if (!monthHeader || !grid) return;
 
-            monthHeader.textContent = `${adminMonthNames[adminMonth]} ${adminYear}`;
+            monthHeader.textContent = `${(currentLang === 'mr' ? adminMonthNamesMr : adminMonthNamesEn)[adminMonth]} ${adminYear}`;
 
             try {
                 const res = await fetch('/api/calendar-status?t=' + Date.now());
@@ -2260,22 +2375,22 @@
                 if (dateStr < todayStr) {
                     const dotIcon = status === 'blocked' ? '🔴' : status === 'pending' ? '⏳' : '🟢';
                     cell.style.cssText = 'position:relative !important; height:48px !important; border-radius:9px !important; display:flex !important; align-items:center !important; justify-content:center !important; background:rgba(255, 255, 255, 0.08) !important; border:1px solid rgba(255, 255, 255, 0.2) !important; cursor:pointer !important;';
-                    cell.title = `${dateStr} - Past Date (${status})`;
+                    cell.title = `${dateStr} - ${currentLang === 'mr' ? 'मागील तारीख' : 'Past Date'} (${status})`;
                     cell.innerHTML = dateSpanHTML + `<span class="day-dot" style="position:absolute !important; top:3px !important; right:3px !important; font-size:9px !important; opacity:0.7 !important; line-height:1 !important; pointer-events:none !important;">${dotIcon}</span>`;
                     cell.onclick = () => handleAdminDateClick(dateStr, status);
                 } else if (status === 'blocked') {
                     cell.style.cssText = 'position:relative !important; height:48px !important; border-radius:9px !important; display:flex !important; align-items:center !important; justify-content:center !important; background:rgba(239, 68, 68, 0.35) !important; border:1.5px solid #FCA5A5 !important; box-shadow:0 2px 8px rgba(239, 68, 68, 0.3) !important; cursor:pointer !important;';
-                    cell.title = `${dateStr} - Blocked / Confirmed Shoot (Click to Toggle)`;
+                    cell.title = `${dateStr} - ${currentLang === 'mr' ? 'ब्लॉक / निश्चित तारीख' : 'Blocked / Confirmed Shoot'}`;
                     cell.innerHTML = dateSpanHTML + `<span class="day-dot" style="position:absolute !important; top:3px !important; right:3px !important; font-size:9px !important; line-height:1 !important; pointer-events:none !important;">🔴</span>`;
                     cell.onclick = () => handleAdminDateClick(dateStr, 'blocked');
                 } else if (status === 'pending') {
                     cell.style.cssText = 'position:relative !important; height:48px !important; border-radius:9px !important; display:flex !important; align-items:center !important; justify-content:center !important; background:rgba(245, 158, 11, 0.35) !important; border:1.5px solid #FCD34D !important; box-shadow:0 2px 8px rgba(245, 158, 11, 0.3) !important; cursor:pointer !important;';
-                    cell.title = `${dateStr} - Pending Inquiry Request (Click to Toggle)`;
+                    cell.title = `${dateStr} - ${currentLang === 'mr' ? 'प्रक्रियेतील अर्ज' : 'Pending Inquiry Request'}`;
                     cell.innerHTML = dateSpanHTML + `<span class="day-dot" style="position:absolute !important; top:3px !important; right:3px !important; font-size:9px !important; line-height:1 !important; pointer-events:none !important;">⏳</span>`;
                     cell.onclick = () => handleAdminDateClick(dateStr, 'pending');
                 } else {
                     cell.style.cssText = 'position:relative !important; height:48px !important; border-radius:9px !important; display:flex !important; align-items:center !important; justify-content:center !important; background:rgba(34, 197, 94, 0.35) !important; border:1.5px solid #86EFAC !important; box-shadow:0 2px 8px rgba(34, 197, 94, 0.3) !important; cursor:pointer !important;';
-                    cell.title = `${dateStr} - Available Date (Click to Toggle)`;
+                    cell.title = `${dateStr} - ${currentLang === 'mr' ? 'उपलब्ध तारीख' : 'Available Date'}`;
                     cell.innerHTML = dateSpanHTML + `<span class="day-dot" style="position:absolute !important; top:3px !important; right:3px !important; font-size:9px !important; line-height:1 !important; pointer-events:none !important;">🟢</span>`;
                     cell.onclick = () => handleAdminDateClick(dateStr, 'available');
                 }
@@ -2298,19 +2413,19 @@
 
         async function handleAdminDateClick(dateStr, currentStatus) {
             if (currentStatus === 'available') {
-                if (confirm(`Do you want to mark ${dateStr} as Blocked / Unavailable (Red)?`)) {
+                if (confirm(currentLang === 'mr' ? `तुम्हाला ${dateStr} ही तारीख ब्लॉक / अनव्हेलेबल (लाल) करायची आहे का?` : `Do you want to mark ${dateStr} as Blocked / Unavailable (Red)?`)) {
                     await handleManualBlock('block', dateStr);
                     renderAdminCalendar();
                 }
             } else if (currentStatus === 'blocked') {
-                if (confirm(`Do you want to unblock ${dateStr} and mark as Available (Green)?`)) {
+                if (confirm(currentLang === 'mr' ? `तुम्हाला ${dateStr} ही तारीख अनब्लॉक करून उपलब्ध (हिरवी) करायची आहे का?` : `Do you want to unblock ${dateStr} and mark as Available (Green)?`)) {
                     await handleManualBlock('unblock', dateStr);
                     renderAdminCalendar();
                 }
             } else if (currentStatus === 'pending') {
                 const booking = allBookings.find(b => b.booking_date === dateStr && b.status === 'pending');
                 if (booking) {
-                    if (confirm(`Date ${dateStr} has a pending request from ${booking.client_name}.\n\nClick OK to CONFIRM booking (Turns Red on public calendar).`)) {
+                    if (confirm(currentLang === 'mr' ? `तारीख ${dateStr} साठी ${booking.client_name} यांचा अर्ज आलेला आहे.\n\nबुकिंग निश्चित करण्यासाठी (पब्लिक कॅलेंडरवर लाल होईल) OK दाबा.` : `Date ${dateStr} has a pending request from ${booking.client_name}.\n\nClick OK to CONFIRM booking (Turns Red on public calendar).`)) {
                         await updateStatus(booking.id, 'confirmed');
                         renderAdminCalendar();
                     }
@@ -2336,7 +2451,7 @@
 
                     const countBadge = document.getElementById('blockedDatesCount');
                     if (countBadge) {
-                        countBadge.innerText = `${blockedEntries.length} Blocked`;
+                        countBadge.innerText = currentLang === 'mr' ? `${blockedEntries.length} ब्लॉक` : `${blockedEntries.length} Blocked`;
                     }
 
                     let html = '';
@@ -2345,11 +2460,11 @@
                     if (blockedEntries.length > 0) {
                         html += blockedEntries.map(dateStr => {
                             const ev = data.dateEvents ? data.dateEvents[dateStr] : null;
-                            const eventLabel = ev ? (ev.clientName ? `${ev.clientName}` : ev.eventType) : 'Blocked';
+                            const eventLabel = ev ? (ev.clientName ? `${ev.clientName}` : getLocalizedEventType(ev.eventType)) : (currentLang === 'mr' ? 'ब्लॉक' : 'Blocked');
                             return `
                                 <div style="background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; border-radius: 14px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 1px 4px rgba(239,68,68,0.1); white-space: nowrap;">
                                     <span>🔴 ${dateStr} <small style="color:#7F1D1D; font-weight:600;">(${eventLabel})</small></span>
-                                    <button onclick="handleManualBlock('unblock', '${dateStr}');" style="background: #16A34A; color: white; border: none; border-radius: 8px; padding: 2px 7px; font-size: 10.5px; font-weight:700; cursor: pointer; transition: background 0.2s;" title="Unblock Date">Unblock 🟢</button>
+                                    <button onclick="handleManualBlock('unblock', '${dateStr}');" style="background: #16A34A; color: white; border: none; border-radius: 8px; padding: 2px 7px; font-size: 10.5px; font-weight:700; cursor: pointer; transition: background 0.2s;" title="${currentLang === 'mr' ? 'तारीख मोकळी करा' : 'Unblock Date'}">${currentLang === 'mr' ? 'अनब्लॉक 🟢' : 'Unblock 🟢'}</button>
                                 </div>
                             `;
                         }).join('');
@@ -2364,19 +2479,19 @@
                             if (manualUnblocked.length > 0) {
                                 html += manualUnblocked.map(b => `
                                     <div style="background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; border-radius: 14px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 1px 4px rgba(34,197,94,0.1); white-space: nowrap;">
-                                        <span>🟢 ${b.date_str} <small style="color:#14532D; font-weight:600;">(Available)</small></span>
-                                        <button onclick="handleManualBlock('block', '${b.date_str}');" style="background: #DC2626; color: white; border: none; border-radius: 8px; padding: 2px 7px; font-size: 10.5px; font-weight:700; cursor: pointer; transition: background 0.2s;" title="Block Date">Block 🔴</button>
+                                        <span>🟢 ${b.date_str} <small style="color:#14532D; font-weight:600;">(${currentLang === 'mr' ? 'उपलब्ध' : 'Available'})</small></span>
+                                        <button onclick="handleManualBlock('block', '${b.date_str}');" style="background: #DC2626; color: white; border: none; border-radius: 8px; padding: 2px 7px; font-size: 10.5px; font-weight:700; cursor: pointer; transition: background 0.2s;" title="${currentLang === 'mr' ? 'तारीख ब्लॉक करा' : 'Block Date'}">${currentLang === 'mr' ? 'ब्लॉक 🔴' : 'Block 🔴'}</button>
                                     </div>
-                                `).join('');
+                                `);
                             }
                         }
                     } catch(e) {}
 
-                    container.innerHTML = html || `<span style="font-size:12px; color:#64748B;">No blocked dates set right now. All dates available.</span>`;
+                    container.innerHTML = html || (currentLang === 'mr' ? `<span style="font-size:12px; color:#64748B;">कोणतीही तारीख ब्लॉक केलेली नाही. सर्व तारखा उपलब्ध आहेत.</span>` : `<span style="font-size:12px; color:#64748B;">No blocked dates set right now. All dates available.</span>`);
                 }
             } catch (err) {
                 console.error('loadBlockedDatesList error:', err);
-                container.innerHTML = `<span style="font-size:13px; color:#DC2626;">Failed to load blocked dates list.</span>`;
+                container.innerHTML = `<span style="font-size:13px; color:#DC2626;">${currentLang === 'mr' ? 'ब्लॉक केलेल्या तारखांची यादी लोड करण्यात अडचण आली.' : 'Failed to load blocked dates list.'}</span>`;
             }
         }
 
@@ -2396,7 +2511,7 @@
                     img.style.display = 'block';
                     if (badge) {
                         badge.style.display = 'inline-block';
-                        badge.textContent = '✓ ACTIVE ON WEBSITE';
+                        badge.textContent = currentLang === 'mr' ? '✓ वेबसाईटवर सक्रिय' : '✓ ACTIVE ON WEBSITE';
                         badge.style.background = '#DCFCE7';
                         badge.style.color = '#15803D';
                     }
@@ -2405,7 +2520,7 @@
                     img.style.display = 'none';
                     if (badge) {
                         badge.style.display = 'inline-block';
-                        badge.textContent = '⚠ No logo uploaded yet';
+                        badge.textContent = currentLang === 'mr' ? '⚠ अद्याप लोगो अपलोड केला नाही' : '⚠ No logo uploaded yet';
                         badge.style.background = '#F1F5F9';
                         badge.style.color = '#64748B';
                     }
@@ -2424,13 +2539,13 @@
                 const logos = await response.json();
 
                 if (!logos || !Array.isArray(logos) || logos.length === 0) {
-                    logoGrid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1; text-align:center; padding:2rem; color:#64748B;"><p>No uploaded logos found in history yet.</p></div>`;
+                    logoGrid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1; text-align:center; padding:2rem; color:#64748B;"><p>${currentLang === 'mr' ? 'इतिहासामध्ये अद्याप कोणताही लोगो सापडला नाही.' : 'No uploaded logos found in history yet.'}</p></div>`;
                     return;
                 }
 
                 logoGrid.innerHTML = logos.map(logo => {
                     const src = logo.filepath || logo.logo_path || logo.logoUrl || '';
-                    const date = logo.uploaded_at ? new Date(logo.uploaded_at).toLocaleDateString() : 'Recent';
+                    const date = logo.uploaded_at ? new Date(logo.uploaded_at).toLocaleDateString(currentLang === 'mr' ? 'mr-IN' : 'en-US') : (currentLang === 'mr' ? 'अलीकडील' : 'Recent');
                     const isActive = Number(logo.is_active) === 1 || logo.is_active === true;
 
                     return `
@@ -2439,15 +2554,15 @@
                                 <img src="${src}" alt="Logo" class="logo-image" style="max-height:70px; max-width:100%; object-fit:contain;" onerror="this.src='https://via.placeholder.com/150?text=Logo+Preview'">
                             </div>
                             <div class="logo-info">
-                                <div style="font-size:11.5px; color:#64748B; font-weight:600; margin-bottom:6px;">Uploaded: ${date}</div>
+                                <div style="font-size:11.5px; color:#64748B; font-weight:600; margin-bottom:6px;">${currentLang === 'mr' ? 'अपलोड तारीख:' : 'Uploaded:'} ${date}</div>
                                 <div style="margin-bottom:12px;">
                                     <span class="status-badge ${isActive ? 'confirmed' : 'pending'}" style="padding:3px 10px; font-weight:800; border-radius:12px; font-size:11px; background:${isActive ? '#DCFCE7' : '#F1F5F9'}; color:${isActive ? '#15803D' : '#64748B'};">
-                                        ${isActive ? '✓ Active Website Logo' : 'Inactive'}
+                                        ${isActive ? (currentLang === 'mr' ? '✓ सक्रिय लोगो' : '✓ Active Website Logo') : (currentLang === 'mr' ? 'निष्क्रिय' : 'Inactive')}
                                     </span>
                                 </div>
                                 <div style="display:flex; gap:6px;">
-                                    ${!isActive ? `<button class="btn-confirm" style="flex:1; background:#16A34A; color:white; padding:8px; border-radius:8px; font-weight:700; border:none; cursor:pointer;" onclick="activateLogo('${logo.id}')">Activate ✅</button>` : ''}
-                                    <button class="btn-delete" style="flex:1; background:#EF4444; color:white; padding:8px; border-radius:8px; font-weight:700; border:none; cursor:pointer;" onclick="deleteLogo('${logo.id}')">Delete 🗑️</button>
+                                    ${!isActive ? `<button class="btn-confirm" style="flex:1; background:#16A34A; color:white; padding:8px; border-radius:8px; font-weight:700; border:none; cursor:pointer;" onclick="activateLogo('${logo.id}')">${currentLang === 'mr' ? 'सक्रिय करा ✅' : 'Activate ✅'}</button>` : ''}
+                                    <button class="btn-delete" style="flex:1; background:#EF4444; color:white; padding:8px; border-radius:8px; font-weight:700; border:none; cursor:pointer;" onclick="deleteLogo('${logo.id}')">${currentLang === 'mr' ? 'डिलीट 🗑️' : 'Delete 🗑️'}</button>
                                 </div>
                             </div>
                         </div>
@@ -2455,7 +2570,7 @@
                 }).join('');
             } catch (error) {
                 console.error('loadLogoHistory error:', error);
-                logoGrid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1; color:#EF4444; text-align:center; padding:1rem;"><p>Failed to load logo history.</p></div>`;
+                logoGrid.innerHTML = `<div class="empty-state" style="grid-column: 1 / -1; color:#EF4444; text-align:center; padding:1rem;"><p>${currentLang === 'mr' ? 'लोगो इतिहास लोड करण्यात अडचण आली.' : 'Failed to load logo history.'}</p></div>`;
             }
         }
 
@@ -2470,7 +2585,7 @@
                         uploadMsg.style.background = '#F0FDF4';
                         uploadMsg.style.color = '#15803D';
                         uploadMsg.style.border = '1px solid #86EFAC';
-                        uploadMsg.innerHTML = '✅ Brand Logo activated successfully!';
+                        uploadMsg.innerHTML = currentLang === 'mr' ? '✅ लोगो यशस्वीरित्या सक्रिय केला!' : '✅ Brand Logo activated successfully!';
                         setTimeout(() => { uploadMsg.style.display = 'none'; }, 3500);
                     }
                 }
@@ -2482,7 +2597,7 @@
         }
 
         async function deleteLogo(id) {
-            if (confirm('Are you sure you want to delete this logo from history?')) {
+            if (confirm(currentLang === 'mr' ? 'तुम्हाला नक्की हा लोगो डिलीट करायचा आहे का?' : 'Are you sure you want to delete this logo from history?')) {
                 try {
                     await fetch(`/api/delete-logo/${encodeURIComponent(id)}`, { method: 'DELETE' });
                     await loadLogoHistory();
@@ -2575,7 +2690,7 @@
                 uploadMsg.style.background = '#FEF3C7';
                 uploadMsg.style.color = '#92400E';
                 uploadMsg.style.border = '1px solid #FCD34D';
-                uploadMsg.innerHTML = '⏳ Optimizing & activating brand logo... Please wait...';
+                uploadMsg.innerHTML = currentLang === 'mr' ? '⏳ लोगो कॉम्प्रेस आणि सक्रिय करत आहे... कृपया प्रतीक्षा करा...' : '⏳ Optimizing & activating brand logo... Please wait...';
             }
 
             try {
@@ -2595,7 +2710,7 @@
                         uploadMsg.style.background = '#F0FDF4';
                         uploadMsg.style.color = '#15803D';
                         uploadMsg.style.border = '1px solid #86EFAC';
-                        uploadMsg.innerHTML = '✅ Brand logo uploaded and activated successfully!';
+                        uploadMsg.innerHTML = currentLang === 'mr' ? '✅ लोगो यशस्वीरित्या अपलोड व सक्रिय झाला!' : '✅ Brand logo uploaded and activated successfully!';
                         setTimeout(() => { uploadMsg.style.display = 'none'; }, 4000);
                     }
                     await loadLogoHistory();
@@ -2626,7 +2741,7 @@
                         uploadMsg.style.background = '#F0FDF4';
                         uploadMsg.style.color = '#15803D';
                         uploadMsg.style.border = '1px solid #86EFAC';
-                        uploadMsg.innerHTML = '✅ Brand logo uploaded and activated successfully!';
+                        uploadMsg.innerHTML = currentLang === 'mr' ? '✅ लोगो यशस्वीरित्या अपलोड व सक्रिय झाला!' : '✅ Brand logo uploaded and activated successfully!';
                         setTimeout(() => { uploadMsg.style.display = 'none'; }, 4000);
                     }
                     await loadLogoHistory();
@@ -2636,7 +2751,7 @@
                         uploadMsg.style.background = '#FEE2E2';
                         uploadMsg.style.color = '#991B1B';
                         uploadMsg.style.border = '1px solid #FCA5A5';
-                        uploadMsg.innerHTML = '❌ Upload failed: ' + (result.error || 'Please select an image file');
+                        uploadMsg.innerHTML = currentLang === 'mr' ? '❌ लोगो अपलोड अयशस्वी.' : ('❌ Upload failed: ' + (result.error || 'Please select an image file'));
                     }
                 }
             } catch (err) {
@@ -2645,7 +2760,7 @@
                     uploadMsg.style.background = '#FEE2E2';
                     uploadMsg.style.color = '#991B1B';
                     uploadMsg.style.border = '1px solid #FCA5A5';
-                    uploadMsg.innerHTML = '❌ Upload error: Please try selecting another PNG or JPG logo photo.';
+                    uploadMsg.innerHTML = currentLang === 'mr' ? '❌ फोटो निवडताना त्रुटी आली. कृपया दुसरा PNG किंवा JPG फोटो निवडा.' : '❌ Upload error: Please try selecting another PNG or JPG logo photo.';
                 }
             }
         }
@@ -2693,7 +2808,7 @@
                     }
                 });
                 const topBox = document.getElementById('analyticsTopPackageBox');
-                if (topBox) topBox.textContent = topPkg;
+                if (topBox) topBox.textContent = currentLang === 'mr' ? getLocalizedEventType(topPkg) : topPkg;
 
                 // 4. Confirmed Shoots Count
                 const confCountBox = document.getElementById('analyticsConfirmedCountBox');
@@ -2716,11 +2831,13 @@
 
                     const pkgLabels = Object.keys(pkgMap);
                     const pkgValues = Object.values(pkgMap);
+                    const rawPkgLabels = pkgLabels.length > 0 ? pkgLabels : ['Marriage Package', 'Photoshoot', 'Baby Shoot', 'Events & Lifestyle'];
+                    const localizedLabels = rawPkgLabels.map(l => currentLang === 'mr' ? getLocalizedEventType(l) : l);
 
                     window.packageChartInstance = new Chart(ctx1, {
                         type: 'doughnut',
                         data: {
-                            labels: pkgLabels.length > 0 ? pkgLabels : ['Marriage Package', 'Photoshoot 📸', 'Baby Shoot', 'Events & Lifestyle'],
+                            labels: localizedLabels,
                             datasets: [{
                                 data: pkgValues.length > 0 ? pkgValues : [22, 4, 1, 1],
                                 backgroundColor: ['#D4A574', '#0F172A', '#22C55E', '#38BDF8', '#F43F5E'],
@@ -2743,9 +2860,9 @@
                     window.statusChartInstance = new Chart(ctx2, {
                         type: 'bar',
                         data: {
-                            labels: ['Confirmed ✅', 'Pending ⏳', 'Blocked 🔴'],
+                            labels: currentLang === 'mr' ? ['निश्चित ✅', 'प्रलंबित ⏳', 'ब्लॉक 🔴'] : ['Confirmed ✅', 'Pending ⏳', 'Blocked 🔴'],
                             datasets: [{
-                                label: 'Requests',
+                                label: currentLang === 'mr' ? 'विनंत्या' : 'Requests',
                                 data: [confReqs, pendingReqs, blockedReqs],
                                 backgroundColor: ['#22C55E', '#EAB308', '#EF4444'],
                                 borderRadius: 6
@@ -2765,7 +2882,9 @@
                     const ctx3 = canvas3.getContext('2d');
                     if (window.trendChartInstance) window.trendChartInstance.destroy();
 
-                    const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const monthLabelsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const monthLabelsMr = ['जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून', 'जुलै', 'ऑगस्ट', 'सप्टेंबर', 'ऑक्टोबर', 'नोव्हेंबर', 'डिसेंबर'];
+                    const monthLabels = currentLang === 'mr' ? monthLabelsMr : monthLabelsEn;
                     const currentMonthIdx = new Date().getMonth();
                     const trendData = monthLabels.map((m, idx) => idx === currentMonthIdx ? Math.max(totalReqs, 5) : Math.floor(Math.random() * 3) + 1);
 
@@ -2774,7 +2893,7 @@
                         data: {
                             labels: monthLabels,
                             datasets: [{
-                                label: 'Monthly Inquiries',
+                                label: currentLang === 'mr' ? 'मासिक चौकशी' : 'Monthly Inquiries',
                                 data: trendData,
                                 borderColor: '#D4A574',
                                 backgroundColor: 'rgba(212, 165, 116, 0.15)',
@@ -2799,11 +2918,13 @@
 
                     const pkgLabels = Object.keys(pkgMap);
                     const pkgValues = Object.values(pkgMap);
+                    const rawPkgLabels = pkgLabels.length > 0 ? pkgLabels : ['Marriage Package', 'Photoshoot', 'Baby Shoot', 'Events & Lifestyle'];
+                    const localizedLabels = rawPkgLabels.map(l => currentLang === 'mr' ? getLocalizedEventType(l) : l);
 
                     window.polarChartInstance = new Chart(ctx4, {
                         type: 'polarArea',
                         data: {
-                            labels: pkgLabels.length > 0 ? pkgLabels : ['Marriage Package', 'Photoshoot 📸', 'Baby Shoot', 'Events & Lifestyle'],
+                            labels: localizedLabels,
                             datasets: [{
                                 data: pkgValues.length > 0 ? pkgValues : [22, 4, 1, 1],
                                 backgroundColor: [
@@ -2856,20 +2977,21 @@
                         const pendForPkg = allBookings.filter(b => isMatch(b.event_type) && b.status === 'pending').length;
                         const icon = packageIcons[pkgName] || '📷';
                         const sharePct = totalReqs > 0 ? Math.round((totalForPkg / totalReqs) * 100) : 0;
+                        const locPkgTitle = currentLang === 'mr' ? getLocalizedEventType(pkgName) : pkgName;
 
                         return `
                             <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:12px; padding:0.8rem 0.65rem; box-shadow:0 4px 12px rgba(0,0,0,0.03); display:flex; flex-direction:column; justify-space-between; box-sizing:border-box; width:100%; min-width:0;">
                                 <div>
                                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                                         <span style="font-size:20px;">${icon}</span>
-                                        <span style="font-size:10px; font-weight:800; background:#F1F5F9; color:#0F172A; padding:2px 7px; border-radius:10px;">${totalForPkg} Req</span>
+                                        <span style="font-size:10px; font-weight:800; background:#F1F5F9; color:#0F172A; padding:2px 7px; border-radius:10px;">${totalForPkg} ${currentLang === 'mr' ? 'मागण्या' : 'Req'}</span>
                                     </div>
-                                    <h4 style="font-weight:800; font-size:13px; font-family:'Playfair Display',serif; color:#0F172A; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${pkgName}</h4>
-                                    <div style="font-size:11px; color:#D4A574; font-weight:700; margin-bottom:8px;">Share: ${sharePct}%</div>
+                                    <h4 style="font-weight:800; font-size:13px; font-family:'Playfair Display',serif; color:#0F172A; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${locPkgTitle}">${locPkgTitle}</h4>
+                                    <div style="font-size:11px; color:#D4A574; font-weight:700; margin-bottom:8px;">${currentLang === 'mr' ? 'प्रमाण' : 'Share'}: ${sharePct}%</div>
                                 </div>
                                 <div style="border-top:1px solid #F1F5F9; padding-top:6px; display:flex; flex-direction:column; gap:2px; font-size:10.5px;">
-                                    <span style="color:#15803D; font-weight:700;">✅ Confirmed: ${confForPkg}</span>
-                                    <span style="color:#92400E; font-weight:700;">⏳ Pending: ${pendForPkg}</span>
+                                    <span style="color:#15803D; font-weight:700;">✅ ${currentLang === 'mr' ? 'निश्चित' : 'Confirmed'}: ${confForPkg}</span>
+                                    <span style="color:#92400E; font-weight:700;">⏳ ${currentLang === 'mr' ? 'प्रलंबित' : 'Pending'}: ${pendForPkg}</span>
                                 </div>
                             </div>
                         `;
@@ -2887,7 +3009,9 @@
                             return dateA - dateB;
                         });
                     if (confirmedBookings.length === 0) {
-                        tableBox.innerHTML = '<div style="font-size:13px; color:#64748B;">No confirmed shoots yet. Click "Confirm Booking" on pending requests to lock dates here!</div>';
+                        tableBox.innerHTML = currentLang === 'mr'
+                            ? '<div style="font-size:13px; color:#64748B;">अद्याप कोणतेही निश्चित फोटोशूट नाहीत. तारखा लॉक करण्यासाठी प्रलंबित विनंत्यांवर "मंजूर करा" क्लिक करा!</div>'
+                            : '<div style="font-size:13px; color:#64748B;">No confirmed shoots yet. Click "Confirm Booking" on pending requests to lock dates here!</div>';
                     } else {
                         tableBox.innerHTML = `
                             <!-- Desktop Table View -->
@@ -2895,11 +3019,11 @@
                                 <table class="bookings-table" style="width:100%; border-collapse:collapse;">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
-                                            <th>Client Name</th>
-                                            <th>Phone</th>
-                                            <th>Package</th>
-                                            <th>Location</th>
+                                            <th>${currentLang === 'mr' ? 'तारीख' : 'Date'}</th>
+                                            <th>${currentLang === 'mr' ? 'ग्राहकाचे नाव' : 'Client Name'}</th>
+                                            <th>${currentLang === 'mr' ? 'फोन' : 'Phone'}</th>
+                                            <th>${currentLang === 'mr' ? 'पॅकेज' : 'Package'}</th>
+                                            <th>${currentLang === 'mr' ? 'ठिकाण' : 'Location'}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -2908,7 +3032,7 @@
                                                 <td style="white-space:nowrap;"><strong>📅 ${b.booking_date}</strong></td>
                                                 <td style="white-space:nowrap;"><strong>${escapeHtml(b.client_name)}</strong></td>
                                                 <td style="white-space:nowrap;">📞 ${escapeHtml(b.client_phone)}</td>
-                                                <td style="white-space:nowrap;"><span style="font-weight:600; color:var(--accent-gold);">${escapeHtml(b.event_type)}</span></td>
+                                                <td style="white-space:nowrap;"><span style="font-weight:600; color:var(--accent-gold);">${escapeHtml(currentLang === 'mr' ? getLocalizedEventType(b.event_type) : b.event_type)}</span></td>
                                                 <td style="white-space:nowrap;">📍 ${escapeHtml(b.event_location)}</td>
                                             </tr>
                                         `).join('')}
@@ -2920,18 +3044,22 @@
                             <div class="mobile-only-cards">
                                 ${confirmedBookings.map(b => {
                                     const phoneClean = (b.client_phone || '').replace(/\D/g, '');
+                                    const waText = currentLang === 'mr'
+                                        ? `नमस्कार ${encodeURIComponent(b.client_name)}, मी ओमकार डोईफोडे फोटोग्राफीकडून आपल्या ${encodeURIComponent(getLocalizedEventType(b.event_type))} फोटोशूटबद्दल (${b.booking_date}) संपर्क करत आहे.`
+                                        : `Hello ${encodeURIComponent(b.client_name)}, this is Omkar Doiphode Photography regarding your confirmed ${encodeURIComponent(b.event_type)} shoot for ${b.booking_date}.`;
+
                                     return `
                                         <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:14px; padding:1rem; margin-bottom:0.8rem; box-shadow:0 4px 15px rgba(0,0,0,0.03); border-left:5px solid #22C55E;">
                                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
                                                 <span style="font-weight:800; font-size:14px; color:#0F172A;">📅 ${b.booking_date}</span>
-                                                <span style="font-size:11px; font-weight:800; background:#DCFCE7; color:#15803D; padding:2px 9px; border-radius:12px;">✅ Confirmed</span>
+                                                <span style="font-size:11px; font-weight:800; background:#DCFCE7; color:#15803D; padding:2px 9px; border-radius:12px;">✅ ${currentLang === 'mr' ? 'निश्चित' : 'Confirmed'}</span>
                                             </div>
                                             <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:0.2rem;">${escapeHtml(b.client_name)}</div>
-                                            <div style="font-size:13px; color:#475569; font-weight:600; margin-bottom:0.8rem;">💍 ${escapeHtml(b.event_type)} &nbsp;•&nbsp; 📍 ${escapeHtml(b.event_location)}</div>
+                                            <div style="font-size:13px; color:#475569; font-weight:600; margin-bottom:0.8rem;">💍 ${escapeHtml(currentLang === 'mr' ? getLocalizedEventType(b.event_type) : b.event_type)} &nbsp;•&nbsp; 📍 ${escapeHtml(b.event_location)}</div>
                                             
                                             <div style="display:flex; gap:8px;">
-                                                <a href="tel:${phoneClean}" class="btn-contact" style="flex:1; justify-content:center; padding:7px; font-size:12px; border-radius:8px;">📞 Call ${escapeHtml(b.client_phone)}</a>
-                                                <a href="https://wa.me/91${phoneClean}?text=Hello%20${encodeURIComponent(b.client_name)},%20this%20is%20Omkar%20Doiphode%20Photography%20regarding%20your%20confirmed%20${encodeURIComponent(b.event_type)}%20shoot%20for%20${b.booking_date}." target="_blank" class="btn-contact" style="background:#25D366; flex:1; justify-content:center; padding:7px; font-size:12px; border-radius:8px;">💬 WhatsApp</a>
+                                                <a href="tel:${phoneClean}" class="btn-contact" style="flex:1; justify-content:center; padding:7px; font-size:12px; border-radius:8px;">${currentLang === 'mr' ? '📞 कॉल' : '📞 Call'} ${escapeHtml(b.client_phone)}</a>
+                                                <a href="https://wa.me/91${phoneClean}?text=${waText}" target="_blank" class="btn-contact" style="background:#25D366; flex:1; justify-content:center; padding:7px; font-size:12px; border-radius:8px;">${currentLang === 'mr' ? '💬 व्हॉट्सॲप' : '💬 WhatsApp'}</a>
                                             </div>
                                         </div>
                                     `;
@@ -3007,10 +3135,12 @@
 
             const renderProgress = (done, total, name) => {
                 const pct = Math.round((done / total) * 100);
+                const titleStr = currentLang === 'mr' ? `⏳ फोटो कॉम्प्रेस होत आहे ${done} / ${total}` : `⏳ Compressing photo ${done} / ${total}`;
+                const cancelStr = currentLang === 'mr' ? '✕ रद्द करा' : '✕ Cancel';
                 statusDiv.innerHTML = `<div style="text-align:left;">
                     <div style="display:flex; justify-content:space-between; align-items:center; font-weight:800; margin-bottom:5px;">
-                        <span>⏳ Compressing photo ${done} / ${total}</span>
-                        <a href="#" onclick="galleryUploadCancelled=true; return false;" style="color:#DC2626; font-size:11px; text-decoration:none;">✕ Cancel</a>
+                        <span>${titleStr}</span>
+                        <a href="#" onclick="galleryUploadCancelled=true; return false;" style="color:#DC2626; font-size:11px; text-decoration:none;">${cancelStr}</a>
                     </div>
                     <div style="background:#E2E8F0; border-radius:999px; height:10px; overflow:hidden;">
                         <div style="background:#15803D; width:${pct}%; height:100%; border-radius:999px; transition:width .2s;"></div>
@@ -3023,16 +3153,22 @@
                 input.value = '';
                 statusDiv.style.color = '#DC2626';
                 if (unsupported.length > 0) {
-                    statusDiv.innerHTML = `⚠️ Found ${unsupported.length} file(s) in HEIC / RAW / VIDEO format (e.g. ${unsupported[0].name}) — web browsers cannot open these. Export/save them as JPG or PNG first, then select again.`;
+                    statusDiv.innerHTML = currentLang === 'mr'
+                        ? `⚠️ या फोल्डरमध्ये ${unsupported.length} फाईल(ल्स) HEIC / RAW / VIDEO फॉरमॅटमध्ये आहेत (उदा. ${unsupported[0].name}) — वेब ब्राउझर हे फॉरमॅट उघडू शकत नाहीत. कृपया प्रथम JPG किंवा PNG म्हणून सेव्ह करा.`
+                        : `⚠️ Found ${unsupported.length} file(s) in HEIC / RAW / VIDEO format (e.g. ${unsupported[0].name}) — web browsers cannot open these. Export/save them as JPG or PNG first, then select again.`;
                 } else {
-                    statusDiv.innerHTML = '⚠️ No supported photos found in this folder (supported: JPG, PNG, GIF, WEBP, BMP, AVIF).';
+                    statusDiv.innerHTML = currentLang === 'mr'
+                        ? '⚠️ या फोल्डरमध्ये समर्थित फोटो सापडले नाहीत (समर्थित फॉरमॅट: JPG, PNG, GIF, WEBP, BMP, AVIF).'
+                        : '⚠️ No supported photos found in this folder (supported: JPG, PNG, GIF, WEBP, BMP, AVIF).';
                 }
                 return;
             }
 
             if (unsupported.length > 0) {
                 statusDiv.style.color = '#92400E';
-                statusDiv.innerHTML = `ℹ️ ${unsupported.length} file(s) are HEIC / RAW / VIDEO and cannot be displayed — skipping those automatically.`;
+                statusDiv.innerHTML = currentLang === 'mr'
+                    ? `ℹ️ ${unsupported.length} फाईल(ल्स) HEIC / RAW / VIDEO फॉरमॅटमधील असल्याने वगळल्या आहेत.`
+                    : `ℹ️ ${unsupported.length} file(s) are HEIC / RAW / VIDEO and cannot be displayed — skipping those automatically.`;
             } else {
                 statusDiv.style.color = '#15803D';
             }
@@ -3046,13 +3182,15 @@
             let done = 0;
             let failed = 0;
             galleryUploadCancelled = false;
-            renderProgress(0, total, 'Starting...');
+            renderProgress(0, total, currentLang === 'mr' ? 'सुरुवात होत आहे...' : 'Starting...');
 
             for (let i = 0; i < total; i++) {
                 if (galleryUploadCancelled) {
                     galleryUploadCancelled = false;
                     statusDiv.style.color = '#92400E';
-                    statusDiv.innerHTML = `⏹️ Cancelled — ${existing.size} photo(s) ready so far. Click "Create Gallery" to save.`;
+                    statusDiv.innerHTML = currentLang === 'mr'
+                        ? `⏹️ रद्द केले — ${existing.size} फोटो तयार आहेत. सेव्ह करण्यासाठी "गॅलरी तयार करा" वर क्लिक करा.`
+                        : `⏹️ Cancelled — ${existing.size} photo(s) ready so far. Click "Create Gallery" to save.`;
                     input.value = '';
                     return;
                 }
@@ -3073,11 +3211,15 @@
 
             if (existing.size === 0) {
                 statusDiv.style.color = '#DC2626';
-                statusDiv.innerHTML = '⚠️ None of the selected files could be processed. Please select JPG/PNG photos.';
+                statusDiv.innerHTML = currentLang === 'mr'
+                    ? '⚠️ निवडलेल्या फाईल्स प्रोसेस होऊ शकल्या नाहीत. कृपया JPG/PNG फोटो निवडा.'
+                    : '⚠️ None of the selected files could be processed. Please select JPG/PNG photos.';
             } else {
-                let msg = `✅ ${done} photo(s) ready & compressed. Now click "Create Gallery" to save.`;
-                if (failed > 0) msg += ` • ${failed} skipped (corrupt/unsupported).`;
-                if (imageFiles.length > total) msg += ` • ${imageFiles.length - total} more not added (max ${GALLERY_PHOTO_MAX} per select) — select the folder again to add the rest.`;
+                let msg = currentLang === 'mr'
+                    ? `✅ ${done} फोटो तयार आणि कॉम्प्रेस झाले. आता सेव्ह करण्यासाठी "गॅलरी तयार करा" वर क्लिक करा.`
+                    : `✅ ${done} photo(s) ready & compressed. Now click "Create Gallery" to save.`;
+                if (failed > 0) msg += currentLang === 'mr' ? ` • ${failed} वगळले (असमर्थित).` : ` • ${failed} skipped (corrupt/unsupported).`;
+                if (imageFiles.length > total) msg += currentLang === 'mr' ? ` • ${imageFiles.length - total} अधिक फोटो जोडलेले नाहीत (एका वेळी जास्तीत जास्त ${GALLERY_PHOTO_MAX}) — उर्वरित फोटो जोडण्यासाठी पुन्हा फोल्डर निवडा.` : ` • ${imageFiles.length - total} more not added (max ${GALLERY_PHOTO_MAX} per select) — select the folder again to add the rest.`;
                 statusDiv.style.color = '#15803D';
                 statusDiv.innerHTML = msg;
             }
@@ -3095,11 +3237,11 @@
                 return u;
             });
             if (thumbs.length === 0) {
-                return '<div style="font-size:12px; color:#94A3B8; font-style:italic;">No photos yet</div>';
+                return `<div style="font-size:12px; color:#94A3B8; font-style:italic;">${currentLang === 'mr' ? 'अद्याप फोटो नाहीत' : 'No photos yet'}</div>`;
             }
             return '<div style="display:flex; gap:6px; flex-wrap:wrap; margin:10px 0;">' + thumbs.map(u => {
                 return `<img src="${u}" alt="photo" style="width:64px; height:64px; object-fit:cover; border-radius:8px; border:1px solid #E2E8F0;" onerror="this.style.display='none';">`;
-            }).join('') + (urls.length > thumbs.length ? `<div style="font-size:11px; color:#64748B; font-weight:700; align-self:center;">+${urls.length - thumbs.length} more</div>` : '') + '</div>';
+            }).join('') + (urls.length > thumbs.length ? `<div style="font-size:11px; color:#64748B; font-weight:700; align-self:center;">+${urls.length - thumbs.length} ${currentLang === 'mr' ? 'अधिक' : 'more'}</div>` : '') + '</div>';
         }
 
         async function loadAdminGalleries() {
@@ -3112,7 +3254,9 @@
                 const galleries = data.galleries || [];
 
                 if (galleries.length === 0) {
-                    container.innerHTML = '<div style="color:#666;">No private galleries created yet. Use the form above to generate a client gallery.</div>';
+                    container.innerHTML = currentLang === 'mr'
+                        ? '<div style="color:#666;">अद्याप कोणतीही खाजगी गॅलरी तयार केलेली नाही. गॅलरी तयार करण्यासाठी वरील फॉर्म वापरा.</div>'
+                        : '<div style="color:#666;">No private galleries created yet. Use the form above to generate a client gallery.</div>';
                     return;
                 }
 
@@ -3130,21 +3274,21 @@
                     <div style="background:white; border:1px solid #CBD5E1; padding:1.2rem; border-radius:10px; border-left:4px solid var(--accent-gold);">
                         <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
                             <div>
-                                <div style="font-size:11px; font-weight:700; color:var(--accent-gold); text-transform:uppercase;">Code: ${escapeHtml(g.gallery_code)} &nbsp;•&nbsp; ${pCount} photo(s)</div>
+                                <div style="font-size:11px; font-weight:700; color:var(--accent-gold); text-transform:uppercase;">${currentLang === 'mr' ? 'कोड' : 'Code'}: ${escapeHtml(g.gallery_code)} &nbsp;•&nbsp; ${pCount} ${currentLang === 'mr' ? 'फोटो' : 'photo(s)'}</div>
                                 <h4 style="font-weight:700; font-size:16px; margin:4px 0;">${escapeHtml(g.client_name)}</h4>
-                                <div style="font-size:13px; color:#475569; margin-bottom:4px;">Passcode: <code>${escapeHtml(g.passcode)}</code></div>
+                                <div style="font-size:13px; color:#475569; margin-bottom:4px;">${currentLang === 'mr' ? 'पासकोड:' : 'Passcode:'} <code>${escapeHtml(g.passcode)}</code></div>
                             </div>
                         </div>
                         ${galleryPhotoThumbs(g.gallery_code, g.passcode, g.photo_urls, 4)}
                         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
-                            <a href="/client-gallery.html?code=${encodeURIComponent(g.gallery_code)}&pass=${encodeURIComponent(g.passcode || '')}" target="_blank" class="btn-contact" style="display:inline-block; font-size:12px; background:#D4A574; color:#0F172A; font-weight:700; padding:8px 14px; border-radius:8px; text-decoration:none;">🔓 Open &amp; Auto-Unlock</a>
-                            <a href="/client-gallery.html?code=${encodeURIComponent(g.gallery_code)}" target="_blank" class="btn-contact" style="display:inline-block; font-size:12px; background:#0F172A; color:#FFFFFF; font-weight:700; padding:8px 14px; border-radius:8px; text-decoration:none;">🔗 Client Portal Link</a>
+                            <a href="/client-gallery.html?code=${encodeURIComponent(g.gallery_code)}&pass=${encodeURIComponent(g.passcode || '')}" target="_blank" class="btn-contact" style="display:inline-block; font-size:12px; background:#D4A574; color:#0F172A; font-weight:700; padding:8px 14px; border-radius:8px; text-decoration:none;">${currentLang === 'mr' ? '🔓 गॅलरी उघडा' : '🔓 Open &amp; Auto-Unlock'}</a>
+                            <a href="/client-gallery.html?code=${encodeURIComponent(g.gallery_code)}" target="_blank" class="btn-contact" style="display:inline-block; font-size:12px; background:#0F172A; color:#FFFFFF; font-weight:700; padding:8px 14px; border-radius:8px; text-decoration:none;">${currentLang === 'mr' ? '🔗 ग्राहक पोर्टल लिंक' : '🔗 Client Portal Link'}</a>
                         </div>
                     </div>
                 `;
                 }).join('');
             } catch (e) {
-                container.innerHTML = '<div style="color:#EF4444;">Failed to load galleries.</div>';
+                container.innerHTML = currentLang === 'mr' ? '<div style="color:#EF4444;">गॅलरी लोड करण्यात अडचण आली.</div>' : '<div style="color:#EF4444;">Failed to load galleries.</div>';
             }
         }
 
@@ -3156,13 +3300,13 @@
             const photoUrls = parseGalleryPhotoList(document.getElementById('gPhotos').value);
 
             if (!galleryCode || !passcode || !clientName) {
-                alert('⚠️ Please fill Gallery Code, Passcode, and Client Name.');
+                alert(currentLang === 'mr' ? '⚠️ कृपया गॅलरी कोड, पासकोड आणि ग्राहकाचे नाव भरा.' : '⚠️ Please fill Gallery Code, Passcode, and Client Name.');
                 return;
             }
 
             const submitBtn = e.target.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
-            submitBtn.textContent = '⏳ Creating Private Gallery...';
+            submitBtn.textContent = currentLang === 'mr' ? '⏳ खाजगी गॅलरी तयार करत आहे...' : '⏳ Creating Private Gallery...';
 
             try {
                 const codeUpper = galleryCode.toUpperCase();
@@ -3182,7 +3326,7 @@
                 });
                 const data = await res.json();
                 if (!data.success) {
-                    alert('⚠️ ' + (data.error || 'Failed to create gallery.'));
+                    alert(currentLang === 'mr' ? '⚠️ गॅलरी तयार करता आली नाही: ' + (data.error || '') : ('⚠️ ' + (data.error || 'Failed to create gallery.')));
                     return;
                 }
 
@@ -3195,22 +3339,22 @@
                     });
                     const appendData = await appendRes.json();
                     if (!appendData.success) {
-                        alert(`⚠️ Gallery created but some photos failed to save (chunk ${i + 1}).`);
+                        alert(currentLang === 'mr' ? `⚠️ गॅलरी तयार झाली पण काही फोटो सेव्ह होऊ शकले नाहीत (भाग ${i + 1}).` : `⚠️ Gallery created but some photos failed to save (chunk ${i + 1}).`);
                         break;
                     }
                 }
 
-                alert(`✅ Private Gallery created successfully with ${photoUrls.length} photo(s)!`);
+                alert(currentLang === 'mr' ? `✅ ${photoUrls.length} फोटोंसह खाजगी गॅलरी यशस्वीरित्या तयार केली!` : `✅ Private Gallery created successfully with ${photoUrls.length} photo(s)!`);
                 document.getElementById('createGalleryForm').reset();
                 document.getElementById('gPhotos').value = '';
                 document.getElementById('uploadPhotoStatus').innerHTML = '';
                 loadAdminGalleries();
             } catch (e) {
                 console.error('Create gallery error:', e);
-                alert('⚠️ Failed to create gallery. Please try again.');
+                alert(currentLang === 'mr' ? '⚠️ गॅलरी तयार करण्यात अडचण आली. कृपया पुन्हा प्रयत्न करा.' : '⚠️ Failed to create gallery. Please try again.');
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Create Gallery & Generate Passcode →';
+                submitBtn.textContent = currentLang === 'mr' ? 'गॅलरी तयार करा आणि पासकोड बनवा →' : 'Create Gallery & Generate Passcode →';
             }
         });
 
@@ -3225,7 +3369,9 @@
                 const reviews = data.reviews || [];
 
                 if (reviews.length === 0) {
-                    container.innerHTML = '<div style="color:#64748B; font-weight:600; text-align:center; padding:2rem; background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px;">🌟 No client reviews submitted yet. Client reviews will appear here for moderation!</div>';
+                    container.innerHTML = currentLang === 'mr'
+                        ? '<div style="color:#64748B; font-weight:600; text-align:center; padding:2rem; background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px;">🌟 अद्याप कोणतेही ग्राहक अभिप्राय आलेले नाहीत. ग्राहकांनी दिलेले अभिप्राय तपासणीसाठी येथे दिसतील!</div>'
+                        : '<div style="color:#64748B; font-weight:600; text-align:center; padding:2rem; background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px;">🌟 No client reviews submitted yet. Client reviews will appear here for moderation!</div>';
                     return;
                 }
 
@@ -3233,23 +3379,23 @@
                     <div style="background:#FFFFFF; border:1px solid #E2E8F0; padding:1.2rem; border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
                         <div>
                             <div style="color:#EAB308; font-size:16px; margin-bottom:4px;">${'⭐'.repeat(r.rating || 5)}</div>
-                            <h4 style="font-weight:700; font-size:16px; font-family:'Playfair Display',serif; color:#0F172A; margin:2px 0;">${escapeHtml(r.client_name)} <span style="font-weight:600; font-size:12px; color:#D4A574;">(${escapeHtml(r.event_type)})</span></h4>
+                            <h4 style="font-weight:700; font-size:16px; font-family:'Playfair Display',serif; color:#0F172A; margin:2px 0;">${escapeHtml(r.client_name)} <span style="font-weight:600; font-size:12px; color:#D4A574;">(${escapeHtml(currentLang === 'mr' ? getLocalizedEventType(r.event_type) : r.event_type)})</span></h4>
                             <p style="font-size:13px; color:#334155; margin-top:4px; font-style:italic;">"${escapeHtml(r.review_text)}"</p>
                         </div>
                         <div style="display:flex; gap:8px; align-items:center;">
                             ${r.is_approved ? `
-                                <span class="status-badge confirmed">Approved ✓</span>
-                                <button class="btn-block" onclick="approveReview(${r.id}, false)">Reject / Hide 🚫</button>
+                                <span class="status-badge confirmed">${currentLang === 'mr' ? 'मंजूर ✓' : 'Approved ✓'}</span>
+                                <button class="btn-block" onclick="approveReview(${r.id}, false)">${currentLang === 'mr' ? 'नाकारा / लपवा 🚫' : 'Reject / Hide 🚫'}</button>
                             ` : `
-                                <button class="btn-confirm" onclick="approveReview(${r.id}, true)">Approve & Show on Website ✅</button>
+                                <button class="btn-confirm" onclick="approveReview(${r.id}, true)">${currentLang === 'mr' ? 'मंजूर करा व दाखवा ✅' : 'Approve & Show on Website ✅'}</button>
                             `}
-                            <button class="btn-delete" onclick="deleteReview(${r.id})">🗑️ Delete</button>
+                            <button class="btn-delete" onclick="deleteReview(${r.id})">${currentLang === 'mr' ? '🗑️ डिलीट' : '🗑️ Delete'}</button>
                         </div>
                     </div>
                 `).join('');
             } catch (e) {
                 console.error('loadAdminReviews error:', e);
-                container.innerHTML = '<div style="color:#DC2626; font-weight:600;">Failed to load reviews. Please refresh.</div>';
+                container.innerHTML = currentLang === 'mr' ? '<div style="color:#DC2626; font-weight:600;">अभिप्राय लोड करण्यात अडचण आली. कृपया रिफ्रेश करा.</div>' : '<div style="color:#DC2626; font-weight:600;">Failed to load reviews. Please refresh.</div>';
             }
         }
 
@@ -3262,17 +3408,17 @@
                 });
                 loadAdminReviews();
             } catch (e) {
-                alert('⚠️ Failed to update review.');
+                alert(currentLang === 'mr' ? '⚠️ अभिप्राय अपडेट करण्यात अडचण आली.' : '⚠️ Failed to update review.');
             }
         }
 
         async function deleteReview(id) {
-            if (!confirm('Are you sure you want to delete this review?')) return;
+            if (!confirm(currentLang === 'mr' ? 'तुम्हाला नक्की हा अभिप्राय डिलीट करायचा आहे का?' : 'Are you sure you want to delete this review?')) return;
             try {
                 await fetch(`/api/reviews/${id}`, { method: 'DELETE' });
                 loadAdminReviews();
             } catch (e) {
-                alert('⚠️ Failed to delete review.');
+                alert(currentLang === 'mr' ? '⚠️ अभिप्राय डिलीट करण्यात अडचण आली.' : '⚠️ Failed to delete review.');
             }
         }
 
@@ -3299,20 +3445,22 @@
             const badgeCount = document.getElementById('categoryPhotosCount');
             if (!container) return;
 
-            container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#64748B; font-weight:600;">⏳ Loading portfolio photos for selected category...</div>';
+            container.innerHTML = currentLang === 'mr'
+                ? '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#64748B; font-weight:600;">⏳ निवडलेल्या कॅटेगरीचे फोटो लोड होत आहेत...</div>'
+                : '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#64748B; font-weight:600;">⏳ Loading portfolio photos for selected category...</div>';
 
             try {
                 const res = await fetch(`/api/portfolio-items?category=${currentCategoryFilter}&t=${Date.now()}`);
                 const data = await res.json();
                 const items = data.items || [];
 
-                if (badgeCount) badgeCount.textContent = `${items.length} photo(s)`;
+                if (badgeCount) badgeCount.textContent = currentLang === 'mr' ? `${items.length} फोटो` : `${items.length} photo(s)`;
 
                 if (items.length === 0) {
                     container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:#FFFFFF; border:2px dashed #E2E8F0; border-radius:16px; color:#64748B;">
                         <div style="font-size:36px; margin-bottom:0.5rem;">📷</div>
-                        <div style="font-weight:700; color:#0F172A; font-size:15px;">No photos added for this category card yet</div>
-                        <div style="font-size:13px; color:#64748B; margin-top:4px;">Use the upload button above to add photos to this card!</div>
+                        <div style="font-weight:700; color:#0F172A; font-size:15px;">${currentLang === 'mr' ? 'या कॅटेगरीसाठी अद्याप फोटो जोडलेले नाहीत' : 'No photos added for this category card yet'}</div>
+                        <div style="font-size:13px; color:#64748B; margin-top:4px;">${currentLang === 'mr' ? 'या कार्डमध्ये फोटो जोडण्यासाठी वरील अपलोड बटण वापरा!' : 'Use the upload button above to add photos to this card!'}</div>
                     </div>`;
                     return;
                 }
@@ -3321,19 +3469,21 @@
                     <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.04); display:flex; flex-direction:column;">
                         <div style="height:180px; width:100%; background:#000; overflow:hidden; position:relative;">
                             <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(item.title)}" style="width:100%; height:100%; object-fit:cover;">
-                            <span style="position:absolute; top:8px; left:8px; background:rgba(15,23,42,0.85); color:#D4A574; font-size:11px; font-weight:700; padding:4px 10px; border-radius:12px; text-transform:uppercase;">${escapeHtml(item.category)}</span>
+                            <span style="position:absolute; top:8px; left:8px; background:rgba(15,23,42,0.85); color:#D4A574; font-size:11px; font-weight:700; padding:4px 10px; border-radius:12px; text-transform:uppercase;">${escapeHtml(currentLang === 'mr' ? getLocalizedEventType(item.category) : item.category)}</span>
                         </div>
                         <div style="padding:12px; display:flex; justify-content:space-between; align-items:center; background:#FFFFFF;">
-                            <div style="font-size:13px; font-weight:700; color:#0F172A; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:130px;">${escapeHtml(item.title || 'Portfolio Image')}</div>
+                            <div style="font-size:13px; font-weight:700; color:#0F172A; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:130px;">${escapeHtml(item.title || (currentLang === 'mr' ? 'कलेक्शन फोटो' : 'Portfolio Image'))}</div>
                             <button onclick="deleteCategoryPhoto('${item.id}')" style="background:#FEF2F2; color:#DC2626; border:1px solid #FCA5A5; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer;" onmouseover="this.style.background='#DC2626'; this.style.color='#FFF';" onmouseout="this.style.background='#FEF2F2'; this.style.color='#DC2626';">
-                                🗑️ Delete
+                                ${currentLang === 'mr' ? '🗑️ डिलीट' : '🗑️ Delete'}
                             </button>
                         </div>
                     </div>
                 `).join('');
             } catch (e) {
                 console.error('loadCategoryCardPhotos error:', e);
-                container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#DC2626; font-weight:700;">⚠️ Failed to load category photos.</div>';
+                container.innerHTML = currentLang === 'mr'
+                    ? '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#DC2626; font-weight:700;">⚠️ कॅटेगरीचे फोटो लोड करण्यात अडचण आली.</div>'
+                    : '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#DC2626; font-weight:700;">⚠️ Failed to load category photos.</div>';
             }
         }
 
@@ -3351,7 +3501,10 @@
             if (!files || files.length === 0) return;
 
             const statusDiv = document.getElementById('catUploadStatus');
-            if (statusDiv) statusDiv.innerHTML = `⏳ Uploading ${files.length} photo(s) to ${currentCategoryFilter.toUpperCase()}...`;
+            const catNameDisplay = currentLang === 'mr' ? getLocalizedEventType(currentCategoryFilter) : currentCategoryFilter.toUpperCase();
+            if (statusDiv) statusDiv.innerHTML = currentLang === 'mr'
+                ? `⏳ ${catNameDisplay} साठी ${files.length} फोटो अपलोड होत आहेत...`
+                : `⏳ Uploading ${files.length} photo(s) to ${currentCategoryFilter.toUpperCase()}...`;
 
             let successCount = 0;
             const titleInput = document.getElementById('catPhotoTitle')?.value.trim();
@@ -3378,23 +3531,25 @@
             }
 
             fileInput.value = '';
-            if (statusDiv) statusDiv.innerHTML = `✅ Successfully uploaded ${successCount} photo(s) to ${currentCategoryFilter.toUpperCase()}!`;
+            if (statusDiv) statusDiv.innerHTML = currentLang === 'mr'
+                ? `✅ ${catNameDisplay} साठी ${successCount} फोटो यशस्वीरित्या अपलोड झाले!`
+                : `✅ Successfully uploaded ${successCount} photo(s) to ${currentCategoryFilter.toUpperCase()}!`;
             setTimeout(() => { if (statusDiv) statusDiv.innerHTML = ''; }, 4000);
             loadCategoryCardPhotos();
         }
 
         async function deleteCategoryPhoto(id) {
-            if (!confirm('Are you sure you want to delete this photo from this category card?')) return;
+            if (!confirm(currentLang === 'mr' ? 'तुम्हाला नक्की हा फोटो या कॅटेगरी कार्डवरून डिलीट करायचा आहे का?' : 'Are you sure you want to delete this photo from this category card?')) return;
             try {
                 const res = await fetch(`/api/portfolio-items/${id}`, { method: 'DELETE' });
                 const data = await res.json();
                 if (data.success) {
                     loadCategoryCardPhotos();
                 } else {
-                    alert('⚠️ ' + (data.error || 'Failed to delete photo.'));
+                    alert(currentLang === 'mr' ? '⚠️ फोटो डिलीट करण्यात अडचण आली.' : ('⚠️ ' + (data.error || 'Failed to delete photo.')));
                 }
             } catch (e) {
-                alert('⚠️ Failed to delete photo.');
+                alert(currentLang === 'mr' ? '⚠️ फोटो डिलीट करण्यात अडचण आली.' : '⚠️ Failed to delete photo.');
             }
         }
 
