@@ -3303,25 +3303,259 @@
             }
         }
 
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Helper function for Client Name translation (Marathi <-> English)
+        function getLocalizedClientName(name) {
+            if (!name) return '';
+            const trimmed = String(name).trim();
+
+            if (currentLang === 'mr') {
+                const nameMap = {
+                    'sayan sir': 'सायन सर',
+                    'sayan': 'सायन',
+                    'sir': 'सर',
+                    'neha deshmukh': 'नेहा देशमुख',
+                    'neha': 'नेहा',
+                    'deshmukh': 'देशमुख',
+                    'amit & priya': 'अमित आणि प्रिया',
+                    'amit and priya': 'अमित आणि प्रिया',
+                    'amit': 'अमित',
+                    'priya': 'प्रिया',
+                    'siddharth patil': 'सिद्धार्थ पाटील',
+                    'siddharth': 'सिद्धार्थ',
+                    'patil': 'पाटील',
+                    'rahul & sneha': 'राहुल आणि स्नेहा',
+                    'rahul and sneha': 'राहुल आणि स्नेहा',
+                    'rahul & pooja': 'राहुल आणि पूजा',
+                    'rahul and pooja': 'राहुल आणि पूजा',
+                    'rahul': 'राहुल',
+                    'sneha': 'स्नेहा',
+                    'pooja': 'पूजा',
+                    'saurabh doiphode': 'सौरभ डोईफोडे',
+                    'saurabh': 'सौरभ',
+                    'omkar doiphode': 'ओमकार डोईफोडे',
+                    'omkar': 'ओमकार',
+                    'rohit': 'रोहित',
+                    'anita': 'अनिता',
+                    'vikram': 'विक्रम',
+                    'pawar': 'पवार',
+                    'shinde': 'शिंदे',
+                    'kulkarni': 'कुलकर्णी',
+                    'joshi': 'जोशी',
+                    'jadhav': 'जाधव',
+                    'more': 'मोरे',
+                    'kale': 'काळे',
+                    'bhosale': 'भोसले',
+                    'gawade': 'गवाडे',
+                    'chavan': 'चव्हाण',
+                    'raut': 'राऊत',
+                    'gaikwad': 'गायकवाड'
+                };
+
+                const lower = trimmed.toLowerCase();
+                if (nameMap[lower]) return nameMap[lower];
+
+                const words = lower.split(/\s+/);
+                const translatedWords = words.map(w => {
+                    if (w === '&' || w === 'and') return 'आणि';
+                    return nameMap[w] || w;
+                });
+                const combined = translatedWords.join(' ');
+                if (combined !== lower) return combined;
+
+                return trimmed;
+            } else {
+                const mrToEnNames = {
+                    'सायन सर': 'Sayan Sir',
+                    'सायन': 'Sayan',
+                    'नेहा देशमुख': 'Neha Deshmukh',
+                    'अमित आणि प्रिया': 'Amit & Priya',
+                    'सिद्धार्थ पाटील': 'Siddharth Patil',
+                    'राहुल आणि स्नेहा': 'Rahul & Sneha',
+                    'राहुल आणि पूजा': 'Rahul & Pooja',
+                    'सौरभ डोईफोडे': 'Saurabh Doiphode',
+                    'सौरभ': 'Saurabh',
+                    'ओमकार डोईफोडे': 'Omkar Doiphode',
+                    'ओमकार': 'Omkar'
+                };
+                return mrToEnNames[trimmed] || trimmed;
+            }
+        }
+
+        // Helper function for Review Text translation (Marathi <-> English)
+        function getLocalizedReviewText(text) {
+            if (!text) return '';
+            const trimmed = String(text).trim();
+
+            if (currentLang === 'mr') {
+                const fullMap = {
+                    'excellent': 'अतिशय उत्कृष्ट!',
+                    'excellent!': 'अतिशय उत्कृष्ट!',
+                    'good': 'खूप छान!',
+                    'good!': 'खूप छान!',
+                    'very good': 'फार छान!',
+                    'very good!': 'फार छान!',
+                    'superb': 'अप्रतिम!',
+                    'superb!': 'अप्रतिम!',
+                    'great': 'उत्तम!',
+                    'great!': 'उत्तम!',
+                    'awesome': 'खूपच सुंदर!',
+                    'awesome!': 'खूपच सुंदर!',
+                    'nice': 'छान!',
+                    'nice!': 'छान!',
+                    'nice work': 'छान काम!',
+                    'great work': 'उत्तम काम!',
+                    'best photography': 'सर्वोत्तम फोटोग्राफी!',
+                    'best photographer': 'सर्वोत्तम छायाचित्रकार!',
+                    'loved it': 'फार आवडले!',
+                    'loved it!': 'फार आवडले!',
+                    'amazing experience': 'अप्रतिम अनुभव!',
+                    'loved the newborn baby photoshoot themes! so patient and gentle with our baby. highly recommended!': 'बाळाच्या फोटोशूटच्या थीम्स खूप आवडल्या! आमच्या बाळासोबत खूप संयमाने आणि प्रेमाने फोटोशूट केले. नक्की शिफारस करेन!',
+                    'loved the newborn baby photoshoot themes! so patient and gentle with our baby. highly recommended': 'बाळाच्या फोटोशूटच्या थीम्स खूप आवडल्या! आमच्या बाळासोबत खूप संयमाने आणि प्रेमाने फोटोशूट केले. नक्की शिफारस करेन!',
+                    'omkar captured our wedding so beautifully! the lighting and emotional shots were beyond expectation.': 'ओमकार यांनी आमचे लग्न खूप सुंदर टिपले! लाइटिंग आणि भावूक क्षण अपेक्षेपेक्षा जास्त छान होते.',
+                    'omkar captured our wedding so beautifully! the lighting and emotional shots were beyond expectation': 'ओमकार यांनी आमचे लग्न खूप सुंदर टिपले! लाइटिंग आणि भावूक क्षण अपेक्षेपेक्षा जास्त छान होते.',
+                    'amazing pre-wedding shoot experience at mahabaleshwar. super professional and creative team!': 'महाबळेश्वरमधील प्री-वेडिंग फोटोशूटचा अप्रतिम अनुभव. अत्यंत व्यावसायिक आणि कल्पक टीम!',
+                    'amazing pre-wedding shoot experience at mahabaleshwar. super professional and creative team': 'महाबळेश्वरमधील प्री-वेडिंग फोटोशूटचा अप्रतिम अनुभव. अत्यंत व्यावसायिक आणि कल्पक टीम!',
+                    'amazing experience with omkar!': 'ओमकार यांच्यासोबत अतिशय अप्रतिम अनुभव आला!',
+                    'amazing experience with omkar': 'ओमकार यांच्यासोबत अतिशय अप्रतिम अनुभव आला!'
+                };
+
+                const lower = trimmed.toLowerCase();
+                if (fullMap[trimmed]) return fullMap[trimmed];
+                if (fullMap[lower]) return fullMap[lower];
+
+                let translated = trimmed;
+                const phraseMap = [
+                    [/\bhighly recommended\b/gi, 'नक्की शिफारस करतो'],
+                    [/\brecommended\b/gi, 'शिफारस करतो'],
+                    [/\bvery good\b/gi, 'फार छान'],
+                    [/\bvery nice\b/gi, 'खूप छान'],
+                    [/\bso patient\b/gi, 'फार संयमी'],
+                    [/\bgreat work\b/gi, 'उत्तम काम'],
+                    [/\bgreat service\b/gi, 'उत्तम सेवा'],
+                    [/\bbest photographer\b/gi, 'सर्वोत्तम छायाचित्रकार'],
+                    [/\bawesome photography\b/gi, 'अप्रतिम फोटोग्राफी'],
+                    [/\bexcellent\b/gi, 'उत्कृष्ट'],
+                    [/\bgood\b/gi, 'छान'],
+                    [/\bgreat\b/gi, 'उत्तम'],
+                    [/\bsuperb\b/gi, 'अप्रतिम'],
+                    [/\bawesome\b/gi, 'अप्रतिम'],
+                    [/\bamazing\b/gi, 'अप्रतिम'],
+                    [/\bnice\b/gi, 'छान'],
+                    [/\bbeautiful\b/gi, 'सुंदर'],
+                    [/\bbeautifully\b/gi, 'सुंदरपणे'],
+                    [/\bwonderful\b/gi, 'सुंदर'],
+                    [/\bprofessional\b/gi, 'व्यावसायिक'],
+                    [/\bcreative\b/gi, 'कल्पक'],
+                    [/\bphotography\b/gi, 'फोटोग्राफी'],
+                    [/\bphotographer\b/gi, 'छायाचित्रकार'],
+                    [/\bphotoshoot\b/gi, 'फोटोशूट'],
+                    [/\bphotos\b/gi, 'फोटो'],
+                    [/\bexperience\b/gi, 'अनुभव'],
+                    [/\bwedding\b/gi, 'लग्न'],
+                    [/\bteam\b/gi, 'टीम'],
+                    [/\bquality\b/gi, 'दर्जा'],
+                    [/\bmemories\b/gi, 'आठवणी'],
+                    [/\bthank you\b/gi, 'धन्यवाद'],
+                    [/\bthanks\b/gi, 'धन्यवाद']
+                ];
+                for (const [regex, rep] of phraseMap) {
+                    translated = translated.replace(regex, rep);
+                }
+                return translated;
+            } else {
+                const mrToEnMap = {
+                    'अतिशय उत्कृष्ट!': 'Excellent!',
+                    'अतिशय उत्कृष्ट': 'Excellent',
+                    'उत्कृष्ट': 'Excellent',
+                    'खूप छान!': 'Very good!',
+                    'खूप छान': 'Very good',
+                    'छान': 'Good',
+                    'फार छान!': 'Very nice!',
+                    'फार छान': 'Very nice',
+                    'उत्तम!': 'Great!',
+                    'उत्तम': 'Great',
+                    'अप्रतिम!': 'Awesome!',
+                    'अप्रतिम': 'Awesome',
+                    'सुंदर': 'Beautiful',
+                    'धन्यवाद!': 'Thank you!',
+                    'धन्यवाद': 'Thank you',
+                    'बाळाच्या फोटोशूटच्या थीम्स खूप आवडल्या! आमच्या बाळासोबत खूप संयमाने आणि प्रेमाने फोटोशूट केले. नक्की शिफारस करेन!': 'Loved the newborn baby photoshoot themes! So patient and gentle with our baby. Highly recommended!',
+                    'ओमकार यांनी आमचे लग्न खूप सुंदर टिपले! लाइटिंग आणि भावूक क्षण अपेक्षेपेक्षा जास्त छान होते.': 'Omkar captured our wedding so beautifully! The lighting and emotional shots were beyond expectation.',
+                    'महाबळेश्वरमधील प्री-वेडिंग फोटोशूटचा अप्रतिम अनुभव. अत्यंत व्यावसायिक आणि कल्पक टीम!': 'Amazing pre-wedding shoot experience at Mahabaleshwar. Super professional and creative team!'
+                };
+                return mrToEnMap[trimmed] || trimmed;
+            }
+        }
+
         // Helper function for Marathi Event Type translation
         function getLocalizedEventType(eventType) {
             if (!eventType) return '';
+            const trimmed = String(eventType).trim();
             if (currentLang === 'mr') {
                 const map = {
-                    'Marriage Package': 'लग्न सोहळा पॅकेज',
-                    'Pre-Wedding Shoot': 'प्री-वेडिंग फोटोशूट',
-                    'Baby Shoot': 'बाळाचे फोटोशूट',
-                    'Birthday Shoot': 'वाढदिवस फोटोशूट 🎂',
-                    'Events & Lifestyle': 'कार्यक्रम व सोहळे',
-                    'Photoshoot': 'मॉडेल / स्टुडिओ फोटोशूट 📸'
+                    'marriage package': 'लग्न सोहळा पॅकेज',
+                    'wedding photography': 'लग्न सोहळा फोटोग्राफी',
+                    'pre-wedding shoot': 'प्री-वेडिंग फोटोशूट',
+                    'pre wedding shoot': 'प्री-वेडिंग फोटोशूट',
+                    'pre-wedding photography': 'प्री-वेडिंग फोटोग्राफी',
+                    'baby shoot': 'बाळाचे फोटोशूट',
+                    'newborn baby photography': 'नवजात बाळाचे फोटोशूट',
+                    'birthday shoot': 'वाढदिवस फोटोशूट 🎂',
+                    'birthday photography': 'वाढदिवस फोटोग्राफी',
+                    'events & lifestyle': 'कार्यक्रम व सोहळे',
+                    'events and lifestyle': 'कार्यक्रम व सोहळे',
+                    'event photography': 'कार्यक्रम व सोहळे',
+                    'cinematic wedding films': 'सिनेमॅटिक लग्न चित्रपट',
+                    'model portfolio': 'मॉडेल पोर्टफोलिओ',
+                    'photoshoot': 'मॉडेल / स्टुडिओ फोटोशूट 📸',
+                    'wedding': 'लग्न सोहळे 💍',
+                    'prewedding': 'प्री-वेडिंग 💑',
+                    'baby': 'बाळाचे फोटो 👶',
+                    'birthday': 'वाढदिवस 🎂',
+                    'events': 'कार्यक्रम व सोहळे 🎉'
                 };
+                const lower = trimmed.toLowerCase();
                 for (let k in map) {
-                    if (eventType.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(eventType.toLowerCase())) {
+                    if (lower === k || lower.includes(k) || k.includes(lower)) {
                         return map[k];
                     }
                 }
+                return map[lower] || trimmed;
+            } else {
+                const mrToEnMap = {
+                    'लग्न सोहळा पॅकेज': 'Marriage Package',
+                    'लग्न सोहळा फोटोग्राफी': 'Wedding Photography',
+                    'प्री-वेडिंग फोटोशूट': 'Pre-Wedding Shoot',
+                    'प्री-वेडिंग फोटोग्राफी': 'Pre-Wedding Photography',
+                    'बाळाचे फोटोशूट': 'Baby Shoot',
+                    'नवजात बाळाचे फोटोशूट': 'Newborn Baby Photography',
+                    'वाढदिवस फोटोशूट 🎂': 'Birthday Shoot 🎂',
+                    'वाढदिवस फोटोग्राफी': 'Birthday Photography',
+                    'कार्यक्रम व सोहळे': 'Events & Lifestyle',
+                    'मॉडेल / स्टुडिओ फोटोशूट 📸': 'Photoshoot 📸',
+                    'लग्न सोहळे 💍': 'Wedding 💍',
+                    'प्री-वेडिंग 💑': 'Pre-Wedding 💑',
+                    'बाळाचे फोटो 👶': 'Baby Shoot 👶',
+                    'वाढदिवस 🎂': 'Birthday 🎂',
+                    'कार्यक्रम व सोहळे 🎉': 'Events & Lifestyle 🎉'
+                };
+                for (let k in mrToEnMap) {
+                    if (trimmed.includes(k) || k.includes(trimmed)) {
+                        return mrToEnMap[k];
+                    }
+                }
+                return mrToEnMap[trimmed] || trimmed;
             }
-            return eventType;
         }
 
         // State variables for Calendar & Booking
