@@ -3968,7 +3968,20 @@
                 const container = document.getElementById('reviewsCarousel');
                 if (!container) return;
 
-                const reviews = data.reviews || [];
+                const rawReviews = data.reviews || [];
+                const seenIds = new Set();
+                const seenContent = new Set();
+                const reviews = rawReviews.filter(r => {
+                    if (!r) return false;
+                    const idKey = (r.id !== undefined && r.id !== null) ? String(r.id).trim() : null;
+                    const contentKey = `${String(r.client_name || '').trim().toLowerCase()}___${String(r.review_text || '').trim().toLowerCase()}`;
+                    if (idKey && seenIds.has(idKey)) return false;
+                    if (contentKey !== '___' && seenContent.has(contentKey)) return false;
+                    if (idKey) seenIds.add(idKey);
+                    if (contentKey !== '___') seenContent.add(contentKey);
+                    return true;
+                });
+
                 if (reviews.length === 0) {
                     container.innerHTML = currentLang === 'mr' ? '<div style="color:#666;">अद्याप कोणतेही अभिप्राय नाहीत. पहिला अभिप्राय तुम्ही द्या!</div>' : '<div style="color:#666;">No reviews submitted yet. Be the first to leave a review!</div>';
                     return;

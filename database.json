@@ -19,6 +19,36 @@
       "booking_date": "2026-12-31",
       "status": "pending",
       "created_at": "2026-09-22T04:39:54.279Z"
+    },
+    {
+      "id": 1790156094657,
+      "client_name": "Test Verification",
+      "client_phone": "9822967088",
+      "event_type": "Pre-Wedding Shoot",
+      "event_location": "Pune",
+      "booking_date": "2026-10-15",
+      "status": "pending",
+      "created_at": "2026-09-23T09:34:54.657Z"
+    },
+    {
+      "id": 1790158210102,
+      "client_name": "SAURABH",
+      "client_phone": "09822967088",
+      "event_type": "Pre-Wedding Shoot",
+      "event_location": "kopargaon",
+      "booking_date": "2026-09-24",
+      "status": "pending",
+      "created_at": "2026-09-23T10:10:10.102Z"
+    },
+    {
+      "id": 1790158290930,
+      "client_name": "SAURABH",
+      "client_phone": "09822967088",
+      "event_type": "Baby Shoot",
+      "event_location": "Taharabad",
+      "booking_date": "2026-09-29",
+      "status": "pending",
+      "created_at": "2026-09-23T10:11:30.930Z"
     }
   ],
   "blocked_dates": [

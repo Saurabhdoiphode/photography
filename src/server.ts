@@ -377,16 +377,22 @@ if (!db) {
         }
       } else if (sql.includes('INTO reviews')) {
         const [name, type, rating, text] = args;
-        localStore.data.reviews.push({
-          id: Date.now(),
-          client_name: name,
-          event_type: type,
-          rating: Number(rating) || 5,
-          review_text: text,
-          is_approved: 1,
-          created_at: new Date().toISOString()
-        });
-        localStore.save();
+        const exists = localStore.data.reviews.some(r =>
+          String(r.client_name || '').trim().toLowerCase() === String(name || '').trim().toLowerCase() &&
+          String(r.review_text || '').trim().toLowerCase() === String(text || '').trim().toLowerCase()
+        );
+        if (!exists) {
+          localStore.data.reviews.push({
+            id: Date.now(),
+            client_name: name,
+            event_type: type,
+            rating: Number(rating) || 5,
+            review_text: text,
+            is_approved: 1,
+            created_at: new Date().toISOString()
+          });
+          localStore.save();
+        }
       } else if (sql.includes('UPDATE reviews SET is_approved')) {
         const [isApproved, idVal] = args;
         localStore.data.reviews.forEach(r => {
@@ -1890,6 +1896,35 @@ app.delete(['/api/portfolio-items/:id', '/api/galleries/:id', '/api/gallery-item
   }
 });
 
+// Review Deduplication Helper (prevents double-rendering across Supabase and local store)
+function deduplicateReviews(rawReviews: any[]): any[] {
+  if (!Array.isArray(rawReviews)) return [];
+  const seenIds = new Set<string>();
+  const seenContent = new Set<string>();
+  const result: any[] = [];
+
+  for (const r of rawReviews) {
+    if (!r) continue;
+    const idKey = (r.id !== undefined && r.id !== null) ? String(r.id).trim() : null;
+    const nameNorm = String(r.client_name || '').trim().toLowerCase();
+    const textNorm = String(r.review_text || '').trim().toLowerCase();
+    const contentKey = `${nameNorm}___${textNorm}`;
+
+    if (idKey && seenIds.has(idKey)) {
+      continue;
+    }
+    if (contentKey !== '___' && seenContent.has(contentKey)) {
+      continue;
+    }
+
+    if (idKey) seenIds.add(idKey);
+    if (contentKey !== '___') seenContent.add(contentKey);
+    result.push(r);
+  }
+
+  return result;
+}
+
 // 21. Public Website Approved Reviews Endpoint
 app.get('/api/reviews', async (req: Request, res: Response) => {
   try {
@@ -1913,7 +1948,7 @@ app.get('/api/reviews', async (req: Request, res: Response) => {
       dbRows.forEach(r => {
         if (!existingIds.has(String(r.id))) combined.push(r);
       });
-      res.json({ success: true, reviews: combined });
+      res.json({ success: true, reviews: deduplicateReviews(combined) });
     });
   } catch (e) {
     res.status(500).json({ error: 'Database error' });
@@ -1938,7 +1973,7 @@ app.get('/api/admin/reviews', async (req: Request, res: Response) => {
       dbRows.forEach(r => {
         if (!existingIds.has(String(r.id))) combined.push(r);
       });
-      res.json({ success: true, reviews: combined });
+      res.json({ success: true, reviews: deduplicateReviews(combined) });
     });
   } catch (e) {
     res.status(500).json({ error: 'Database error' });

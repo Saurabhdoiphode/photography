@@ -1095,16 +1095,36 @@ app.post('/api/reviews', async (req, res) => {
     }
 });
 
+function deduplicateReviews(rawReviews) {
+    if (!Array.isArray(rawReviews)) return [];
+    const seenIds = new Set();
+    const seenContent = new Set();
+    const result = [];
+    for (const r of rawReviews) {
+        if (!r) continue;
+        const idKey = (r.id !== undefined && r.id !== null) ? String(r.id).trim() : null;
+        const nameNorm = String(r.client_name || '').trim().toLowerCase();
+        const textNorm = String(r.review_text || '').trim().toLowerCase();
+        const contentKey = `${nameNorm}___${textNorm}`;
+        if (idKey && seenIds.has(idKey)) continue;
+        if (contentKey !== '___' && seenContent.has(contentKey)) continue;
+        if (idKey) seenIds.add(idKey);
+        if (contentKey !== '___') seenContent.add(contentKey);
+        result.push(r);
+    }
+    return result;
+}
+
 app.get('/api/reviews', async (req, res) => {
     try {
         const { data: revs } = await supabase.from('reviews').select('*').eq('is_approved', 1).order('created_at', { ascending: false });
-        if (revs && revs.length > 0) return res.json({ success: true, reviews: revs });
+        if (revs && revs.length > 0) return res.json({ success: true, reviews: deduplicateReviews(revs) });
         db.all('SELECT * FROM reviews WHERE is_approved = 1 ORDER BY created_at DESC', [], (err, rows) => {
-            res.json({ success: true, reviews: rows || [] });
+            res.json({ success: true, reviews: deduplicateReviews(rows || []) });
         });
     } catch (e) {
         db.all('SELECT * FROM reviews WHERE is_approved = 1 ORDER BY created_at DESC', [], (err, rows) => {
-            res.json({ success: true, reviews: rows || [] });
+            res.json({ success: true, reviews: deduplicateReviews(rows || []) });
         });
     }
 });
@@ -1112,13 +1132,13 @@ app.get('/api/reviews', async (req, res) => {
 app.get('/api/admin/reviews', async (req, res) => {
     try {
         const { data: revs } = await supabase.from('reviews').select('*').order('created_at', { ascending: false });
-        if (revs && revs.length > 0) return res.json({ success: true, reviews: revs });
+        if (revs && revs.length > 0) return res.json({ success: true, reviews: deduplicateReviews(revs) });
         db.all('SELECT * FROM reviews ORDER BY created_at DESC', [], (err, rows) => {
-            res.json({ success: true, reviews: rows || [] });
+            res.json({ success: true, reviews: deduplicateReviews(rows || []) });
         });
     } catch (e) {
         db.all('SELECT * FROM reviews ORDER BY created_at DESC', [], (err, rows) => {
-            res.json({ success: true, reviews: rows || [] });
+            res.json({ success: true, reviews: deduplicateReviews(rows || []) });
         });
     }
 });
