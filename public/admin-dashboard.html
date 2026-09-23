@@ -2869,6 +2869,18 @@
 
         async function uploadFile(file) {
             const uploadMsg = document.getElementById('uploadMessage');
+            const isImage = file && ((file.type || '').toLowerCase().startsWith('image/') || /\.(png|jpe?g|gif|webp)$/i.test(file.name || ''));
+            if (!isImage) {
+                if (uploadMsg) {
+                    uploadMsg.style.display = 'block';
+                    uploadMsg.style.background = '#FEE2E2';
+                    uploadMsg.style.color = '#991B1B';
+                    uploadMsg.style.border = '1px solid #FCA5A5';
+                    uploadMsg.innerHTML = currentLang === 'mr' ? '❌ कृपया PNG, JPG, GIF किंवा WebP image निवडा.' : '❌ Please select a PNG, JPG, GIF, or WebP image.';
+                }
+                return;
+            }
+
             if (uploadMsg) {
                 uploadMsg.style.display = 'block';
                 uploadMsg.style.background = '#FEF3C7';
@@ -2878,33 +2890,9 @@
             }
 
             try {
-                // 1. Compress image in browser memory to max 800px & lightweight payload
-                const base64Data = await compressImageFile(file, 800, 800, 0.88);
-
-                // 2. Upload compressed Base64 Data URL to backend
-                const response = await fetch('/api/upload-logo-json', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ logoData: base64Data })
-                });
-                const result = await response.json();
-
-                if (result.success || response.ok) {
-                    if (uploadMsg) {
-                        uploadMsg.style.background = '#F0FDF4';
-                        uploadMsg.style.color = '#15803D';
-                        uploadMsg.style.border = '1px solid #86EFAC';
-                        uploadMsg.innerHTML = currentLang === 'mr' ? '✅ लोगो यशस्वीरित्या अपलोड व सक्रिय झाला!' : '✅ Brand logo uploaded and activated successfully!';
-                        setTimeout(() => { uploadMsg.style.display = 'none'; }, 4000);
-                    }
-                    await loadLogoHistory();
-                    await loadCurrentLogoPreview();
-                } else {
-                    await uploadFileFormData(file);
-                }
-            } catch (err) {
-                console.warn('Canvas logo compression/upload error, trying FormData fallback:', err);
                 await uploadFileFormData(file);
+            } catch (err) {
+                console.error('Logo upload error:', err);
             } finally {
                 const fileInput = document.getElementById('fileInput');
                 if (fileInput) fileInput.value = '';
@@ -2918,9 +2906,13 @@
                 formData.append('logo', file);
 
                 const response = await fetch('/api/upload-logo', { method: 'POST', body: formData });
-                const result = await response.json();
+                const rawResponse = await response.text();
+                let result = {};
+                try { result = rawResponse ? JSON.parse(rawResponse) : {}; } catch (parseError) {
+                    throw new Error(`Server returned an invalid response (${response.status}).`);
+                }
 
-                if (result.success || response.ok) {
+                if (response.ok && result.success) {
                     if (uploadMsg) {
                         uploadMsg.style.background = '#F0FDF4';
                         uploadMsg.style.color = '#15803D';
@@ -2944,7 +2936,7 @@
                     uploadMsg.style.background = '#FEE2E2';
                     uploadMsg.style.color = '#991B1B';
                     uploadMsg.style.border = '1px solid #FCA5A5';
-                    uploadMsg.innerHTML = currentLang === 'mr' ? '❌ फोटो निवडताना त्रुटी आली. कृपया दुसरा PNG किंवा JPG फोटो निवडा.' : '❌ Upload error: Please try selecting another PNG or JPG logo photo.';
+                        uploadMsg.innerHTML = currentLang === 'mr' ? '❌ लोगो अपलोड अयशस्वी: ' + (result.error || 'कृपया दुसरी image निवडा.') : '❌ Upload failed: ' + (result.error || 'Please select another image.');
                 }
             }
         }

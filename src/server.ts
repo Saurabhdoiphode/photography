@@ -148,7 +148,14 @@ const uploadProfile = multer({ storage: profileStorage, limits: { fileSize: 15 *
 
 // Zero-Disk Memory Storage Engine (Guarantees 100% cloud upload success on Render without disk permissions errors)
 const memoryStorage = multer.memoryStorage();
-const uploadMemoryLogo = multer({ storage: memoryStorage, limits: { fileSize: 10 * 1024 * 1024 } });
+const uploadMemoryLogo = multer({
+  storage: memoryStorage,
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    const isImage = (file.mimetype || '').toLowerCase().startsWith('image/');
+    cb(isImage ? null : new Error('Only image files are allowed (PNG, JPG, GIF, or WebP).'), isImage);
+  }
+});
 const uploadMemoryProfile = multer({ storage: memoryStorage, limits: { fileSize: 10 * 1024 * 1024 } });
 
 const galleryStorage = multer.diskStorage({
@@ -794,7 +801,7 @@ app.post('/api/upload-logo', (req: Request, res: Response) => {
   uploadMemoryLogo.single('logo')(req, res, async (err: any) => {
     if (err || !req.file) {
       console.error('Logo upload error:', err);
-      return res.status(400).json({ success: false, error: 'Please select a valid image file (PNG/JPG).' });
+      return res.status(400).json({ success: false, error: err?.message || 'Please select a valid image file (PNG, JPG, GIF, or WebP).' });
     }
 
     try {
