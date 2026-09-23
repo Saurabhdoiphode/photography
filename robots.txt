@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin-dashboard.html
 Disallow: /api/
 
-Sitemap: https://omkardoiphodephotography.netlify.app/sitemap.xml
+Sitemap: https://omkardoiphodephotographyy.netlify.app/sitemap.xml

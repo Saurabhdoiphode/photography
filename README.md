@@ -10,10 +10,10 @@ A high-end, full-stack photography studio web application, client booking manage
 
 | Portal | URL | Description |
 | :--- | :--- | :--- |
-| **Client Public Website (Netlify)** | [https://omkardoiphodephotography.netlify.app](https://omkardoiphodephotography.netlify.app) | Primary client-facing website & booking platform |
+| **Client Public Website (Netlify)** | [https://omkardoiphodephotographyy.netlify.app](https://omkardoiphodephotographyy.netlify.app) | Primary client-facing website & booking platform |
 | **Client Public Website (Render)** | [https://omkar-doiphode-photography.onrender.com](https://omkar-doiphode-photography.onrender.com) | Node.js backend hosted server instance |
-| **Admin Control Portal** | [`/admin-login.html`](https://omkardoiphodephotography.netlify.app/admin-login.html) | Secure login portal for studio management |
-| **Client Private Gallery** | [`/client-gallery.html`](https://omkardoiphodephotography.netlify.app/client-gallery.html) | Passcode-protected shoot photo delivery portal |
+| **Admin Control Portal** | [`/admin-login.html`](https://omkardoiphodephotographyy.netlify.app/admin-login.html) | Secure login portal for studio management |
+| **Client Private Gallery** | [`/client-gallery.html`](https://omkardoiphodephotographyy.netlify.app/client-gallery.html) | Passcode-protected shoot photo delivery portal |
 
 ---
 
@@ -215,7 +215,7 @@ When deploying to Render, Netlify, or Vercel, set the following environment vari
 This application is fully optimized for **Netlify Deployment** using a hybrid architecture: static site hosting for the frontend files (`public/`) combined with **Netlify Serverless Functions** (`functions/api.js`) powered by `serverless-http` and Express.js.
 
 ### 🌐 Live Netlify URL
-- **Production Site**: [https://omkardoiphodephotography.netlify.app](https://omkardoiphodephotography.netlify.app)
+- **Production Site**: [https://omkardoiphodephotographyy.netlify.app](https://omkardoiphodephotographyy.netlify.app)
 
 ---
 

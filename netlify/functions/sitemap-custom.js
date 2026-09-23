@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
-const BASE_URL = process.env.SITE_URL || 'https://omkardoiphodephotography.netlify.app';
+const BASE_URL = process.env.SITE_URL || 'https://omkardoiphodephotographyy.netlify.app';
 
-const STATIC_PAGES = ['', '/admin', '/client-gallery.html'];
+const STATIC_PAGES = [''];
 const EXCLUDE = new Set(['admin-dashboard.html', 'admin-login.html']);
 
 function getHtmlFiles(dir) {
