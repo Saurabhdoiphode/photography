@@ -4230,11 +4230,11 @@
                     <div style="background:#FDFBF7; border:1px solid var(--soft-rose); border-radius:14px; padding:1.5rem; box-shadow:0 6px 20px rgba(0,0,0,0.04); display:flex; flex-direction:column; justify-space-between;">
                         <div>
                             <div style="color:#EAB308; font-size:1rem; margin-bottom:8px;">${'⭐'.repeat(r.rating || 5)}</div>
-                            <p style="font-size:0.9rem; color:#374151; font-style:italic; margin-bottom:1rem; line-height:1.6;">"${r.review_text}"</p>
+                            <p style="font-size:0.9rem; color:#374151; font-style:italic; margin-bottom:1rem; line-height:1.6;">"${escapeHtml(currentLang === 'mr' ? getLocalizedReviewText(r.review_text) : (getLocalizedReviewText(r.review_text) || r.review_text))}"</p>
                         </div>
                         <div style="border-top:1px solid #F3EAE1; padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-weight:700; color:#1A1A1A; font-size:0.9rem;">${r.client_name}</span>
-                            <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:600;">${currentLang === 'mr' ? getLocalizedEventType(r.event_type) : r.event_type}</span>
+                            <span style="font-weight:700; color:#1A1A1A; font-size:0.9rem;">${escapeHtml(currentLang === 'mr' ? getLocalizedClientName(r.client_name) : (getLocalizedClientName(r.client_name) || r.client_name))}</span>
+                            <span style="font-size:0.75rem; color:var(--accent-gold); font-weight:600;">${escapeHtml(getLocalizedEventType(r.event_type))}</span>
                         </div>
                     </div>
                 `).join('');
