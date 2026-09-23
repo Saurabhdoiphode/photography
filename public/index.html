@@ -1955,9 +1955,9 @@
 
         .booking-message {
             margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
             display: none;
         }
 
@@ -1965,14 +1965,16 @@
             display: block;
             background-color: #DCFCE7;
             color: #15803D;
-            border: 1px solid #86EFAC;
+            border: 1.5px solid #86EFAC;
+            box-shadow: 0 10px 30px rgba(22, 101, 52, 0.08);
         }
 
         .booking-message.error {
             display: block;
             background-color: #FEE2E2;
             color: #991B1B;
-            border: 1px solid #FCA5A5;
+            border: 1.5px solid #FCA5A5;
+            box-shadow: 0 10px 30px rgba(153, 27, 27, 0.08);
         }
 
         /* Toast notification popup */
@@ -3515,8 +3517,13 @@
         // Open Booking Form
         function openBookingForm(dateStr, formattedStr) {
             const formWrapper = document.getElementById('bookingFormWrapper');
+            const bookingForm = document.getElementById('bookingForm');
             const dateDisplay = document.getElementById('bookingDateDisplay');
             const msgBox = document.getElementById('bookingMessage');
+
+            if (bookingForm) {
+                bookingForm.style.display = 'block';
+            }
 
             if (dateDisplay) {
                 dateDisplay.innerHTML = currentLang === 'mr' 
@@ -3539,8 +3546,18 @@
         // Close Booking Form
         function closeBookingForm() {
             const formWrapper = document.getElementById('bookingFormWrapper');
+            const bookingForm = document.getElementById('bookingForm');
+            const msgBox = document.getElementById('bookingMessage');
             if (formWrapper) {
                 formWrapper.style.display = 'none';
+            }
+            if (bookingForm) {
+                bookingForm.style.display = 'block';
+            }
+            if (msgBox) {
+                msgBox.style.display = 'none';
+                msgBox.className = 'booking-message';
+                msgBox.innerHTML = '';
             }
             selectedBookingDate = null;
             document.querySelectorAll('.date-cell').forEach(c => c.classList.remove('selected'));
@@ -3661,12 +3678,18 @@
                         const result = await response.json();
 
                         if (result.success) {
+                            bookingForm.style.display = 'none';
                             msgBox.className = 'booking-message success';
+                            msgBox.style.display = 'block';
+
+                            const locEventType = getLocalizedEventType(eventType);
                             const omkarPhone = '9146929608';
-                            const alertMsg = `Hello Omkar, I submitted a booking request for ${eventType} on ${selectedBookingDate}.\n\n👤 Client: ${clientName}\n📞 Phone: ${clientPhone}\n💍 Event: ${eventType}\n📅 Date: ${selectedBookingDate}\n📍 Location: ${eventLocation}`;
+                            const alertMsg = currentLang === 'mr'
+                                ? `नमस्ते ओमकारजी, मी ${locEventType} साठी ${selectedBookingDate} या तारखेला बुकिंग अर्ज पाठवला आहे.\n\n👤 नाव: ${clientName}\n📞 फोन: ${clientPhone}\n💍 इव्हेंट: ${locEventType}\n📅 तारीख: ${selectedBookingDate}\n📍 ठिकाण: ${eventLocation}`
+                                : `Hello Omkar, I submitted a booking request for ${eventType} on ${selectedBookingDate}.\n\n👤 Client: ${clientName}\n📞 Phone: ${clientPhone}\n💍 Event: ${eventType}\n📅 Date: ${selectedBookingDate}\n📍 Location: ${eventLocation}`;
                             
                             // Direct WhatsApp Chat Link to Omkar (+91 9146929608)
-                            const whatsappUrl = result.whatsappAlertUrl || `https://api.whatsapp.com/send?phone=919146929608&text=${encodeURIComponent(alertMsg)}`;
+                            const whatsappUrl = `https://api.whatsapp.com/send?phone=919146929608&text=${encodeURIComponent(alertMsg)}`;
                             
                             // Direct Text SMS Link to Omkar (+91 9146929608)
                             const smsUrl = `sms:+919146929608?body=${encodeURIComponent(alertMsg)}`;
@@ -3685,32 +3708,39 @@
 
                             const gcalStart = formatDateForGCal(startDateObj);
                             const gcalEnd = formatDateForGCal(endDateObj);
-                            const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Omkar Photography Shoot: ' + eventType)}&dates=${gcalStart}/${gcalEnd}&details=${encodeURIComponent('Client: ' + clientName + ' (' + clientPhone + '), Location: ' + eventLocation)}&location=${encodeURIComponent(eventLocation)}`;
-
-                            const locEventType = getLocalizedEventType(eventType);
+                            const gcalTitle = currentLang === 'mr' ? `ओमकार फोटोग्राफी शूट: ${locEventType}` : `Omkar Photography Shoot: ${eventType}`;
+                            const gcalDetails = currentLang === 'mr'
+                                ? `ग्राहक: ${clientName} (${clientPhone}), ठिकाण: ${eventLocation}`
+                                : `Client: ${clientName} (${clientPhone}), Location: ${eventLocation}`;
+                            const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(gcalTitle)}&dates=${gcalStart}/${gcalEnd}&details=${encodeURIComponent(gcalDetails)}&location=${encodeURIComponent(eventLocation)}`;
 
                             if (currentLang === 'mr') {
                                 msgBox.innerHTML = `
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                        <span style="font-size: 28px;">🎉</span>
-                                        <div>
-                                            <h4 style="font-weight: 700; margin-bottom: 6px; color: #15803D; font-size: 1.05rem;">बुकिंग अर्ज पाठवला आहे!</h4>
-                                            <p style="margin-bottom: 8px; font-weight: 600; color: #166534; font-size: 0.95rem;">
-                                                💬 धन्यवाद! आम्ही लवकरच तुम्हाला कॉल करून बुकिंगची माहिती घेऊ.
+                                    <div style="display: flex; gap: 14px; align-items: flex-start;">
+                                        <span style="font-size: 32px; line-height: 1;">🎉</span>
+                                        <div style="flex: 1;">
+                                            <h4 style="font-weight: 800; margin: 0 0 6px 0; color: #15803D; font-size: 1.25rem;">बुकिंग अर्ज पाठवला आहे!</h4>
+                                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #166534; font-size: 1rem; display: flex; align-items: center; gap: 6px;">
+                                                <span>💭</span> <span>धन्यवाद! आम्ही लवकरच तुम्हाला कॉल करून बुकिंगची माहिती घेऊ.</span>
                                             </p>
-                                            <p style="font-size: 0.85rem; color: #374151; margin-bottom: 12px;">
+                                            <p style="font-size: 0.95rem; color: #374151; margin: 0 0 16px 0;">
                                                 <strong>${clientName}</strong> (${clientPhone}) — <strong>${locEventType}</strong> (${selectedBookingDate}) चे अर्ज तपशील.
                                             </p>
-                                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                                <a href="${whatsappUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
-                                                    <span>💬 ओमकार यांना व्हॉट्सॲप मेसेज पाठवा</span>
+                                            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 380px;">
+                                                <a href="${whatsappUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #22C55E; color: white; padding: 12px 24px; border-radius: 9999px; font-size: 0.95rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35); transition: transform 0.2s;">
+                                                    <span>💬</span> <span>ओमकार यांना व्हॉट्सॲप मेसेज पाठवा</span>
                                                 </a>
-                                                <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #4285F4; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);">
-                                                    <span>📅 गूगल कॅलेंडरमध्ये जोडा</span>
+                                                <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #3B82F6; color: white; padding: 12px 24px; border-radius: 9999px; font-size: 0.95rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35); transition: transform 0.2s;">
+                                                    <span>📅</span> <span>गूगल कॅलेंडरमध्ये जोडा</span>
                                                 </a>
-                                                <a href="${smsUrl}" style="display: inline-flex; align-items: center; gap: 6px; background: #0284C7; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);">
-                                                    <span>📱 ओमकार यांना SMS पाठवा</span>
+                                                <a href="${smsUrl}" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #0284C7; color: white; padding: 12px 24px; border-radius: 9999px; font-size: 0.95rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); transition: transform 0.2s;">
+                                                    <span>📱</span> <span>ओमकार यांना SMS पाठवा</span>
                                                 </a>
+                                            </div>
+                                            <div style="margin-top: 16px;">
+                                                <button type="button" onclick="closeBookingForm()" style="background: white; border: 1.5px solid #86EFAC; color: #166534; padding: 7px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+                                                    ✕ बंद करा
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -3718,26 +3748,31 @@
                                 showToast('✅ धन्यवाद! आम्ही लवकरच तुम्हाला कॉल करून बुकिंगची खात्री करू.');
                             } else {
                                 msgBox.innerHTML = `
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                                        <span style="font-size: 28px;">🎉</span>
-                                        <div>
-                                            <h4 style="font-weight: 700; margin-bottom: 6px; color: #15803D; font-size: 1.05rem;">Booking Request Submitted!</h4>
-                                            <p style="margin-bottom: 8px; font-weight: 600; color: #166534; font-size: 0.95rem;">
-                                                💬 Thank you! We will call you shortly to confirm your booking.
+                                    <div style="display: flex; gap: 14px; align-items: flex-start;">
+                                        <span style="font-size: 32px; line-height: 1;">🎉</span>
+                                        <div style="flex: 1;">
+                                            <h4 style="font-weight: 800; margin: 0 0 6px 0; color: #15803D; font-size: 1.25rem;">Booking Request Submitted!</h4>
+                                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #166534; font-size: 1rem; display: flex; align-items: center; gap: 6px;">
+                                                <span>💭</span> <span>Thank you! We will call you shortly to confirm your booking.</span>
                                             </p>
-                                            <p style="font-size: 0.85rem; color: #374151; margin-bottom: 12px;">
+                                            <p style="font-size: 0.95rem; color: #374151; margin: 0 0 16px 0;">
                                                 Request details for <strong>${clientName}</strong> (${clientPhone}) — <strong>${eventType}</strong> on <strong>${selectedBookingDate}</strong>.
                                             </p>
-                                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                                <a href="${whatsappUrl}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">
-                                                    <span>💬 Send WhatsApp Alert to Omkar</span>
+                                            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 380px;">
+                                                <a href="${whatsappUrl}" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #22C55E; color: white; padding: 12px 24px; border-radius: 9999px; font-size: 0.95rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35); transition: transform 0.2s;">
+                                                    <span>💬</span> <span>Send WhatsApp Alert to Omkar</span>
                                                 </a>
-                                                <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #4285F4; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);">
-                                                    <span>📅 Add to Google Calendar</span>
+                                                <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #3B82F6; color: white; padding: 12px 24px; border-radius: 9999px; font-size: 0.95rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35); transition: transform 0.2s;">
+                                                    <span>📅</span> <span>Add to Google Calendar</span>
                                                 </a>
-                                                <a href="${smsUrl}" style="display: inline-flex; align-items: center; gap: 6px; background: #0284C7; color: white; padding: 10px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);">
-                                                    <span>📱 Send Text SMS to Omkar</span>
+                                                <a href="${smsUrl}" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #0284C7; color: white; padding: 12px 24px; border-radius: 9999px; font-size: 0.95rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); transition: transform 0.2s;">
+                                                    <span>📱</span> <span>Send Text SMS to Omkar</span>
                                                 </a>
+                                            </div>
+                                            <div style="margin-top: 16px;">
+                                                <button type="button" onclick="closeBookingForm()" style="background: white; border: 1.5px solid #86EFAC; color: #166534; padding: 7px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+                                                    ✕ Close
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -3745,16 +3780,19 @@
                                 showToast('✅ Thank you! We will call you shortly to confirm your booking.');
                             }
                             bookingForm.reset();
+                            msgBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
                             // Refresh calendar statuses so the newly booked date turns Yellow (Pending)!
                             await fetchCalendarStatuses();
                         } else {
+                            bookingForm.style.display = 'block';
                             msgBox.className = 'booking-message error';
                             msgBox.innerHTML = currentLang === 'mr' ? `⚠️ ${result.error || 'अर्ज पाठवण्यात अडचण आली. कृपया पुन्हा प्रयत्न करा.'}` : `⚠️ ${result.error || 'Failed to submit request. Please try again.'}`;
                             msgBox.style.display = 'block';
                         }
                     } catch (error) {
                         console.error('Booking submission error:', error);
+                        bookingForm.style.display = 'block';
                         msgBox.className = 'booking-message error';
                         msgBox.innerHTML = currentLang === 'mr' ? '⚠️ नेटवर्क समस्या आली आहे. कृपया इंटरनेट तपासा आणि पुन्हा प्रयत्न करा.' : '⚠️ Network error. Please check your connection and try again.';
                         msgBox.style.display = 'block';
